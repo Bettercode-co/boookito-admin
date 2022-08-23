@@ -6,15 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:tailwind": "postcss styles/index.css -o styles/tailwind.css --watch",
+    "production:tailwind": "cross-env NODE_ENV=production postcss styles/index.css -o styles/tailwind.css"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "cssnano": "^5.1.13",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.8",
     "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5"
+    "eslint-config-next": "12.2.5",
+    "postcss-cli": "^10.0.0",
+    "tailwindcss": "^3.1.8"
   }
 }
