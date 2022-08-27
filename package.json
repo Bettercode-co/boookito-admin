@@ -11,11 +11,19 @@
     "production:tailwind": "cross-env NODE_ENV=production postcss styles/index.css -o styles/tailwind.css"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.2",
+    "@popperjs/core": "^2.11.6",
+    "@tailwindcss/forms": "^0.5.2",
+    "chart.js": "^3.9.1",
     "cross-env": "^7.0.3",
     "cssnano": "^5.1.13",
+    "gulp": "^4.0.2",
+    "gulp-append-prepend": "^1.0.9",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0"
   },
   "devDependencies": {
     "@types/node": "^18.7.11",
