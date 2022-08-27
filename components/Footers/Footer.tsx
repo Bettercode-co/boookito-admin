@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           </svg>
         </div>
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap text-center lg:text-left">
+          <div className="flex flex-wrap text-center lg:text-right">
             <div className="w-full lg:w-6/12 px-4">
               <h4 className="text-3xl font-semibold">
                 Let&rsquo;s keep in touch!
@@ -40,25 +40,25 @@ const Footer: React.FC = () => {
               </h5>
               <div className="flex mt-6 lg:mb-0 mb-6">
                 <button
-                  className="bg-white text-sky-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-sky-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none ml-2"
                   type="button"
                 >
                   <FaTwitter />
                 </button>
                 <button
-                  className="bg-white text-sky-600 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-sky-600 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none ml-2"
                   type="button"
                 >
                   <FaFacebookSquare />
                 </button>
                 <button
-                  className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none ml-2"
                   type="button"
                 >
                   <FaDribbble />
                 </button>
                 <button
-                  className="bg-white text-slate-800 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-slate-800 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none ml-2"
                   type="button"
                 >
                   <FaGithub />
@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="w-full lg:w-6/12 px-4">
               <div className="flex flex-wrap items-top mb-6">
-                <div className="w-full lg:w-4/12 px-4 ml-auto">
+                <div className="w-full lg:w-4/12 px-4 mr-auto">
                   <span className="block uppercase text-slate-500 text-sm font-semibold mb-2">
                     Useful Links
                   </span>

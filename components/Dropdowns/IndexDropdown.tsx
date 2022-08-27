@@ -26,7 +26,7 @@ const IndexDropdown: React.FC = () => {
   };
 
   return (
-    <>
+    <div>
       <a
         className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
         href="#pablo"
@@ -39,7 +39,7 @@ const IndexDropdown: React.FC = () => {
         ref={popoverDropdownRef}
         className={
           (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+          "bg-white text-base z-50 float-right py-2 list-none text-right rounded shadow-lg min-w-48"
         }
       >
         <span
@@ -127,7 +127,7 @@ const IndexDropdown: React.FC = () => {
           </a>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ const CardSettings: React.FC = () => {
         <div className="text-center flex justify-between">
           <h6 className="text-slate-700 text-xl font-bold">My account</h6>
           <button
-            className="bg-slate-700 active:bg-slate-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+            className="bg-slate-700 active:bg-slate-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ml-1 ease-linear transition-all duration-150"
             type="button"
           >
             Settings

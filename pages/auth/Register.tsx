@@ -17,12 +17,12 @@ const Register: React.FC = () => {
                 </div>
                 <div className="btn-wrapper text-center">
                   <button
-                    className="bg-white active:bg-slate-50 text-slate-700 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex gap-1 items-center font-bold text-xs ease-linear transition-all duration-150"
+                    className="bg-white active:bg-slate-50 text-slate-700 px-4 py-2 rounded outline-none focus:outline-none ml-2 mb-1 uppercase shadow hover:shadow-md inline-flex gap-1 items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
                   >
                     <Image
                       alt="..."
-                      className="w-5 mr-1"
+                      className="w-5 ml-1"
                       src="/img/github.svg"
                       width={20}
                       height={20}
@@ -35,7 +35,7 @@ const Register: React.FC = () => {
                   >
                     <Image
                       alt="..."
-                      className="w-5 mr-1"
+                      className="w-5 ml-1"
                       src="/img/google.svg"
                       width={20}
                       height={20}
@@ -114,7 +114,7 @@ const Register: React.FC = () => {
 
                   <div className="text-center mt-6">
                     <button
-                      className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
                     >
                       Create Account

@@ -34,13 +34,13 @@ const Home: React.FC = () => {
                   href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index"
                   target="_blank"
                   rel="noreferrer"
-                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-400 active:bg-slate-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none ml-1 mb-1 bg-slate-400 active:bg-slate-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                 >
                   Get started
                 </a>
                 <a
                   href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index"
-                  className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg"
+                  className="github-star mr-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none ml-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -178,7 +178,7 @@ const Home: React.FC = () => {
 
         <div className="container mx-auto overflow-hidden pb-20">
           <div className="flex flex-wrap items-center">
-            <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
+            <div className="w-full md:w-4/12 px-12 md:px-4 mr-auto ml-auto mt-48">
               <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                 <i className="fas fa-sitemap text-xl"></i>
               </div>
@@ -191,28 +191,28 @@ const Home: React.FC = () => {
                 have different colours.
               </p>
               <div className="block pb-6">
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Buttons
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Inputs
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Labels
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Menus
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Navbars
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Pagination
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Progressbars
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Typography
                 </span>
               </div>
@@ -223,7 +223,7 @@ const Home: React.FC = () => {
                 className="font-bold text-slate-700 hover:text-slate-500 ease-linear transition-all duration-150"
               >
                 View All{" "}
-                <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
+                <i className="fa fa-angle-double-right mr-1 leading-relaxed"></i>
               </a>
             </div>
 
@@ -264,7 +264,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center pt-32">
-            <div className="w-full md:w-6/12 px-4 mr-auto ml-auto mt-32">
+            <div className="w-full md:w-6/12 px-4 ml-auto mr-auto mt-32">
               <div className="justify-center flex flex-wrap relative">
                 <div className="my-4 w-full lg:w-6/12 px-4">
                   <a
@@ -386,28 +386,28 @@ const Home: React.FC = () => {
                 you.
               </p>
               <div className="block pb-6">
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Alerts
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Dropdowns
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Menus
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Modals
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Navbars
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Popovers
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Tabs
                 </span>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:mr-0 mr-2 mt-2">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-white last:ml-0 ml-2 mt-2">
                   Tooltips
                 </span>
               </div>
@@ -418,7 +418,7 @@ const Home: React.FC = () => {
                 className="font-bold text-slate-700 hover:text-slate-500 ease-linear transition-all duration-150"
               >
                 View all{" "}
-                <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
+                <i className="fa fa-angle-double-right mr-1 leading-relaxed"></i>
               </a>
             </div>
           </div>
@@ -426,8 +426,8 @@ const Home: React.FC = () => {
 
         <div className="container mx-auto px-4 pb-32 pt-48">
           <div className="items-center flex flex-wrap">
-            <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
-              <div className="md:pr-12">
+            <div className="w-full md:w-5/12 mr-auto px-12 md:px-4">
+              <div className="md:pl-12">
                 <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <i className="fas fa-file-alt text-xl"></i>
                 </div>
@@ -444,7 +444,7 @@ const Home: React.FC = () => {
                   <li className="py-2">
                     <div className="flex items-center">
                       <div>
-                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 mr-3">
+                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 ml-3">
                           <i className="fas fa-fingerprint"></i>
                         </span>
                       </div>
@@ -458,7 +458,7 @@ const Home: React.FC = () => {
                   <li className="py-2">
                     <div className="flex items-center">
                       <div>
-                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 mr-3">
+                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 ml-3">
                           <i className="fab fa-html5"></i>
                         </span>
                       </div>
@@ -472,7 +472,7 @@ const Home: React.FC = () => {
                   <li className="py-2">
                     <div className="flex items-center">
                       <div>
-                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 mr-3">
+                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-500 bg-slate-50 ml-3">
                           <i className="far fa-paper-plane"></i>
                         </span>
                       </div>
@@ -487,7 +487,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-full md:w-6/12 mr-auto px-4 pt-24 md:pt-0">
+            <div className="w-full md:w-6/12 ml-auto px-4 pt-24 md:pt-0">
               <img
                 alt="..."
                 className="max-w-full rounded-lg shadow-xl"
@@ -571,7 +571,7 @@ const Home: React.FC = () => {
       <section className="py-20 bg-slate-600 overflow-hidden">
         <div className="container mx-auto pb-64">
           <div className="flex flex-wrap justify-center">
-            <div className="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
+            <div className="w-full md:w-5/12 px-12 md:px-4 mr-auto ml-auto md:mt-64">
               <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                 <i className="fas fa-code-branch text-xl"></i>
               </div>
@@ -600,7 +600,7 @@ const Home: React.FC = () => {
                 href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index"
                 target="_blank"
                 rel="noreferrer"
-                className="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg"
+                className="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none ml-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg"
               >
                 Github Star
               </a>
@@ -655,7 +655,7 @@ const Home: React.FC = () => {
                   href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index"
                   target="_blank"
                   rel="noreferrer"
-                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-2 bg-slate-400 active:bg-slate-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none ml-1 mb-2 bg-slate-400 active:bg-slate-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                 >
                   Get started
                 </a>
@@ -663,9 +663,9 @@ const Home: React.FC = () => {
                   href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index"
                   target="_blank"
                   rel="noreferrer"
-                  className="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg"
+                  className="github-star sm:mr-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none ml-1 mb-1 bg-slate-700 active:bg-slate-600 uppercase text-sm shadow hover:shadow-lg"
                 >
-                  <i className="fab fa-github text-lg mr-1"></i>
+                  <i className="fab fa-github text-lg ml-1"></i>
                   <span>Help With a Star</span>
                 </a>
               </div>

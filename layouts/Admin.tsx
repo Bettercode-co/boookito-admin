@@ -10,7 +10,7 @@ const Admin: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="">
       <Sidebar />
-      <div className="relative border-red-500 w-max md:ml-64 mg:w-full bg-slate-100">
+      <div className="relative border-red-500 w-max md:mr-64 mg:w-full bg-slate-100">
         <AdminNavbar />
         {/* Header */}
         <HeaderStats />

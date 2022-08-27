@@ -26,7 +26,7 @@ const NotificationDropdown: React.FC = () => {
   };
 
   return (
-    <>
+    <div >
       <a
         className="text-slate-500 py-1 px-3"
         href="#pablo"
@@ -39,7 +39,7 @@ const NotificationDropdown: React.FC = () => {
         ref={popoverDropdownRef}
         className={
           (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+          "bg-white text-base z-50 float-right py-2 list-none text-right rounded shadow-lg min-w-48"
         }
       >
         <a
@@ -70,7 +70,7 @@ const NotificationDropdown: React.FC = () => {
           Something else here
         </a>
       </div>
-    </>
+    </div>
   );
 };
 

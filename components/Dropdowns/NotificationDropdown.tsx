@@ -27,7 +27,7 @@ const NotificationDropdown: React.FC = () => {
   };
 
   return (
-    <>
+    <div >
       <a
         className="text-slate-500 block py-1 px-3"
         href="#pablo"
@@ -40,7 +40,7 @@ const NotificationDropdown: React.FC = () => {
         ref={popoverDropdownRef}
         className={
           (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+          "bg-white text-base z-50 float-right py-2 list-none text-right rounded shadow-lg min-w-48"
         }
       >
         <a
@@ -81,7 +81,7 @@ const NotificationDropdown: React.FC = () => {
           Seprated link
         </a>
       </div>
-    </>
+    </div>
   );
 };
 

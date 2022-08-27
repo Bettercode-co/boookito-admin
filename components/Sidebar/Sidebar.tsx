@@ -29,7 +29,7 @@ const Sidebar: React.FC = () => {
   const router = useRouter();
 
   return (
-    <nav className="  md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+    <nav className="  md:right-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
       <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
         {/* Toggler */}
         <button
@@ -43,7 +43,7 @@ const Sidebar: React.FC = () => {
         <Link href="/">
           <a
             href="#pablo"
-            className="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+            className="md:block text-right md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
           >
             Notus NextJS
           </a>
@@ -71,7 +71,7 @@ const Sidebar: React.FC = () => {
                 <Link href="/">
                   <a
                     href="#pablo"
-                    className="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                    className="md:block text-right md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                   >
                     Notus NextJS
                   </a>
@@ -121,7 +121,7 @@ const Sidebar: React.FC = () => {
                 >
                   <FaTv
                     className={
-                      " mr-2 text-lg " +
+                      " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
@@ -145,7 +145,7 @@ const Sidebar: React.FC = () => {
                 >
                   <FaTools
                     className={
-                      " mr-2 text-lg " +
+                      " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/settings") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
@@ -172,7 +172,7 @@ const Sidebar: React.FC = () => {
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
-                  <FaFingerprint className="fas fa-fingerprint text-slate-400 mr-2 text-sm" />
+                  <FaFingerprint className="fas fa-fingerprint text-slate-400 ml-2 text-sm" />
                   Login
                 </a>
               </Link>
@@ -184,7 +184,7 @@ const Sidebar: React.FC = () => {
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
-                  <FaClipboardList className="fas fa-clipboard-list text-slate-300 mr-2 text-sm" />
+                  <FaClipboardList className="fas fa-clipboard-list text-slate-300 ml-2 text-sm" />
                   Register
                 </a>
               </Link>
@@ -206,7 +206,7 @@ const Sidebar: React.FC = () => {
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
-                  <FaNewspaper className="fas fa-newspaper text-slate-400 mr-2 text-sm" />
+                  <FaNewspaper className="fas fa-newspaper text-slate-400 ml-2 text-sm" />
                   Landing Page
                 </a>
               </Link>
@@ -218,7 +218,7 @@ const Sidebar: React.FC = () => {
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
-                  <FaUserCircle className="fas fa-user-circle text-slate-400 mr-2 text-sm" />
+                  <FaUserCircle className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
                   Profile Page
                 </a>
               </Link>
@@ -240,7 +240,7 @@ const Sidebar: React.FC = () => {
                 rel="noreferrer"
                 className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
               >
-                <FaPaintBrush className="fas fa-paint-brush mr-2 text-slate-300 text-base" />
+                <FaPaintBrush className="fas fa-paint-brush ml-2 text-slate-300 text-base" />
                 Styles
               </a>
             </li>
@@ -252,7 +252,7 @@ const Sidebar: React.FC = () => {
                 rel="noreferrer"
                 className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
               >
-                <FaCss3Alt className="fab fa-css3-alt mr-2 text-slate-300 text-base" />
+                <FaCss3Alt className="fab fa-css3-alt ml-2 text-slate-300 text-base" />
                 CSS Components
               </a>
             </li>
@@ -264,7 +264,7 @@ const Sidebar: React.FC = () => {
                 rel="noreferrer"
                 className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
               >
-                <FaAngular className="fab fa-angular mr-2 text-slate-300 text-base" />
+                <FaAngular className="fab fa-angular ml-2 text-slate-300 text-base" />
                 Angular
               </a>
             </li>
@@ -276,7 +276,7 @@ const Sidebar: React.FC = () => {
                 rel="noreferrer"
                 className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
               >
-                <FaJsSquare className="fab fa-react mr-2 text-slate-300 text-base" />
+                <FaJsSquare className="fab fa-react ml-2 text-slate-300 text-base" />
                 Javascript
               </a>
             </li>
@@ -288,7 +288,7 @@ const Sidebar: React.FC = () => {
                 rel="noreferrer"
                 className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
               >
-                <FaReact className="fab fa-react mr-2 text-slate-300 text-base" />
+                <FaReact className="fab fa-react ml-2 text-slate-300 text-base" />
                 NextJS
               </a>
             </li>
@@ -300,7 +300,7 @@ const Sidebar: React.FC = () => {
                 rel="noreferrer"
                 className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
               >
-                <FaReact className="fab fa-react mr-2 text-slate-300 text-base" />
+                <FaReact className="fab fa-react ml-2 text-slate-300 text-base" />
                 React
               </a>
             </li>
@@ -312,7 +312,7 @@ const Sidebar: React.FC = () => {
                 rel="noreferrer"
                 className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
               >
-                <FaLink className="fas fa-link mr-2 text-slate-300 text-base" />
+                <FaLink className="fas fa-link ml-2 text-slate-300 text-base" />
                 Svelte
               </a>
             </li>
@@ -324,7 +324,7 @@ const Sidebar: React.FC = () => {
                 rel="noreferrer"
                 className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
               >
-                <FaVuejs className="fab fa-vuejs mr-2 text-slate-300 text-base" />
+                <FaVuejs className="fab fa-vuejs ml-2 text-slate-300 text-base" />
                 VueJS
               </a>
             </li>
