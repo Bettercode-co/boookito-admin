@@ -70,26 +70,7 @@ const PagesDropdown: React.FC = () => {
             Settings
           </a>
         </Link>
-        <Link href="/admin/tables">
-          <a
-            href="#pablo"
-            className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
-            }
-          >
-            Tables
-          </a>
-        </Link>
-        <Link href="/admin/maps">
-          <a
-            href="#pablo"
-            className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
-            }
-          >
-            Maps
-          </a>
-        </Link>
+
         <div className="h-0 mx-4 my-2 border border-solid border-slate-100" />
         <span
           className={

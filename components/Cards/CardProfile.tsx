@@ -1,15 +1,13 @@
 import React from "react";
 
-// components
-
-export default function CardProfile() {
+const CardProfile: React.FC = () => {
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
         <div className="px-6">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
-              <div className="relative">
+              <div className="absolute left-2/4 -top-5 h-40 w-40">
                 <img
                   alt="..."
                   src="/img/team-2-800x800.jpg"
@@ -81,4 +79,6 @@ export default function CardProfile() {
       </div>
     </>
   );
-}
+};
+
+export default CardProfile;

@@ -3,8 +3,9 @@ import Link from "next/link";
 // components
 import IndexDropdown from "../Dropdowns/IndexDropdown";
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<Boolean> = () => {
   const [navbarOpen, setNavbarOpen] = React.useState<boolean>(false);
+
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">

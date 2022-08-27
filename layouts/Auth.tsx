@@ -2,8 +2,9 @@ import React from "react";
 
 import Navbar from "../components/Navbars/AuthNavbar";
 import FooterSmall from "../components/Footers/FooterSmall";
+import { LayoutProps } from "../interfaces";
 
-const Auth: React.FC = () => {
+const Auth: React.FC<LayoutProps> = (props) => {
   return (
     <>
       <Navbar />
@@ -15,8 +16,8 @@ const Auth: React.FC = () => {
               backgroundImage: "url('/img/register_bg_2.png')",
             }}
           ></div>
-          {/* {children} */}
-          <FooterSmall absolute />
+          {props.children}
+          <FooterSmall absolute={true} />
         </section>
       </main>
     </>
