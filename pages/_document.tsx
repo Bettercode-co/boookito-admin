@@ -15,8 +15,8 @@ class MyDocument extends Document{
             href="/img/brand/apple-icon.png"
           />
         </Head>
-        <body className="text-blueGray-700 antialiased">
-          <div id="page-transition"></div>
+        <body dir="rtl" className="text-blueGray-700 antialiased">
+          <div  id="page-transition"></div>
           <Main />
           <NextScript />
         </body>

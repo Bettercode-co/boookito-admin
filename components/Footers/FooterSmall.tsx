@@ -14,7 +14,7 @@ const FooterSmall: React.FC<FooterSmallProps> = ({ absolute }) => {
           <hr className="mb-6 border-b-1 border-slate-600" />
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4">
-              <div className="text-sm text-slate-500 font-semibold py-1 text-center md:text-left">
+              <div className="text-sm text-slate-500 font-semibold py-1 text-center md:text-right">
                 Copyright © {new Date().getFullYear()}{" "}
                 <a
                   href="https://www.creative-tim.com?ref=nnjs-footer-small"

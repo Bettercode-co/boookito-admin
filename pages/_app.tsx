@@ -41,7 +41,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         defer
         src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"
       ></Script>
-      <Layout>
+      <Layout >
         <Component {...pageProps} />
       </Layout>
     </React.Fragment>

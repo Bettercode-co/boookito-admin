@@ -44,7 +44,7 @@ const Landing: React.FC = () => {
           <div className="container relative mx-auto">
             <div className="items-center flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-                <div className="pr-12">
+                <div className="pl-12">
                   <h1 className="text-white font-semibold text-5xl">
                     Your story starts with us.
                   </h1>
@@ -222,7 +222,7 @@ const Landing: React.FC = () => {
                 />
               </div>
               <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
-                <div className="md:pr-12">
+                <div className="md:pl-12">
                   <div className="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-slate-200">
                     <FaRocket className="text-xl" />
                   </div>
@@ -236,7 +236,7 @@ const Landing: React.FC = () => {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block py-2 px-2 uppercase rounded-full text-slate-500 bg-slate-100 mr-3">
+                          <span className="text-xs font-semibold inline-block py-2 px-2 uppercase rounded-full text-slate-500 bg-slate-100 ml-3">
                             <FaFingerprint />
                           </span>
                         </div>
@@ -250,7 +250,7 @@ const Landing: React.FC = () => {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block py-2 px-2 uppercase rounded-full text-slate-500 bg-slate-100 mr-3">
+                          <span className="text-xs font-semibold inline-block py-2 px-2 uppercase rounded-full text-slate-500 bg-slate-100 ml-3">
                             <FaHtml5 />
                           </span>
                         </div>
@@ -264,7 +264,7 @@ const Landing: React.FC = () => {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block py-2 px-2 uppercase rounded-full text-slate-500 bg-slate-100 mr-3">
+                          <span className="text-xs font-semibold inline-block py-2 px-2 uppercase rounded-full text-slate-500 bg-slate-100 ml-3">
                             <FaPaperPlane />
                           </span>
                         </div>
@@ -307,22 +307,22 @@ const Landing: React.FC = () => {
                     </p>
                     <div className="flex items-center justify-center mt-6">
                       <button
-                        className="bg-sky-400 text-white text-center w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-sky-400 text-white text-center w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaTwitter className=" ml-2" />
+                        <FaTwitter className=" mr-2" />
                       </button>
                       <button
-                        className="bg-sky-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-sky-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaFacebookF className=" ml-2" />
+                        <FaFacebookF className=" mr-2" />
                       </button>
                       <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaDribbble className=" ml-2" />
+                        <FaDribbble className=" mr-2" />
                       </button>
                     </div>
                   </div>
@@ -342,16 +342,16 @@ const Landing: React.FC = () => {
                     </p>
                     <div className="flex items-center justify-center mt-6">
                       <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaGoogle className=" ml-2" />
+                        <FaGoogle className=" mr-2" />
                       </button>
                       <button
-                        className="bg-sky-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-sky-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaFacebookF className=" ml-2" />
+                        <FaFacebookF className=" mr-2" />
                       </button>
                     </div>
                   </div>
@@ -371,22 +371,22 @@ const Landing: React.FC = () => {
                     </p>
                     <div className="flex items-center justify-center mt-6">
                       <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaGoogle className=" ml-2" />
+                        <FaGoogle className=" mr-2" />
                       </button>
                       <button
-                        className="bg-sky-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-sky-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaTwitter className=" ml-2" />
+                        <FaTwitter className=" mr-2" />
                       </button>
                       <button
-                        className="bg-slate-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-slate-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaInstagram className=" ml-2" />
+                        <FaInstagram className=" mr-2" />
                       </button>
                     </div>
                   </div>
@@ -406,28 +406,28 @@ const Landing: React.FC = () => {
                     </p>
                     <div className="flex items-center justify-center mt-6">
                       <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaDribbble className=" ml-2" />
+                        <FaDribbble className="mr-2" />
                       </button>
                       <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaGoogle className=" ml-2" />
+                        <FaGoogle className=" mr-2" />
                       </button>
                       <button
-                        className="bg-sky-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-sky-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaTwitter className=" ml-2" />
+                        <FaTwitter className=" mr-2" />
                       </button>
                       <button
-                        className="bg-slate-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="bg-slate-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none ml-1 mb-1"
                         type="button"
                       >
-                        <FaInstagram className=" ml-2" />
+                        <FaInstagram className=" mr-2" />
                       </button>
                     </div>
                   </div>
@@ -568,7 +568,7 @@ const Landing: React.FC = () => {
                     </div>
                     <div className="text-center mt-6">
                       <button
-                        className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
                       >
                         Send Message

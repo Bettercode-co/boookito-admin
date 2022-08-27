@@ -7,7 +7,7 @@ import Admin from "../../layouts/Admin";
 export default function Settings() {
   return (
     <Admin>
-      <div className="flex flex-wrap">
+      <div  className="flex flex-wrap">
         <div className="w-full lg:w-8/12 px-4">
           <CardSettings />
         </div>
