@@ -5,20 +5,9 @@ import {
   FaBars,
   FaTv,
   FaTools,
-  FaTable,
-  FaMapMarked,
   FaTimes,
-  FaFingerprint,
-  FaClipboardList,
   FaNewspaper,
   FaUserCircle,
-  FaCss3Alt,
-  FaPaintBrush,
-  FaVuejs,
-  FaLink,
-  FaReact,
-  FaJsSquare,
-  FaAngular,
 } from "react-icons/fa";
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
@@ -45,7 +34,7 @@ const Sidebar: React.FC = () => {
             href="#pablo"
             className="md:block text-right md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
           >
-            Notus NextJS
+            داشبورد پورتال
           </a>
         </Link>
         {/* User */}
@@ -99,16 +88,19 @@ const Sidebar: React.FC = () => {
             </div>
           </form>
 
+          
+
+
           {/* Divider */}
           <hr className="my-4 md:min-w-full" />
           {/* Heading */}
           <h6 className="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-            Admin Layout Pages
+            منو ها
           </h6>
           {/* Navigation */}
 
-          <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-            <li className="items-center">
+          <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+          <li className="items-center">
               <Link href="/admin/dashboard">
                 <a
                   href="#pablo"
@@ -127,7 +119,33 @@ const Sidebar: React.FC = () => {
                         : "text-slate-300")
                     }
                   />
-                  Dashboard
+                  داشبورد
+                </a>
+              </Link>
+            </li>
+
+            
+
+            <li className="items-center">
+              <Link href="/admin/customers">
+                <a
+                  href="#pablo"
+                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
+                >
+                  <FaNewspaper className="fas fa-newspaper text-slate-400 ml-2 text-sm" />
+                  مشتریان
+                </a>
+              </Link>
+            </li>
+
+            <li className="items-center">
+              <Link href="/admin/category">
+                <a
+                  href="#pablo"
+                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
+                >
+                  <FaUserCircle className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
+                  انواع صنعت
                 </a>
               </Link>
             </li>
@@ -151,184 +169,15 @@ const Sidebar: React.FC = () => {
                         : "text-slate-300")
                     }
                   />
-                  Settings
+                  تنظیمات
                 </a>
               </Link>
             </li>
+
           </ul>
 
-          {/* Divider */}
-          <hr className="my-4 md:min-w-full" />
-          {/* Heading */}
-          <h6 className="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-            Auth Layout Pages
-          </h6>
-          {/* Navigation */}
 
-          <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-            <li className="items-center">
-              <Link href="/auth/login">
-                <a
-                  href="#pablo"
-                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
-                >
-                  <FaFingerprint className="fas fa-fingerprint text-slate-400 ml-2 text-sm" />
-                  Login
-                </a>
-              </Link>
-            </li>
 
-            <li className="items-center">
-              <Link href="/auth/register">
-                <a
-                  href="#pablo"
-                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
-                >
-                  <FaClipboardList className="fas fa-clipboard-list text-slate-300 ml-2 text-sm" />
-                  Register
-                </a>
-              </Link>
-            </li>
-          </ul>
-
-          {/* Divider */}
-          <hr className="my-4 md:min-w-full" />
-          {/* Heading */}
-          <h6 className="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-            No Layout Pages
-          </h6>
-          {/* Navigation */}
-
-          <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-            <li className="items-center">
-              <Link href="/admin/customers">
-                <a
-                  href="#pablo"
-                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
-                >
-                  <FaNewspaper className="fas fa-newspaper text-slate-400 ml-2 text-sm" />
-                  customers
-                </a>
-              </Link>
-            </li>
-
-            <li className="items-center">
-              <Link href="/admin/category">
-                <a
-                  href="#pablo"
-                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
-                >
-                  <FaUserCircle className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
-                  Category
-                </a>
-              </Link>
-            </li>
-          </ul>
-
-          {/* Divider */}
-          <hr className="my-4 md:min-w-full" />
-          {/* Heading */}
-          <h6 className="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-            Documentation
-          </h6>
-          {/* Navigation */}
-          <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-            <li className="inline-flex">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/colors/notus"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
-              >
-                <FaPaintBrush className="fas fa-paint-brush ml-2 text-slate-300 text-base" />
-                Styles
-              </a>
-            </li>
-
-            <li className="inline-flex">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
-              >
-                <FaCss3Alt className="fab fa-css3-alt ml-2 text-slate-300 text-base" />
-                CSS Components
-              </a>
-            </li>
-
-            <li className="inline-flex">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
-              >
-                <FaAngular className="fab fa-angular ml-2 text-slate-300 text-base" />
-                Angular
-              </a>
-            </li>
-
-            <li className="inline-flex">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
-              >
-                <FaJsSquare className="fab fa-react ml-2 text-slate-300 text-base" />
-                Javascript
-              </a>
-            </li>
-
-            <li className="inline-flex">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
-              >
-                <FaReact className="fab fa-react ml-2 text-slate-300 text-base" />
-                NextJS
-              </a>
-            </li>
-
-            <li className="inline-flex">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
-              >
-                <FaReact className="fab fa-react ml-2 text-slate-300 text-base" />
-                React
-              </a>
-            </li>
-
-            <li className="inline-flex">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
-              >
-                <FaLink className="fas fa-link ml-2 text-slate-300 text-base" />
-                Svelte
-              </a>
-            </li>
-
-            <li className="inline-flex">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-700 hover:text-slate-500 text-sm  mb-4 no-underline font-semibold flex items-center "
-              >
-                <FaVuejs className="fab fa-vuejs ml-2 text-slate-300 text-base" />
-                VueJS
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
     </nav>
