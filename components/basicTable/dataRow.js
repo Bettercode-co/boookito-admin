@@ -38,5 +38,6 @@ export const DATA =  [
         rate: 4.7,
         count: 500,
       },
+      
     },
   ]
