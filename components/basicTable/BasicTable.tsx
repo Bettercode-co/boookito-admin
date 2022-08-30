@@ -156,7 +156,7 @@ const BasicTable = ({rowsdata, columnsData}) => {
         </div>
       </div>
 
-      <div className="text-center mb-8">
+      <div className="text-center pb-8">
         <button
           className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           onClick={() => nextPage}

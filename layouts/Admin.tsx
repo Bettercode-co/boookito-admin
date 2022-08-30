@@ -6,13 +6,14 @@ import AdminNavbar from "../components/Navbars/AdminNavbar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { LayoutProps } from "../interfaces";
 
-const Admin: React.FC<LayoutProps> = ({ children }) => {
+const Admin: React.FC<LayoutProps> = ({ children, isHeaderStats }) => {
   return (
     <div className="">
       <Sidebar />
       <div className="content relative mg:w-full w-max md:mr-64  bg-slate-100 ">
         <AdminNavbar />
         {/* Header */}
+        {/* {isHeaderStats ? <HeaderStats /> : null} */}
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-max -m-24">
           {children}
