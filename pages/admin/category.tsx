@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 import React from "react";
-import BasicTable from "../components/basicTable/BasicTable";
+import BasicTable from "../../components/basicTable/BasicTable";
 // import { COLUMNS } from "../components/basicTable/columns"
-import { DATA } from "../components/basicTable/dataRow";
+import { DATA } from "../../components/basicTable/dataRow";
 import { RiEditFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 
-import Admin from "../layouts/Admin";
+import Admin from "../../layouts/Admin";
 
 const category: NextPage = () => {
   const COLUMNS = [

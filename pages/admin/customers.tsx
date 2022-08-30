@@ -1,12 +1,12 @@
 import { NextPage } from 'next'
 import React from 'react'
-import BasicTable from '../components/basicTable/BasicTable'
-import { COLUMNS } from "../components/basicTable/columns"
-import { DATA } from "../components/basicTable/dataRow";
+import BasicTable from '../../components/basicTable/BasicTable'
+import { COLUMNS } from "../../components/basicTable/columns"
+import { DATA } from "../../components/basicTable/dataRow";
 
 
 
-import Admin from '../layouts/Admin'
+import Admin from '../../layouts/Admin'
 
 const costumers : NextPage = () => {
   return (
