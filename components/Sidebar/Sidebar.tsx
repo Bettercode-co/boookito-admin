@@ -201,7 +201,7 @@ const Sidebar: React.FC = () => {
 
           <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
             <li className="items-center">
-              <Link href="/costumers">
+              <Link href="/admin/customers">
                 <a
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
@@ -213,7 +213,7 @@ const Sidebar: React.FC = () => {
             </li>
 
             <li className="items-center">
-              <Link href="/category">
+              <Link href="/admin/category">
                 <a
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
