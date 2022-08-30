@@ -37,7 +37,7 @@ const CardStats: React.FC<CardStatsProps> = ({
             </div>
           </div>
           <p className="text-sm text-slate-400 mt-4">
-            <span className={statPercentColor + " ml-2"}>
+            <span className={statPercentColor + " left-4 absolute"}>
               <i
                 className={
                   statArrow === "up"

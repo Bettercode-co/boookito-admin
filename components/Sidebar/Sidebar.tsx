@@ -201,13 +201,13 @@ const Sidebar: React.FC = () => {
 
           <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
             <li className="items-center">
-              <Link href="/landing">
+              <Link href="/costumers">
                 <a
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
                   <FaNewspaper className="fas fa-newspaper text-slate-400 ml-2 text-sm" />
-                  Landing Page
+                  customers
                 </a>
               </Link>
             </li>

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import Head from "next/head";
 import Router from "next/router";
 import PageChange from "../components/PageChange/PageChange";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+// import "@fontawesome/fontawesome-free/css/all.min.css";
 import { AppProps } from "../interfaces";
 import Script from "next/script";
 
