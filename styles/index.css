@@ -3,3 +3,19 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+@font-face {
+    font-family: 'IranSans';
+    src: url('../components//assets/fonts/iransans/IRANSans.ttf');
+    src: url('../components//assets/fonts/iransans/IRANSans_Black.ttf');
+    src: url('../components//assets/fonts/iransans/IRANSans_Bold.ttf');
+    src: url('../components//assets/fonts/iransans/IRANSans_Light.ttf');
+    src: url('../components//assets/fonts/iransans/IRANSans_Medium.ttf');
+    src: url('../components//assets/fonts/iransans/IRANSans_UltraLight.ttf');
+
+    }
+
+    html,body{
+        font-family: "IranSans", sans-serif;
+    }

@@ -3,6 +3,7 @@ import CardBarChart from "../../components/Cards/CardBarChart";
 import CardLineChart from "../../components/Cards/CardLineChart";
 import CardPageVisits from "../../components/Cards/CardPageVisits";
 import CardSocialTraffic from "../../components/Cards/CardSocialTraffic";
+import HeaderStats from "../../components/Headers/HeaderStats";
 
 // layout for page
 
@@ -11,6 +12,10 @@ import Admin from "../../layouts/Admin";
 const Dashboard: React.FC = () => {
   return (
     <>
+          {/* <div className=" relative mg:w-full w-full  bg-slate-100 ">
+
+    <HeaderStats />
+          </div> */}
       <div className="flex flex-wrap">
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
           <CardLineChart />

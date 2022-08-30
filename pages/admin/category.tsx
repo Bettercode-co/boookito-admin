@@ -57,10 +57,10 @@ const category: NextPage = () => {
 
   ];
 
-  const handleEdit = (e) => {
+  const handleEdit = () => {
     console.log("edit button");
   };
-  const handleDelete = (e) => {
+  const handleDelete = () => {
     console.log("delete button");
   };
 
