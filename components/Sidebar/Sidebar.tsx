@@ -213,13 +213,13 @@ const Sidebar: React.FC = () => {
             </li>
 
             <li className="items-center">
-              <Link href="/profile">
+              <Link href="/category">
                 <a
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
                   <FaUserCircle className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
-                  Profile Page
+                  Category
                 </a>
               </Link>
             </li>

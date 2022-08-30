@@ -35,7 +35,7 @@ export const COLUMNS = [
   ]
 
 
-export const GROUP_COLUMNS = [
+export const CATEGORY_COLUMNS = [
   {
     Header: "ID",
     accessor: "id",
