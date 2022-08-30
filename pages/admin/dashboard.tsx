@@ -3,7 +3,6 @@ import CardBarChart from "../../components/Cards/CardBarChart";
 import CardLineChart from "../../components/Cards/CardLineChart";
 import CardPageVisits from "../../components/Cards/CardPageVisits";
 import CardSocialTraffic from "../../components/Cards/CardSocialTraffic";
-import HeaderStats from "../../components/Headers/HeaderStats";
 
 // layout for page
 
