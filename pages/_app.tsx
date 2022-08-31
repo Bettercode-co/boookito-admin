@@ -7,6 +7,7 @@ import PageChange from "../components/PageChange/PageChange";
 // import "@fontawesome/fontawesome-free/css/all.min.css";
 import { AppProps } from "../interfaces";
 import Script from "next/script";
+import { AppWrapper } from "../components/context/AppContext";
 
 Router.events.on("routeChangeStart", (url) => {
   console.log(`Loading: ${url}`);
@@ -41,9 +42,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         defer
         src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"
       ></Script>
+      <AppWrapper>
       <Layout >
         <Component {...pageProps} />
       </Layout>
+      </AppWrapper>
     </React.Fragment>
   );
 };

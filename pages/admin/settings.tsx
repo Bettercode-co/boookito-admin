@@ -4,10 +4,9 @@ import CardSettings from "../../components/Cards/CardSettings";
 
 import Admin from "../../layouts/Admin";
 
-export default function Settings() {
+ function Settings() {
   return (
-    <Admin>
-      <div  className="flex flex-wrap">
+      <div  className="flex flex-wrap pt-8">
         <div className="w-full lg:w-8/12 px-4">
           <CardSettings />
         </div>
@@ -15,6 +14,9 @@ export default function Settings() {
           <CardProfile />
         </div>
       </div>
-    </Admin>
   );
 }
+
+(Settings as any).layout = Admin
+
+export default Settings

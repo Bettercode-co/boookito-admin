@@ -9,6 +9,7 @@ import {
   FaNewspaper,
   FaUserCircle,
 } from "react-icons/fa";
+import {GrContactInfo} from "react-icons/gr"
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
@@ -88,9 +89,6 @@ const Sidebar: React.FC = () => {
             </div>
           </form>
 
-          
-
-
           {/* Divider */}
           <hr className="my-4 md:min-w-full" />
           {/* Heading */}
@@ -100,7 +98,7 @@ const Sidebar: React.FC = () => {
           {/* Navigation */}
 
           <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-          <li className="items-center">
+            <li className="items-center">
               <Link href="/admin/dashboard">
                 <a
                   href="#pablo"
@@ -123,8 +121,6 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
-
-            
 
             <li className="items-center">
               <Link href="/admin/customers">
@@ -173,11 +169,30 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
-
+            <li className="items-center">
+              <Link href="/admin/marketer">
+                <a
+                  href="#pablo"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/marketer") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
+                >
+                  <GrContactInfo
+                    className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/marketer") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    }
+                  />
+                  ثبت مشتری
+                </a>
+              </Link>
+            </li>
           </ul>
-
-
-
         </div>
       </div>
     </nav>
