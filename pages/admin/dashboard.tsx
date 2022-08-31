@@ -11,10 +11,6 @@ import Admin from "../../layouts/Admin";
 const Dashboard: React.FC = () => {
   return (
     <>
-          {/* <div className=" relative mg:w-full w-full  bg-slate-100 ">
-
-    <HeaderStats />
-          </div> */}
       <div className="flex flex-wrap">
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
           <CardLineChart />

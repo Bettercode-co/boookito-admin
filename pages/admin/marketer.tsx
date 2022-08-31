@@ -5,7 +5,7 @@ import Admin from '../../layouts/Admin'
 
 const marketer: NextPage = () => {
   return (
-    <div className='p-16'>
+    <div className='p-16 flex flex-col'>
         <div className='pb-14'>
           <h3 className='font-bold'>ثبت مدارک احراز هویت</h3>
           <div className='h-[1px] bg-slate-300 my-4' />
@@ -62,6 +62,8 @@ const marketer: NextPage = () => {
               </div>
           </div>
         </div>
+
+        <button  className=" mt-8 place-self-end w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition" type='submit'>ثبت</button>
 
     </div>
   )

@@ -1,3 +1,5 @@
+import PN from "persian-number";
+
 export const DATA =  [
     {
       id: 1,
@@ -39,5 +41,53 @@ export const DATA =  [
         count: 500,
       },
       
+    },
+  ]
+
+  export const FA_DATA = [
+    {
+      "id": 2,
+      "username": "KhQIAFuE",
+      "email": "KhQIAFuE@gmail.com",
+      "first_name": "پریز",
+      "last_name": "پرکلاغیی",
+      "full_name": "پریز پرکلاغیی",
+      "gender": "زن",
+      "phone_number": PN.convertEnToPe("09306704498"),
+      "avatar": "https://fake.cafepy.ir/static/images/female.jpg",
+      "address": {
+        "id": 71,
+        "full_address": "فارس - فارس - زرقان - خیابان پرستار - پلاک 810"
+      }
+    },
+    {
+      "id": 3,
+      "username": "uXZmHYSIgRO",
+      "email": "uXZmHYSIgRO@gmail.com",
+      "first_name": "آصف علی",
+      "last_name": "سارای",
+      "full_name": "آصف علی سارای",
+      "gender": "مرد",
+      "phone_number": PN.convertEnToPe("09148997858") ,
+      "avatar": "https://fake.cafepy.ir/static/images/male.jpg",
+      "address": {
+        "id": 161,
+        "full_address": "لرستان - لرستان - الیگودرز - خیابان اتوبوس - پلاک 561"
+      }
+    },
+    {
+      "id": 4,
+      "username": "YwdXtmfvbzO",
+      "email": "YwdXtmfvbzO@gmail.com",
+      "first_name": "مصطفیی",
+      "last_name": "چلوی",
+      "full_name": "مصطفیی چلوی",
+      "gender": "مرد",
+      "phone_number":  PN.convertEnToPe("09989751757"),
+      "avatar": "https://fake.cafepy.ir/static/images/male.jpg",
+      "address": {
+        "id": 63,
+        "full_address": "آذربایجان غربی - آذربایجان غربی - چالدران - خیابان ملک - پلاک 486"
+      }
     },
   ]

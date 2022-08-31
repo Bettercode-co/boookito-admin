@@ -145,30 +145,6 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
-
-            <li className="items-center">
-              <Link href="/admin/settings">
-                <a
-                  href="#pablo"
-                  className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
-                    (router.pathname.indexOf("/admin/settings") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
-                  }
-                >
-                  <FaTools
-                    className={
-                      " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
-                        ? "opacity-75"
-                        : "text-slate-300")
-                    }
-                  />
-                  تنظیمات
-                </a>
-              </Link>
-            </li>
             <li className="items-center">
               <Link href="/admin/marketer">
                 <a
@@ -192,6 +168,30 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
+            <li className="items-center">
+              <Link href="/admin/settings">
+                <a
+                  href="#pablo"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/settings") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
+                >
+                  <FaTools
+                    className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/settings") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    }
+                  />
+                  تنظیمات
+                </a>
+              </Link>
+            </li>
+
           </ul>
         </div>
       </div>

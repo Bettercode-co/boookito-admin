@@ -69,3 +69,24 @@ export const CATEGORY_COLUMNS = [
     ]
   }
 ]
+
+
+export const FA_COLUMNS = [
+
+  {
+    Header: "نام",
+    accessor: "first_name",
+  },
+  {
+    Header: "نام خانوادگی",
+    accessor: "last_name", 
+  },
+  {
+    Header: "شماره تماس",
+    accessor: "phone_number",
+  },
+  {
+    Header: "آدرس",
+    accessor: "address.full_address",
+  },
+]
