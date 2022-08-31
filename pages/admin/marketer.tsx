@@ -44,7 +44,7 @@ const Marketer: NextPage = () => {
         validationSchema={validationSchema}
       >
       <Form>
-        <div className='pb-14'>
+        <div className='pb-14 '>
           <h3 className='font-bold'>ثبت مدارک احراز هویت</h3>
           <div className='h-[1px] bg-slate-300 my-4' />
           <div className='grid  grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-8'>
