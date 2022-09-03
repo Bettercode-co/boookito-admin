@@ -9,6 +9,7 @@ import {
 } from "react-table";
 import { IoMdArrowDropup } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { RiSearchLine } from "react-icons/ri";
 
 
 const BasicTable = ({rowsdata, columnsData}) => {
@@ -68,19 +69,18 @@ const BasicTable = ({rowsdata, columnsData}) => {
 
   return (
     <div dir="rtl">
-      <div className="searchBarContainer my-5">
-        <div>
-          <span className="pr-10">جستوجو :</span>
+      <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
+          <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
           <input
-            className="w-1/3 px-4 py-2 md:mr-0 lg:mr:10 border-t-0 border-l-0 border-r-0 border-b-slate-400 bg-transparent  border-gray-400 outline-none focus:outline-none"
+            // className="w-1/3 px-4 py-2 md:mr-0 lg:mr:10 border-t-0 border-l-0 border-r-0 border-b-slate-400 bg-transparent  border-gray-400 outline-none focus:outline-none"
+            className=' h-12 w-full lg:w-96 border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
             type="text"
             value={globalFilter || ""}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
-        </div>
       </div>
-      <div className="overflow-x-auto">
-        <div className="min-w-screen min-h-fit flex items-center justify-center bg-gray-100 font-sans ">
+      <div className="overflow-auto">
+        <div className="min-w-screen min-h-fit flex items-center justify-center bg-gray-100 ">
           <div className="w-full lg:w-5/6">
             <div className="bg-white shadow-md rounded my-6"></div>
             <table
@@ -131,7 +131,11 @@ const BasicTable = ({rowsdata, columnsData}) => {
                           <td
                             className="py-3 px-6 text-right"
                             key={cell}
-                            {...cell.getCellProps()}
+                            {...cell.getCellProps({
+                              style: {
+                                minWidth: cell.column.minWidth,
+                              },
+                            })}
                           >
                             {" "}
                             {cell.render("Cell")}{" "}

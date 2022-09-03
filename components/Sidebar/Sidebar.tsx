@@ -9,7 +9,7 @@ import {
   FaNewspaper,
   FaUserCircle,
 } from "react-icons/fa";
-import {GrContactInfo} from "react-icons/gr"
+import {MdPersonAddAlt} from "react-icons/md"
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
@@ -156,7 +156,7 @@ const Sidebar: React.FC = () => {
                       : "text-slate-700 hover:text-slate-500")
                   }
                 >
-                  <GrContactInfo
+                  <MdPersonAddAlt
                     className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/marketer") !== -1

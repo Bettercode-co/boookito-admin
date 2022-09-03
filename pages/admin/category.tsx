@@ -13,18 +13,22 @@ const category: NextPage = () => {
     {
       Header: "نام",
       accessor: "first_name",
+      minWidth: 150,
     },
     {
       Header: "نام خانوادگی",
-      accessor: "last_name", 
+      accessor: "last_name",
+      minWidth: 150,
     },
     {
       Header: "شماره تماس",
       accessor: "phone_number",
+      minWidth: 150,
     },
     {
       Header: "آدرس",
       accessor: "address.full_address",
+      minWidth: 400,
     },
 
     {
@@ -58,7 +62,7 @@ const category: NextPage = () => {
   return (
     <div className="w-11/12 mx-auto relative">
       <div className="text-left">
-        <button className="mt-5 left-6  absolute w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition">
+        <button className="mt-5 left-6   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition">
           اضافه کردن
         </button>
       </div>
