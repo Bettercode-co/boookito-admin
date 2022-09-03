@@ -7,7 +7,7 @@ import { LayoutProps } from "../interfaces";
 const Auth: React.FC<LayoutProps> = (props) => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <main >
         <section className="relative w-full h-full py-40 min-h-screen">
           <div
@@ -17,7 +17,7 @@ const Auth: React.FC<LayoutProps> = (props) => {
             }}
           ></div>
           {props.children}
-          <FooterSmall absolute={true} />
+          {/* <FooterSmall absolute={true} /> */}
         </section>
       </main>
     </>

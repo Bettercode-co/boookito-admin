@@ -16,6 +16,13 @@ type errors = {
   companyType?: string
 }
 
+// tailwind styles
+const sectionContainer = 'grid  grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-8'
+const inputContainer ='flex flex-col h-20 relative mb-5'
+const fieldClass ='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
+
+
+
 const initialValues = {
   user: '',
   companyName: '',
@@ -30,79 +37,111 @@ const onSubmit = values => {
 const validationSchema = Yup.object({
   user: Yup.string().required( "این قسمت را تکمیل کنید"),
   companyName: Yup.string().required( "این قسمت را تکمیل کنید"),
-  companyType: Yup.string().required( "این قسمت را تکمیل کنید")
+  companyType: Yup.string().required( "این قسمت را تکمیل کنید"),
+  company: Yup.string().required( "تکمیل کنید"),
 })
 
 const Marketer: NextPage = () => {
 
 
   return (
-    <div className='p-16 flex flex-col'>
+    <div className='p-16 flex flex-col' >
       <Formik 
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-      <Form>
+      <Form >
         <div className='pb-14 '>
           <h3 className='font-bold'>ثبت مدارک احراز هویت</h3>
           <div className='h-[1px] bg-slate-300 my-4' />
-          <div className='grid  grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-8'>
-              <div className='flex flex-col relative mb-5'>
+          <div className={sectionContainer}>
+              <div className={inputContainer}>
                 <label htmlFor='user' className='pb-2'>نوع کاربر</label >
-                <Field name='user' id='user'  className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
-                <ErrorMessage name='user' />
+                <Field autocomplete="off" name='user' id='user'  className={fieldClass} type="text" />
+                <ErrorMessage  name='user' >
+                {errMsg => {
+                    return(
+                      <div className='absolute bottom-[-20px] text-red-700'>{errMsg}</div>
+                      )
+                  }}
+                </ErrorMessage>
                 {/* {formik.touched.user && formik.errors.user ? <span className='absolute bottom-[-20px] text-red-700'>{formik.errors.user}</span> : null} */}
               </div>
-              <div className='flex flex-col relative mb-5'>
+              <div className={inputContainer}>
                 <label htmlFor='companyName' className='pb-2'>نام شرکت</label>
-                <Field name='companyName' id='companyName' className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
-                <ErrorMessage name='companyName' />
+                <Field autocomplete="off" name='companyName' id='companyName' className={fieldClass} type="text" />
+                <ErrorMessage name='companyName' >
+                {errMsg => {
+                    return(
+                      <div className='absolute bottom-[-20px] text-red-700'>{errMsg}</div>
+                      )
+                  }}
+                </ErrorMessage>
                 {/* {formik.touched.companyName && formik.errors.companyName ? <span className='absolute bottom-[-20px] text-red-700'>{formik.errors.companyName}</span> : null} */}
               </div>
-              <div className='flex flex-col h-20 relative mb-5'>
+              <div className={inputContainer}>
                 <label htmlFor='companyType' className='pb-2'>نوع شرکت</label>
-                <Field name='companyType' id='companyType' className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
-                <ErrorMessage name='companyType' />
+                <Field autocomplete="off" name='companyType' id='companyType' className={fieldClass} type="text"  />
+                <ErrorMessage name='companyType' >
+                {errMsg => {
+                    return(
+                      <div className='absolute bottom-[-20px] text-red-700'>{errMsg}</div>
+                      )
+                  }}
+                </ErrorMessage>
+                {/* {formik.touched.companyType && formik.errors.companyType ? <span className='absolute bottom-[-20px] text-red-700'>{formik.errors.companyType}</span> : null} */}
+              </div>
+              <div className={inputContainer}>
+                <label htmlFor='company' className='pb-2'> شرکت</label>
+                <Field autocomplete="off" name='company' id='company' className={fieldClass} type="text" />
+        
+                <ErrorMessage name='company'>
+                  {errMsg => {
+                    return(
+                      <div className='absolute bottom-[-20px] text-red-700'>{errMsg}</div>
+                      )
+                  }}
+                </ErrorMessage>
                 {/* {formik.touched.companyType && formik.errors.companyType ? <span className='absolute bottom-[-20px] text-red-700'>{formik.errors.companyType}</span> : null} */}
               </div>
               <div className='flex flex-col'>
                 <p className='pb-2'>شماره ثبت</p>
-                <input className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
+                <input className={fieldClass} type="text" />
               </div>
               <div className='flex flex-col'>
                 <p className='pb-2'>شماره تماس</p>
-                <input className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
+                <input className={fieldClass} type="text" />
               </div>
               <div className='flex flex-col'>
                 <p className='pb-2'>شماره ثبت</p>
-                <input className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
+                <input className={fieldClass} type="text" />
               </div>
               <div className='flex flex-col'>
                 <p className='pb-2'>شماره ثبت</p>
-                <input className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
+                <input className={fieldClass} type="text" />
               </div>
           </div>
         </div>
         <div>
           <h3 className='font-bold'>اطلاعات عمومی</h3>
           <div className='h-[1px] bg-slate-300 my-4' />
-          <div className='grid  grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-8'>
+          <div className={sectionContainer}>
               <div className='flex flex-col'>
                 <p className='pb-2'>جنسیت </p>
-                <input className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
+                <input className={fieldClass} type="text" />
               </div>
               <div className='flex flex-col'>
                 <p className='pb-2'>نام </p>
-                <input className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
+                <input className={fieldClass} type="text" />
               </div>
               <div className='flex flex-col'>
                 <p className='pb-2'> نام خانوادگی</p>
-                <input className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
+                <input className={fieldClass} type="text" />
               </div>
               <div className='flex flex-col'>
                 <p className='pb-2'>شماره ثبت</p>
-                <input className='border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent' type="text" />
+                <input className={fieldClass} type="text" />
               </div>
           </div>
         </div>

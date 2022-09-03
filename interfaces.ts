@@ -10,7 +10,7 @@ export interface AppProps {
 
 export interface LayoutProps {
   children: ReactElement<any, any>;
-  isHeaderStats: boolean
+  isHeaderStats?: boolean
 }
 
 export interface CardStatsProps {

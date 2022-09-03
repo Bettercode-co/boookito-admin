@@ -14,10 +14,10 @@ const Login: React.FC = () => {
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
                   <h6 className="text-slate-500 text-sm font-bold">
-                    Sign in with
+                    ورود به حساب کاربری
                   </h6>
                 </div>
-                <div className="btn-wrapper text-center">
+                {/* <div className="btn-wrapper text-center">
                   <button
                     className="bg-white active:bg-slate-50 text-slate-700 px-4 py-2 rounded outline-none focus:outline-none ml-2 mb-1 uppercase shadow hover:shadow-md inline-flex gap-1 items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
@@ -44,12 +44,12 @@ const Login: React.FC = () => {
                     />
                     Google
                   </button>
-                </div>
+                </div> */}
                 <hr className="mt-6 border-b-1 border-slate-300" />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <div className="text-slate-400 text-center mb-3 font-bold">
-                  <small>Or sign in with credentials</small>
+                  {/* <small>Or sign in with credentials</small> */}
                 </div>
                 <form>
                   <div className="relative w-full mb-3">
@@ -57,12 +57,13 @@ const Login: React.FC = () => {
                       className="block uppercase text-slate-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Email
+                      ایمیل
                     </label>
                     <input
                       type="email"
                       className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Email"
+                      placeholder="ایمیل"
+                      required
                     />
                   </div>
 
@@ -71,15 +72,16 @@ const Login: React.FC = () => {
                       className="block uppercase text-slate-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Password
+                      پسورد
                     </label>
                     <input
                       type="password"
                       className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Password"
+                      placeholder="پسورد"
+                      required
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
                         id="customCheckLogin"
@@ -90,20 +92,20 @@ const Login: React.FC = () => {
                         Remember me
                       </span>
                     </label>
-                  </div>
+                  </div> */}
 
                   <div className="text-center mt-6">
                     <button
                       className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
                     >
-                      Sign In
+                      ورود
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-            <div className="flex flex-wrap mt-6 relative">
+            {/* <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
                 <a
                   href="#pablo"
@@ -120,7 +122,7 @@ const Login: React.FC = () => {
                   </a>
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
