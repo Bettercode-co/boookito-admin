@@ -1,4 +1,5 @@
 import React from "react";
+import Loading from "./Loading"
 
 
 const PageChange: React.FC = (props) => {
@@ -16,7 +17,8 @@ const PageChange: React.FC = (props) => {
           <i className="fas fa-circle-notch animate-spin text-white mx-auto text-6xl"></i>
         </div>
         <h4 className="text-lg font-medium text-white">
-          Loading page contents for:
+          Wait For It 
+          <Loading />
           {/* {props.path} */}
         </h4>
       </div>
