@@ -32,6 +32,11 @@ const costumers : NextPage = () => {
       accessor: "address.full_address",
       minWidth: 400,
     },
+    {
+      Header: "تاریخ",
+      accessor: "date",
+      minWidth: 150,
+    },
 
     {
       Header: "عملیات",

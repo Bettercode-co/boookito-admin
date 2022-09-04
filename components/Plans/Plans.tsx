@@ -3,7 +3,7 @@ import React from 'react'
 const Plans = () => {
   return (
     <div className='w-full h-[50rem] flex justify-around mt-20 '>
-    <div className='w-1/4 bg-slate-700 h-4/6  rounded-lg overflow-hidden'>
+    <div className='w-1/4 bg-slate-700 h-4/6  rounded-lg overflow-hidden' style={{boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}} >
 
         <div className='h-1/3 bg-slate-600 flex flex-col text-slate-50 items-center justify-around'>
             <h3 className='text-2xl font-bold'>پلن فلان</h3>
@@ -23,7 +23,7 @@ const Plans = () => {
         </div>
     </div>
     
-    <div className='w-1/4 bg-slate-700 h-4/6  rounded-lg overflow-hidden'>
+    <div className='w-1/4 bg-slate-700 h-4/6  rounded-lg overflow-hidden' style={{boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}}>
 
         <div className='h-1/3 bg-slate-600 flex flex-col text-slate-50 items-center justify-around'>
             <h3 className='text-2xl font-bold'>پلن فلان</h3>
@@ -43,7 +43,7 @@ const Plans = () => {
         </div>
         
     </div>
-    <div className='w-1/4 bg-slate-700 h-4/6  rounded-lg overflow-hidden'>
+    <div className='w-1/4 bg-slate-700 h-4/6  rounded-lg overflow-hidden' style={{boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}}>
 
         <div className='h-1/3 bg-slate-600 flex flex-col text-slate-50 items-center justify-around'>
             <h3 className='text-2xl font-bold'>پلن فلان</h3>

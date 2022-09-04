@@ -1,4 +1,6 @@
 import PN from "persian-number";
+import * as moment from 'jalali-moment';
+
 
 export const DATA =  [
     {
@@ -47,6 +49,7 @@ export const DATA =  [
   export const FA_DATA = [
     {
       "id": 2,
+      'date': PN.convertEnToPe(moment( new Date("2010-11-29"), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')),
       "username": "KhQIAFuE",
       "email": "KhQIAFuE@gmail.com",
       "first_name": "پریز",
@@ -57,11 +60,12 @@ export const DATA =  [
       "avatar": "https://fake.cafepy.ir/static/images/female.jpg",
       "address": {
         "id": 71,
-        "full_address": "فارس - فارس - زرقان - خیابان پرستار - پلاک 810"
+        "full_address": PN.convertEnToPe("فارس - فارس - زرقان - خیابان پرستار - پلاک 810")
       }
     },
     {
       "id": 3,
+      'date' : PN.convertEnToPe(moment( new Date("2021-10-05"), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')),
       "username": "uXZmHYSIgRO",
       "email": "uXZmHYSIgRO@gmail.com",
       "first_name": "آصف علی",
@@ -72,11 +76,12 @@ export const DATA =  [
       "avatar": "https://fake.cafepy.ir/static/images/male.jpg",
       "address": {
         "id": 161,
-        "full_address": "لرستان - لرستان - الیگودرز - خیابان اتوبوس - پلاک 561"
+        "full_address": PN.convertEnToPe("لرستان - لرستان - الیگودرز - خیابان اتوبوس - پلاک 561")
       }
     },
     {
       "id": 4,
+      'date' : PN.convertEnToPe(moment( new Date("2004-07-10"), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')),
       "username": "YwdXtmfvbzO",
       "email": "YwdXtmfvbzO@gmail.com",
       "first_name": "مصطفیی",
@@ -87,7 +92,7 @@ export const DATA =  [
       "avatar": "https://fake.cafepy.ir/static/images/male.jpg",
       "address": {
         "id": 63,
-        "full_address": "آذربایجان غربی - آذربایجان غربی - چالدران - خیابان ملک - پلاک 486"
+        "full_address": PN.convertEnToPe("آذربایجان غربی - آذربایجان غربی - چالدران - خیابان ملک - پلاک 486")
       }
     },
   ]
