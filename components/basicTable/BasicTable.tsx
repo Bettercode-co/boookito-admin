@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { COLUMNS } from "./columns";
-import { DATA } from "./dataRow";
+
 import {
   useTable,
   useSortBy,
@@ -13,35 +12,23 @@ import { RiSearchLine } from "react-icons/ri";
 
 
 const BasicTable = ({rowsdata, columnsData}) => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
 
-  // const fetchProducts = async () => {
-  //   const response = await axios
-  //     .get("https://fakestoreapi.com/products")
+
+  // const fetchData = async () => {
+  //   await fetch("https://fakestoreapi.com/products")
+  //     .then((res) => res?.json())
+  //     .then((res) => setProducts(res))
   //     .catch((err) => console.log(err));
-  //   if (response) {
-  //     const products = response.data;
-  //     setProducts(products);
-  //     console.log(products);
-  //   }
   // };
 
-  const fetchData = async () => {
-    await fetch("https://fakestoreapi.com/products")
-      .then((res) => res?.json())
-      .then((res) => setProducts(res))
-      .catch((err) => console.log(err));
-  };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const data = useMemo(() => rowsdata, [rowsdata]);
+  const columns = useMemo(() => columnsData, [columnsData]);
 
-  const data = useMemo(() => rowsdata, []);
-  const columns = useMemo(() => columnsData, []);
-
-  // const data = useMemo(() => DATA, []);
-  // const columns = useMemo(() => COLUMNS, []);
 
   const tableInstanse = useTable(
     { data, columns },
@@ -72,7 +59,6 @@ const BasicTable = ({rowsdata, columnsData}) => {
       <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
           <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
           <input
-            // className="w-1/3 px-4 py-2 md:mr-0 lg:mr:10 border-t-0 border-l-0 border-r-0 border-b-slate-400 bg-transparent  border-gray-400 outline-none focus:outline-none"
             className=' h-12 w-full lg:w-96 border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
             type="text"
             value={globalFilter || ""}

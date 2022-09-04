@@ -2,7 +2,7 @@ import React from "react";
 import Loading from "./Loading"
 
 
-const PageChange: React.FC = (props) => {
+const PageChange: React.FC = () => {
   return (
     <div>
       <div
@@ -17,9 +17,8 @@ const PageChange: React.FC = (props) => {
           <i className="fas fa-circle-notch animate-spin text-white mx-auto text-6xl"></i>
         </div>
         <h4 className="text-lg font-medium text-white">
-          Wait For It 
+          صبر کنید ...
           <Loading />
-          {/* {props.path} */}
         </h4>
       </div>
     </div>

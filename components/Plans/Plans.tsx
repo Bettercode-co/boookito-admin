@@ -9,7 +9,7 @@ const Plans = () => {
             <h3 className='text-2xl font-bold'>پلن فلان</h3>
             <h4 className='self-start mr-10 text-white'>قیمت : یه تومن</h4>
             <div className='flex w-full px-7 justify-between items-center'>
-                <input type="text" className='bg-slate-300 h-7 rounded'  />
+                <input type="text" className='bg-slate-300 h-7 rounded text-black'  />
                 <button className='bg-slate-400 text-slate-900 w-1/4 rounded h-full'>ثبت</button>
             </div>
         </div>
@@ -29,7 +29,7 @@ const Plans = () => {
             <h3 className='text-2xl font-bold'>پلن فلان</h3>
             <h4 className='self-start mr-10'>قیمت : دو تومن</h4>
             <div className='flex w-full px-7 justify-between items-center'>
-                <input type="text" className='bg-slate-300 h-7 rounded'  />
+                <input type="text" className='bg-slate-300 h-7 rounded text-black'  />
                 <button className='bg-slate-400 text-slate-900 w-1/4 rounded h-full'>ثبت</button>
             </div>
         </div>
@@ -49,7 +49,7 @@ const Plans = () => {
             <h3 className='text-2xl font-bold'>پلن فلان</h3>
             <h4 className='self-start mr-10'>قیمت : سه تومن</h4>
             <div className='flex w-full px-7 justify-between items-center'>
-                <input type="text" className='bg-slate-300 h-7 rounded'  />
+                <input type="text" className='bg-slate-300 h-7 rounded text-black'  />
                 <button className='bg-slate-400 text-slate-900 w-1/4 rounded h-full'>ثبت</button>
             </div>
         </div>

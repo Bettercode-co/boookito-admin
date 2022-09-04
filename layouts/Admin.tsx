@@ -15,7 +15,7 @@ const Admin: React.FC<LayoutProps> = ({ children }) => {
 
   useEffect(()=> {
     router.route === "/admin/dashboard" ? setIsHeaderStats(true) : isHeaderStats === false ? isHeaderStats : setIsHeaderStats(false)
-  },[router.route])
+  },[router.route, isHeaderStats, setIsHeaderStats])
 
 
   return (

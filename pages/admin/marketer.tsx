@@ -4,17 +4,6 @@ import Admin from '../../layouts/Admin'
 import {Form, Formik, Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 
-interface FormValues {
-  user: string
-  companyName: string
-  companyType: string
-}
-
-type errors = {
-  user?: string
-  companyName?: string
-  companyType?: string
-}
 
 // tailwind styles
 const sectionContainer = 'grid  grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-8'
@@ -66,7 +55,6 @@ const Marketer: NextPage = () => {
                       )
                   }}
                 </ErrorMessage>
-                {/* {formik.touched.user && formik.errors.user ? <span className='absolute bottom-[-20px] text-red-700'>{formik.errors.user}</span> : null} */}
               </div>
               <div className={inputContainer}>
                 <label htmlFor='companyName' className='pb-2'>نام شرکت</label>
@@ -78,7 +66,6 @@ const Marketer: NextPage = () => {
                       )
                   }}
                 </ErrorMessage>
-                {/* {formik.touched.companyName && formik.errors.companyName ? <span className='absolute bottom-[-20px] text-red-700'>{formik.errors.companyName}</span> : null} */}
               </div>
               <div className={inputContainer}>
                 <label htmlFor='companyType' className='pb-2'>نوع شرکت</label>
@@ -90,7 +77,6 @@ const Marketer: NextPage = () => {
                       )
                   }}
                 </ErrorMessage>
-                {/* {formik.touched.companyType && formik.errors.companyType ? <span className='absolute bottom-[-20px] text-red-700'>{formik.errors.companyType}</span> : null} */}
               </div>
               <div className={inputContainer}>
                 <label htmlFor='company' className='pb-2'> شرکت</label>
@@ -103,7 +89,6 @@ const Marketer: NextPage = () => {
                       )
                   }}
                 </ErrorMessage>
-                {/* {formik.touched.companyType && formik.errors.companyType ? <span className='absolute bottom-[-20px] text-red-700'>{formik.errors.companyType}</span> : null} */}
               </div>
               <div className='flex flex-col'>
                 <p className='pb-2'>شماره ثبت</p>

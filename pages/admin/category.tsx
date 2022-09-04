@@ -5,6 +5,7 @@ import BasicTable from "../../components/basicTable/BasicTable";
 import { DATA, FA_DATA } from "../../components/basicTable/dataRow";
 import { RiEditFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 import Admin from "../../layouts/Admin";
 
@@ -35,15 +36,15 @@ const category: NextPage = () => {
       Header: "عملیات",
       accessor: "action",
       Cell: (cell) => (
-        <div className="flex gap-5">
+        <div className="flex items-center justify-between gap-3">
           <button value={cell.accessor} onClick={handleEdit}>
-            <span className="flex items-baseline text-blue-900">
-              ویرایش {"   "} <RiEditFill />
+            <span className="flex items-end  text-blue-900 hover:text-blue-600">
+                <RiEditFill /> &nbsp; ویرایش
             </span>
           </button>
           <button value={cell.accessor} onClick={handleDelete}>
-            <span className="flex items-baseline text-red-900">
-              حذف {"   "} <MdDelete />
+            <span className="flex items-end   text-red-900 hover:text-red-600">
+               <MdDelete /> &nbsp; حذف
             </span>
           </button>
         </div>
@@ -60,10 +61,10 @@ const category: NextPage = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto relative">
-      <div className="text-left">
-        <button className="mt-5 left-6   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition">
-          اضافه کردن
+    <div className=" mx-auto">
+      <div className=" flex justify-end">
+        <button className="mt-5 left-6 flex items-center justify-center   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition ">
+           <IoIosAddCircleOutline /> {" "}  اضافه کردن 
         </button>
       </div>
       <BasicTable rowsdata={FA_DATA} columnsData={COLUMNS} />

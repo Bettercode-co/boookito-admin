@@ -10,6 +10,7 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import {MdPersonAddAlt} from "react-icons/md"
+import {RiPriceTag3Line} from "react-icons/ri"
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
@@ -165,6 +166,29 @@ const Sidebar: React.FC = () => {
                     }
                   />
                   ثبت مشتری
+                </a>
+              </Link>
+            </li>
+            <li className="items-center">
+              <Link href="/admin/plans">
+                <a
+                  href="#pablo"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/plans") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
+                >
+                  <RiPriceTag3Line 
+                    className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/plans") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    }
+                  />
+                  پلن ها
                 </a>
               </Link>
             </li>

@@ -20,6 +20,7 @@
     "formik": "^2.2.9",
     "gulp": "^4.0.2",
     "gulp-append-prepend": "^1.0.9",
+    "jalali-moment": "^3.3.11",
     "next": "12.2.5",
     "persian-number": "^1.5.1",
     "react": "18.2.0",
