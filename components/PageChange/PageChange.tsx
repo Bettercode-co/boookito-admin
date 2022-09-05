@@ -7,9 +7,6 @@ const PageChange: React.FC = () => {
     <div>
       <div
         className="bg-cover fixed z-40 w-full h-full top-0 right-0"
-        style={{
-          backgroundImage: "url('/img/img-1-1000x600.jpg')",
-        }}
       ></div>
       <div className="top-0 right-0 w-full h-full block z-50 absolute bg-black bg/50"></div>
       <div className="my-32 mx-auto max-w-sm text-center relative z-50 top-0">

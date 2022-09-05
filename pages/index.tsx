@@ -7,9 +7,9 @@ import Footer from "../components/Footers/Footer";
 const Home: React.FC = () => {
   return (
     <>
-      <IndexNavbar fixed={true} />
+      <IndexNavbar  />
       <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
-        <div className="container mx-auto items-center flex flex-wrap">
+        <div className="container mx-auto items-center flex flex-wrap justify-end">
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
             <div className="pt-32 sm:pt-0">
               <h2 className="font-semibold text-4xl text-slate-600">
@@ -51,7 +51,7 @@ const Home: React.FC = () => {
           </div>
         </div>
         <img
-          className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
+          className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px z-[-1]"
           src="/img/pattern_nextjs.png"
           alt="..."
         />
@@ -438,7 +438,7 @@ const Home: React.FC = () => {
                   This extension comes a lot of fully coded examples that help
                   you get started faster. You can adjust the colors and also the
                   programming language. You can change the text and images and
-                  you're good to go.
+                  youre good to go.
                 </p>
                 <ul className="list-none mt-6">
                   <li className="py-2">

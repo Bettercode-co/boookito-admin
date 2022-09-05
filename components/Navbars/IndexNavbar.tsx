@@ -3,7 +3,7 @@ import Link from "next/link";
 // components
 import IndexDropdown from "../Dropdowns/IndexDropdown";
 
-const Navbar: React.FC<Boolean> = () => {
+const Navbar: React.FC = () => {
   const [navbarOpen, setNavbarOpen] = React.useState<boolean>(false);
 
   return (

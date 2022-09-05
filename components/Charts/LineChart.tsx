@@ -1,15 +1,10 @@
 import React from 'react'
-import { Bar, Line } from 'react-chartjs-2';
-// import { Chart , registerables } from 'chart.js';
-import { Chart, LineController, LineElement, PointElement, LinearScale, Title,CategoryScale } from 'chart.js';
-Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJs, LineController, LineElement, PointElement, LinearScale, Title,CategoryScale } from 'chart.js';
 
-// import { Chart } from 'react-chartjs-2'
+ChartJs.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
 
-// interface BarProps {
-//     options: ChartOptions<'bar'>;
-//     data: ChartData<'bar'>;
-//   }
+
 
 const userData = [
     {
@@ -81,11 +76,11 @@ const userData = [
 
 ]
 
-const BarChart = () => {
+const LineChart = () => {
 
   return (
     <div className='py-14'>
-    <Line 
+    <Line
         height={3}
         width={5}
         data={{
@@ -93,17 +88,31 @@ const BarChart = () => {
             datasets: [{
                 label: "Users Gained",
                 data: userData.map(data => data.userGain),
-                backgroundColor: "red",
-                borderColor:"lightBlue"
+                backgroundColor: ["transparent"],
+                borderColor:"lightBlue",
+                borderWidth: 5,
+                pointBorderColor: "red",
+                pointBorderWidth:2,
+                pointHoverBackgroundColor: "purple",
+                tension:.4,
+                fill: true,
             }]
         }}
         options= {{
-            maintainAspectRatio: true
+            maintainAspectRatio: true,
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            
         }}
+       
     />
         
     </div>
   )
 }
 
-export default BarChart
+export default LineChart
