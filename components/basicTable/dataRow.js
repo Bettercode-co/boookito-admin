@@ -2,6 +2,7 @@ import PN from "persian-number";
 import * as moment from 'jalali-moment';
 
 
+
 export const DATA =  [
     {
       id: 1,
@@ -96,3 +97,5 @@ export const DATA =  [
       }
     },
   ]
+
+

@@ -1,7 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { number } from "yup/lib/locale";
+import axiosInstance from "../../utils/axiosInstance";
 import CardStats from "../Cards/CardStats";
+import PN from "persian-number";
+
+//react icons
+import {FaUsers, FaUserSlash, FaComments} from 'react-icons/fa'
+import {RiUserStarFill} from 'react-icons/ri'
+import {BsFilePostFill, BsBorder} from 'react-icons/bs'
+import {MdOutlineComment, MdOutlineBorderAll} from 'react-icons/md'
+import {BiCategoryAlt} from 'react-icons/bi'
+import {AiTwotoneLike} from 'react-icons/ai'
+import {TbTruckLoading} from 'react-icons/tb'
+import {ImBooks} from 'react-icons/im'
+
+
+const defaultValue = {
+  activeorders: 100,
+  activeusers: 0,
+  allbookrates: 0,
+allbooks: 9418,
+  allcategories: 8,
+  allcomments: 0,
+  alldoneorders: 0,
+  alllikes: 0,
+ allorders: 0,
+  allposts: 0,
+  allusers:  0,
+  deactiveusers: 0,
+  lastorders: [],
+  lastusers: []}
 
 const HeaderStats: React.FC = () => {
+  const [cartData, setCartData] = useState(defaultValue)
+
+  const fetchCart =  () => {
+    axiosInstance.get('admin/statistics')
+    .then(res => setCartData(res.data))
+    console.log(cartData);
+    
+  }
+  
+  useEffect(()=> {
+    fetchCart()
+     },[])
+     
   return (
     <>
       {/* Header */}
@@ -12,98 +55,111 @@ const HeaderStats: React.FC = () => {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="TRAFFIC"
-                  statTitle="350,897"
-                  statArrow="up"
-                  statPercent="3.48"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
-                  statIconName="far fa-chart-bar"
-                  statIconColor="bg-red-500"
-                />
-              </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                <CardStats
-                  statSubtitle="NEW USERS"
-                  statTitle="2,356"
-                  statArrow="down"
-                  statPercent="3.48"
-                  statPercentColor="text-red-500"
-                  statDescripiron="Since last week"
-                  statIconName="fas fa-chart-pie"
+                  statSubtitle="تعداد کاربران"
+                  statTitle={PN.convertEnToPe(cartData.allusers)}
+                  statIconName={<FaUsers />}
                   statIconColor="bg-orange-500"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="SALES"
-                  statTitle="924"
-                  statArrow="down"
-                  statPercent="1.10"
-                  statPercentColor="text-orange-500"
-                  statDescripiron="Since yesterday"
-                  statIconName="fas fa-users"
-                  statIconColor="bg-pink-500"
+                  statSubtitle="کاربران فعال"
+                  statTitle={PN.convertEnToPe(cartData.activeusers)}
+                  statIconColor="bg-green-500"
+                  statIconName={<RiUserStarFill />}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="PERFORMANCE"
-                  statTitle="49,65%"
-                  statArrow="up"
-                  statPercent="12"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
-                  statIconName="fas fa-percent"
-                  statIconColor="bg-sky-500"
-                />
-              </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                <CardStats
-                  statSubtitle="TRAFFIC"
-                  statTitle="350,897"
-                  statArrow="up"
-                  statPercent="3.48"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
-                  statIconName="far fa-chart-bar"
+                  statSubtitle="کاربران غیرفعال"
+                  statIconName={<FaUserSlash />}
                   statIconColor="bg-red-500"
+                  statTitle={PN.convertEnToPe(cartData.deactiveusers)}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="NEW USERS"
-                  statTitle="2,356"
-                  statArrow="down"
-                  statPercent="3.48"
-                  statPercentColor="text-red-500"
-                  statDescripiron="Since last week"
-                  statIconName="fas fa-chart-pie"
-                  statIconColor="bg-orange-500"
+                  statSubtitle="دسته بندی"
+                  statIconName={<BiCategoryAlt />}
+                  statIconColor="bg-gray-500"
+                  statTitle={PN.convertEnToPe(cartData.allcategories)}
+
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="SALES"
-                  statTitle="924"
-                  statArrow="down"
-                  statPercent="1.10"
-                  statPercentColor="text-orange-500"
-                  statDescripiron="Since yesterday"
-                  statIconName="fas fa-users"
-                  statIconColor="bg-pink-500"
+                  statSubtitle="کتاب ها"
+                  statIconName={<ImBooks />}
+                  statIconColor="bg-green-500"
+                  statTitle={PN.convertEnToPe(cartData.allbooks)}
+
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="PERFORMANCE"
-                  statTitle="49,65%"
-                  statArrow="up"
-                  statPercent="12"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
-                  statIconName="fas fa-percent"
+                  statSubtitle="سفارشات"
+                  statIconName={<MdOutlineBorderAll />}
+                  statIconColor="bg-blue-500"
+                  statTitle={PN.convertEnToPe(cartData.allorders)}
+
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="سفارشات انجام شده"
+                  statIconName={<BsBorder />}
+                  statIconColor="bg-slate-500"
+                  statTitle={PN.convertEnToPe(cartData.alldoneorders)}
+
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="سفارشات فعال"
+                  statIconName={<TbTruckLoading />}
                   statIconColor="bg-sky-500"
+                  statTitle={PN.convertEnToPe(cartData.activeorders)}
+
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="پست ها"
+                  statIconName={<BsFilePostFill />}
+                  statIconColor="bg-orange-500"
+                  statTitle={PN.convertEnToPe(cartData.allposts)}
+
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="کامنت ها"
+                  statIconName={<MdOutlineComment />}
+                  statIconColor="bg-sky-500"
+                  statTitle={PN.convertEnToPe(cartData.allcomments)}
+
+                />
+              </div>
+
+ 
+
+
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="لایک ها"
+                  statIconName={<AiTwotoneLike />}
+                  statIconColor="bg-red-500"
+                  statTitle={PN.convertEnToPe(cartData.alllikes)}
+
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="تعداد نظرات"
+                  statIconName={<FaComments />}
+                  statIconColor="bg-green-500"
+                  statTitle={PN.convertEnToPe(cartData.allbookrates)}
+
                 />
               </div>
             </div>

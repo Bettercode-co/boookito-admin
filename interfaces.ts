@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 export interface FooterSmallProps {
   absolute: boolean;
 }
@@ -16,10 +16,10 @@ export interface LayoutProps {
 export interface CardStatsProps {
   statSubtitle: string;
   statTitle: string;
-  statArrow: string;
-  statPercent: string;
-  statPercentColor: string;
-  statDescripiron: string;
-  statIconName: string;
+  // statArrow: string;
+  // statPercent: string;
+  // statPercentColor: string;
+  // statDescripiron: string;
+  statIconName: ReactNode;
   statIconColor: string;
 }

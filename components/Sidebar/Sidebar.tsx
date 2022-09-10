@@ -130,7 +130,7 @@ const Sidebar: React.FC = () => {
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
                   <FaNewspaper className="fas fa-newspaper text-slate-400 ml-2 text-sm" />
-                  مشتریان
+                  کتاب ها
                 </a>
               </Link>
             </li>
@@ -142,7 +142,7 @@ const Sidebar: React.FC = () => {
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
                   <FaUserCircle className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
-                  انواع صنعت
+                  کاربران 
                 </a>
               </Link>
             </li>
@@ -165,7 +165,7 @@ const Sidebar: React.FC = () => {
                         : "text-slate-300")
                     }
                   />
-                  ثبت مشتری
+                  سفارشات
                 </a>
               </Link>
             </li>
@@ -188,7 +188,53 @@ const Sidebar: React.FC = () => {
                         : "text-slate-300")
                     }
                   />
-                  پلن ها
+                   بوکگرام
+                </a>
+              </Link>
+            </li>
+            <li className="items-center">
+              <Link href="/admin/plans">
+                <a
+                  href="#pablo"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/plans") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
+                >
+                  <RiPriceTag3Line 
+                    className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/plans") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    }
+                  />
+                   نظرات
+                </a>
+              </Link>
+            </li>
+            <li className="items-center">
+              <Link href="/admin/plans">
+                <a
+                  href="#pablo"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/plans") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
+                >
+                  <RiPriceTag3Line 
+                    className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/plans") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    }
+                  />
+                   نظرات کتاب ها
                 </a>
               </Link>
             </li>
@@ -212,6 +258,29 @@ const Sidebar: React.FC = () => {
                     }
                   />
                   تنظیمات
+                </a>
+              </Link>
+            </li>
+            <li className="items-center">
+              <Link href="/admin/settings">
+                <a
+                  href="#pablo"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/settings") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
+                >
+                  <FaTools
+                    className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/settings") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    }
+                  />
+                  خروج
                 </a>
               </Link>
             </li>

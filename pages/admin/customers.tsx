@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BasicTable from '../../components/basicTable/BasicTable'
 import {  FA_COLUMNS } from "../../components/basicTable/columns"
 import {  FA_DATA } from "../../components/basicTable/dataRow";
@@ -7,34 +7,75 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import { RiEditFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import Admin from '../../layouts/Admin'
+import axiosInstance from '../../utils/axiosInstance';
 
 
 
-const costumers : NextPage = () => {
+const Costumers : NextPage = () => {
   const COLUMNS = [
     {
-      Header: "نام",
-      accessor: "first_name",
+      Header: "عکس",
+      accessor: "imageSource",
       minWidth: 150,
     },
     {
-      Header: "نام خانوادگی",
-      accessor: "last_name",
+      Header: "شناسه",
+      accessor: "id",
       minWidth: 150,
     },
     {
-      Header: "شماره تماس",
-      accessor: "phone_number",
+      Header: "کد کتاب",
+      accessor: "privateid",
       minWidth: 150,
     },
     {
-      Header: "آدرس",
-      accessor: "address.full_address",
-      minWidth: 400,
+      Header: "کتاب",
+      accessor: "bookName",
+      minWidth: 150,
     },
     {
-      Header: "تاریخ",
-      accessor: "date",
+      Header: "نویسنده",
+      accessor: "authorName",
+      minWidth: 150,
+    },
+    {
+      Header: "مترجم",
+      accessor: "translatorName",
+      minWidth: 150,
+    },
+    {
+      Header: "دسته بندی",
+      accessor: "category.categoryName",
+      minWidth: 150,
+    },
+    {
+      Header: "انتشارات",
+      accessor: "publisherName",
+      minWidth: 150,
+    },
+    {
+      Header: "تعداد صفحات",
+      accessor: "numberPage",
+      minWidth: 150,
+    },
+    {
+      Header: "نام قفسه",
+      accessor: "shelfName",
+      minWidth: 150,
+    },
+    {
+      Header: "تاریخ ثبت در کتابخانه",
+      accessor: "registeredAt",
+      minWidth: 150,
+    },
+    {
+      Header: "تاریخ ثبت در سیستم",
+      accessor: "createdAt",
+      minWidth: 150,
+    },
+    {
+      Header: "وضعیت",
+      accessor: "status",
       minWidth: 150,
     },
 
@@ -59,6 +100,19 @@ const costumers : NextPage = () => {
 
   ];
 
+  const [booksData, setBooksData] = useState(null)
+
+  const fetchCart =  () => {
+    axiosInstance.get('/admin/books/1')
+    .then(res => setBooksData(res.data))
+    console.log(booksData);
+    
+  }
+  
+  useEffect(()=> {
+    fetchCart()
+     },[])
+
   const handleEdit = () => {
     console.log("edit button");
   };
@@ -75,6 +129,6 @@ const costumers : NextPage = () => {
   )
 }
 
-(costumers as any).layout = Admin;
+(Costumers as any).layout = Admin;
 
-export default costumers
+export default Costumers
