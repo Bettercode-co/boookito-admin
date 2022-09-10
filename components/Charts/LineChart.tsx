@@ -1,3 +1,4 @@
+import PN from "persian-number";
 import React from "react";
 import { Line } from "react-chartjs-2";
 // import {
@@ -18,6 +19,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    Filler
   } from 'chart.js';
 
 // ChartJs.register(
@@ -35,7 +37,8 @@ ChartJS.register(
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    Filler
   );
 
 const userData = [
@@ -109,16 +112,16 @@ const userData = [
 
 const LineChart = () => {
   return (
-    <div className="py-14">
+    <div dir="ltr" className="py-14 bg-white">
       <Line
         height={2}
         width={4}
         data={{
-          labels: userData.map((data) => data.year),
+          labels: userData.map((data) => PN.convertEnToPe(data.year)),
           datasets: [
             {
               fill: true,
-              label: "Users Gained",
+              label: "تعداد بازدید",
               data: userData.map((data) => data.userGain),
               backgroundColor: ["transparent"],
               borderColor: "lightBlue",
@@ -131,9 +134,17 @@ const LineChart = () => {
           ],
         }}
         options={{
+elements:{
+  line:{
+    fill: true
+  }
+} ,
           maintainAspectRatio: true,
           responsive: true,
           plugins: {
+            filler: {
+            propagate: true,
+            },
             legend: {
               position: "top" as const,
             },

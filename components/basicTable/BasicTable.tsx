@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import PN from "persian-number";
 
 import {
   useTable,
@@ -162,7 +163,7 @@ const BasicTable = ({rowsdata, columnsData}) => {
           قبل
         </button>
         <span className="mx-5 mt-3 text-slate-700">
-          صفحه : {pageIndex + 1} از {pageOptions.length}
+          صفحه : {PN.convertEnToPe(pageIndex + 1)} از {PN.convertEnToPe(pageOptions.length)}
         </span>
       </div>
     </div>
