@@ -1,16 +1,23 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
+//react icons
 import {
   FaBars,
   FaTv,
   FaTools,
   FaTimes,
-  FaNewspaper,
-  FaUserCircle,
+  FaUsers,
 } from "react-icons/fa";
-import {MdPersonAddAlt} from "react-icons/md"
+import {MdOutlineComment, MdExitToApp } from "react-icons/md"
 import {RiPriceTag3Line} from "react-icons/ri"
+import {ImBooks} from 'react-icons/im'
+import {TbTruckLoading} from 'react-icons/tb'
+import {GoCommentDiscussion} from 'react-icons/go'
+import {AiOutlineCloudUpload} from 'react-icons/ai'
+
+
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
@@ -124,43 +131,54 @@ const Sidebar: React.FC = () => {
             </li>
 
             <li className="items-center">
-              <Link href="/admin/customers">
+              <Link href="/admin/books">
                 <a
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
-                  <FaNewspaper className="fas fa-newspaper text-slate-400 ml-2 text-sm" />
+                  <ImBooks className="fas fa-newspaper text-slate-400 ml-2 text-sm" />
                   کتاب ها
                 </a>
               </Link>
             </li>
 
             <li className="items-center">
-              <Link href="/admin/category">
+              <Link href="/admin/users">
                 <a
                   href="#pablo"
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
                 >
-                  <FaUserCircle className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
+                  <FaUsers className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
                   کاربران 
                 </a>
               </Link>
             </li>
             <li className="items-center">
-              <Link href="/admin/marketer">
+              <Link href="/admin/uploader">
+                <a
+                  href="#pablo"
+                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
+                >
+                  <AiOutlineCloudUpload className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
+                  آپلود کاربر 
+                </a>
+              </Link>
+            </li>
+            <li className="items-center">
+              <Link href="/admin/orders">
                 <a
                   href="#pablo"
                   className={
                     "flex items-center text-xs uppercase py-3 font-bold " +
-                    (router.pathname.indexOf("/admin/marketer") !== -1
+                    (router.pathname.indexOf("/admin/orders") !== -1
                       ? "text-sky-500 hover:text-sky-600"
                       : "text-slate-700 hover:text-slate-500")
                   }
                 >
-                  <MdPersonAddAlt
+                  <TbTruckLoading
                     className={
                       " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/marketer") !== -1
+                      (router.pathname.indexOf("/admin/orders") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
                     }
@@ -170,12 +188,12 @@ const Sidebar: React.FC = () => {
               </Link>
             </li>
             <li className="items-center">
-              <Link href="/admin/plans">
+              <Link href="/admin/bookgram">
                 <a
                   href="#pablo"
                   className={
                     "flex items-center text-xs uppercase py-3 font-bold " +
-                    (router.pathname.indexOf("/admin/plans") !== -1
+                    (router.pathname.indexOf("/admin/bookgram") !== -1
                       ? "text-sky-500 hover:text-sky-600"
                       : "text-slate-700 hover:text-slate-500")
                   }
@@ -183,7 +201,7 @@ const Sidebar: React.FC = () => {
                   <RiPriceTag3Line 
                     className={
                       " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/plans") !== -1
+                      (router.pathname.indexOf("/admin/bookgram") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
                     }
@@ -203,7 +221,7 @@ const Sidebar: React.FC = () => {
                       : "text-slate-700 hover:text-slate-500")
                   }
                 >
-                  <RiPriceTag3Line 
+                  <MdOutlineComment 
                     className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/plans") !== -1
@@ -226,7 +244,7 @@ const Sidebar: React.FC = () => {
                       : "text-slate-700 hover:text-slate-500")
                   }
                 >
-                  <RiPriceTag3Line 
+                  <GoCommentDiscussion 
                     className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/plans") !== -1
@@ -272,7 +290,7 @@ const Sidebar: React.FC = () => {
                       : "text-slate-700 hover:text-slate-500")
                   }
                 >
-                  <FaTools
+                  <MdExitToApp
                     className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/settings") !== -1

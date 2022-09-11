@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
   company: Yup.string().required( "تکمیل کنید"),
 })
 
-const Marketer: NextPage = () => {
+const orders: NextPage = () => {
 
 
   return (
@@ -140,5 +140,5 @@ const Marketer: NextPage = () => {
   )
 }
 
-(Marketer as any).layout = Admin
-export default Marketer
+(orders as any).layout = Admin
+export default orders

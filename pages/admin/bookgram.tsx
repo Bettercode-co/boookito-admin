@@ -3,7 +3,7 @@ import React from 'react'
 import Plans from '../../components/Plans/Plans'
 import Admin from '../../layouts/Admin'
 
-const plans: NextPage = () => {
+const bookgram: NextPage = () => {
   return (
     <>
         <Plans />
@@ -11,6 +11,6 @@ const plans: NextPage = () => {
   )
 }
 
-(plans as any).layout = Admin
+(bookgram as any).layout = Admin
 
-export default plans
+export default bookgram

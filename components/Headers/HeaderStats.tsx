@@ -7,8 +7,8 @@ import PN from "persian-number";
 //react icons
 import {FaUsers, FaUserSlash, FaComments} from 'react-icons/fa'
 import {RiUserStarFill} from 'react-icons/ri'
-import {BsFilePostFill, BsBorder} from 'react-icons/bs'
-import {MdOutlineComment, MdOutlineBorderAll} from 'react-icons/md'
+import {BsFilePostFill} from 'react-icons/bs'
+import {MdOutlineComment,  MdFileDownloadDone, MdPendingActions} from 'react-icons/md'
 import {BiCategoryAlt} from 'react-icons/bi'
 import {AiTwotoneLike} from 'react-icons/ai'
 import {TbTruckLoading} from 'react-icons/tb'
@@ -16,11 +16,11 @@ import {ImBooks} from 'react-icons/im'
 
 
 const defaultValue = {
-  activeorders: 100,
+  activeorders: 0,
   activeusers: 0,
   allbookrates: 0,
-allbooks: 9418,
-  allcategories: 8,
+allbooks: 0,
+  allcategories: 0,
   allcomments: 0,
   alldoneorders: 0,
   alllikes: 0,
@@ -37,8 +37,6 @@ const HeaderStats: React.FC = () => {
   const fetchCart =  () => {
     axiosInstance.get('admin/statistics')
     .then(res => setCartData(res.data))
-    console.log(cartData);
-    
   }
   
   useEffect(()=> {
@@ -55,7 +53,7 @@ const HeaderStats: React.FC = () => {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="تعداد کاربران"
+                  statSubtitle="کل کاربران"
                   statTitle={PN.convertEnToPe(cartData.allusers)}
                   statIconName={<FaUsers />}
                   statIconColor="bg-orange-500"
@@ -98,7 +96,7 @@ const HeaderStats: React.FC = () => {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="سفارشات"
-                  statIconName={<MdOutlineBorderAll />}
+                  statIconName={<TbTruckLoading />}
                   statIconColor="bg-blue-500"
                   statTitle={PN.convertEnToPe(cartData.allorders)}
 
@@ -107,7 +105,7 @@ const HeaderStats: React.FC = () => {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="سفارشات انجام شده"
-                  statIconName={<BsBorder />}
+                  statIconName={<MdFileDownloadDone />}
                   statIconColor="bg-slate-500"
                   statTitle={PN.convertEnToPe(cartData.alldoneorders)}
 
@@ -116,7 +114,7 @@ const HeaderStats: React.FC = () => {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="سفارشات فعال"
-                  statIconName={<TbTruckLoading />}
+                  statIconName={<MdPendingActions />}
                   statIconColor="bg-sky-500"
                   statTitle={PN.convertEnToPe(cartData.activeorders)}
 
@@ -155,7 +153,7 @@ const HeaderStats: React.FC = () => {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="تعداد نظرات"
+                  statSubtitle="نظرات کتاب ها"
                   statIconName={<FaComments />}
                   statIconColor="bg-green-500"
                   statTitle={PN.convertEnToPe(cartData.allbookrates)}

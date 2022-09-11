@@ -147,7 +147,7 @@ const BasicTable = ({rowsdata, columnsData}) => {
         </div>
       </div>
 
-      <div className="text-center pb-8">
+      {/* <div className="text-center pb-8">
         <button
           className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           onClick={() => nextPage}
@@ -165,7 +165,7 @@ const BasicTable = ({rowsdata, columnsData}) => {
         <span className="mx-5 mt-3 text-slate-700">
           صفحه : {PN.convertEnToPe(pageIndex + 1)} از {PN.convertEnToPe(pageOptions.length)}
         </span>
-      </div>
+      </div> */}
     </div>
   );
 };
