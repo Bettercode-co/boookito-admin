@@ -134,9 +134,19 @@ const Sidebar: React.FC = () => {
               <Link href="/admin/books">
                 <a
                   href="#pablo"
-                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/books") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
                 >
-                  <ImBooks className="fas fa-newspaper text-slate-400 ml-2 text-sm" />
+                  <ImBooks  className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/books") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    } />
                   کتاب ها
                 </a>
               </Link>
@@ -146,9 +156,19 @@ const Sidebar: React.FC = () => {
               <Link href="/admin/users">
                 <a
                   href="#pablo"
-                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/users") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
                 >
-                  <FaUsers className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
+                  <FaUsers  className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/users") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    } />
                   کاربران 
                 </a>
               </Link>
@@ -157,9 +177,19 @@ const Sidebar: React.FC = () => {
               <Link href="/admin/uploader">
                 <a
                   href="#pablo"
-                  className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold flex items-center"
+                  className={
+                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    (router.pathname.indexOf("/admin/uploader") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-700 hover:text-slate-500")
+                  }
                 >
-                  <AiOutlineCloudUpload className="fas fa-user-circle text-slate-400 ml-2 text-sm" />
+                  <AiOutlineCloudUpload  className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/uploader") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    } />
                   آپلود کاربر 
                 </a>
               </Link>
@@ -253,29 +283,6 @@ const Sidebar: React.FC = () => {
                     }
                   />
                    نظرات کتاب ها
-                </a>
-              </Link>
-            </li>
-            <li className="items-center">
-              <Link href="/admin/settings">
-                <a
-                  href="#pablo"
-                  className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
-                    (router.pathname.indexOf("/admin/settings") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
-                  }
-                >
-                  <FaTools
-                    className={
-                      " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
-                        ? "opacity-75"
-                        : "text-slate-300")
-                    }
-                  />
-                  تنظیمات
                 </a>
               </Link>
             </li>

@@ -67,7 +67,7 @@ const BasicTable = ({rowsdata, columnsData}) => {
           />
       </div>
       <div className="overflow-auto">
-        <div className="min-w-screen min-h-fit flex items-center justify-center bg-gray-100 ">
+        <div className="min-w-screen min-h-fit  bg-gray-100 ">
           <div className="w-full lg:w-5/6">
             <div className="bg-white shadow-md rounded my-6"></div>
             <table

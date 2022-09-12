@@ -13,7 +13,8 @@ const Auth: React.FC<LayoutProps> = (props) => {
           <div
             className="absolute top-0 w-full h-full bg-slate-800 bg-no-repeat bg-full"
             style={{
-              backgroundImage: "url('/img/register_bg_2.png')",
+              backgroundImage: "url('/img/login/4907599.jpg')",
+              backgroundSize: "cover"
             }}
           ></div>
           {props.children}

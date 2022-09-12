@@ -60,7 +60,7 @@ const Users: NextPage = () => {
       minWidth: 100,
       Cell: (cell) => (
         <div>
-          <img src={cell.value} alt='book' />
+          <img className="rounded-full scale-90" src={cell.value} alt='book' />
         </div>
         )
     },
