@@ -12,6 +12,27 @@ import { MdDelete } from 'react-icons/md'
 import { RiEditFill } from 'react-icons/ri'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 
+const statusHandler = (value) => {
+  switch(value){
+    case "PENDING":
+      return(
+          <div className='text-yellow-500' >در انتظار</div>
+        )
+    case "CLOSED":
+      return(
+          <div className='text-red-700' >بسته شده</div>
+        )
+    case "ACTIVE":
+      return(
+          <div className='text-green-600' >فعال</div>
+        )
+    case "REJECT":
+      return(
+          <div className='text-black-600' >رد شده</div>
+        )
+  }
+}
+
 const Orders: NextPage = () => {
   const [ordersData, setOrdersData] = useState(null)
   const [pagenumber, setPageNumber] = useState(1)
@@ -21,27 +42,17 @@ const Orders: NextPage = () => {
     setIsModalOpen(!isModalOpen)
   }
 
-  const fetchCart = () => {
+  const fetchOrders = () => {
     axiosInstance.get(`admin/orders/${pagenumber}`)
     .then(res => setOrdersData(res.data))
     .then(res => console.log(ordersData))
   }
   
   useEffect(()=> {
-    fetchCart()
+    fetchOrders()
      },[pagenumber])
 
      const COLUMNS = [
-      {
-        Header: "عکس",
-        accessor: "imageSource",
-        minWidth: 100,
-        Cell: (cell) => (
-          <div>
-            <img src={cell.value} alt='book' />
-          </div>
-          )
-      },
       {
         Header: "شناسه",
         accessor: "id",
@@ -53,8 +64,13 @@ const Orders: NextPage = () => {
           )
       },
       {
+        Header: "کتاب",
+        accessor: "book.bookName",
+        minWidth: 300,
+      },
+      {
         Header: "کد کتاب",
-        accessor: "privateId",
+        accessor: "book.id",
         minWidth: 150,
         Cell: (cell) => (
           <div dir='ltr'>  
@@ -62,71 +78,72 @@ const Orders: NextPage = () => {
           </div>
           )
       },
+ 
       {
-        Header: "کتاب",
-        accessor: "bookName",
-        minWidth: 300,
-      },
-      {
-        Header: "نویسنده",
-        accessor: "authorName",
+        Header: "ثبت کننده",
+        accessor: "reference",
         minWidth: 200,
-      },
-      {
-        Header: "مترجم",
-        accessor: "translatorName",
-        minWidth: 200,
-      },
-      {
-        Header: "دسته بندی",
-        accessor: "category.categoryName",
-        minWidth: 150,
-      },
-      {
-        Header: "انتشارات",
-        accessor: "publisherName",
-        minWidth: 200,
-      },
-      {
-        Header: "تعداد صفحات",
-        accessor: "numberPage",
-        minWidth: 200,
-      },
-      {
-        Header: "نام قفسه",
-        accessor: "shelfName",
-        minWidth: 150,
-      },
-      {
-        Header: "نام قفسه",
-        accessor: "library.libraryName",
-        minWidth: 270,
-      },
-      {
-        Header: "تاریخ ثبت در کتابخانه",
-        accessor: "registeredAt",
-        minWidth: 250,
-        Cell: (cell) => (
-          <div dir='ltr'>  
-            {PN.convertEnToPe(moment( cell.value, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD HH:mm:ss'))}
-          </div>
-          )
-      },
-      {
-        Header: "تاریخ ثبت در سیستم",
-        accessor: "createdAt",
-        minWidth: 250,
-        Cell: (cell) => (
-          <div dir='ltr'>
-            {PN.convertEnToPe(moment( cell.value, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD HH:mm:ss'))}
-          </div>
-          )
+        Cell: (cell) => {
+          {return cell.value === 'USER' ? <div>کاربر</div> : <div>ادمین</div> }
+        }
       },
       {
         Header: "وضعیت",
         accessor: "status",
-        minWidth: 100,
+        minWidth: 200,
+        Cell: (cell) => {
+         return statusHandler(cell.value)
+        }
       },
+      {
+        Header: "نام",
+        accessor: "user.firstname",
+        minWidth: 150,
+      },
+      {
+        Header: "نام خانوادگی",
+        accessor: "user.lastname",
+        minWidth: 200,
+      },
+      {
+        Header: "کد ملی",
+        accessor: "user.username",
+        minWidth: 200,
+        Cell: (cell) => (
+         <div>{PN.convertEnToPe(cell.value)}</div> 
+        )
+      },
+      {
+        Header: "شماره تماس",
+        accessor: "phoneNumber",
+        minWidth: 150,
+        Cell: (cell) => {
+          return cell.value ?  <div>{PN.convertEnToPe(cell.value)}</div> : <div>ندارد</div> 
+        }
+      },
+      {
+        Header: "تاریخ ثبت",
+        accessor: "createdAt",
+        minWidth: 250,
+        Cell: (cell) => (
+          <div dir='ltr'>  
+            {PN.convertEnToPe(moment( cell.value, 'YYYY/MM/DD HH:mm:ss').locale('fa').format('YYYY/MM/DD HH:mm:ss'))}
+          </div>
+          )
+      },
+      {
+        Header: "تاریخ تحویل",
+        accessor: "expireAt",
+        minWidth: 250,
+        Cell: (cell) => (
+          <div dir='ltr'>  
+            {PN.convertEnToPe(moment( cell.value, 'YYYY/MM/DD HH:mm:ss').locale('fa').format('YYYY/MM/DD HH:mm:ss'))}
+          </div>
+          )
+      },
+
+
+     
   
       {
         Header: "عملیات",

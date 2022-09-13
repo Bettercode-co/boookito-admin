@@ -41,14 +41,14 @@ const Users: NextPage = () => {
   const [pagenumber, setPageNumber] = useState(1)
 
 
-  const fetchCart = () => {
+  const fetchUsers = () => {
     axiosInstance.get(`admin/users/${pagenumber}`)
     .then(res => setUsersData(res.data))
     .then(res => console.log(usersData))
   }
   
   useEffect(()=> {
-    fetchCart()
+    fetchUsers()
      },[pagenumber])
 
 

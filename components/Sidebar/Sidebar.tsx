@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import logo from '../../public/img/dashboard/logo.jpg'
 
 //react icons
 import {
@@ -21,6 +22,7 @@ import {AiOutlineCloudUpload} from 'react-icons/ai'
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
+import Image from "next/image";
 
 const Sidebar: React.FC = () => {
   const [collapseShow, setCollapseShow] = React.useState<string>("hidden");
@@ -41,9 +43,9 @@ const Sidebar: React.FC = () => {
         <Link href="/">
           <a
             href="#pablo"
-            className="md:block text-right md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+            className="h-10 md:block text-center md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0  "
           >
-            داشبورد پورتال
+            <Image src={logo} alt='logo' width={100} height={40} className='absolute top' /> 
           </a>
         </Link>
         {/* User */}
@@ -260,29 +262,6 @@ const Sidebar: React.FC = () => {
                     }
                   />
                    نظرات
-                </a>
-              </Link>
-            </li>
-            <li className="items-center">
-              <Link href="/admin/plans">
-                <a
-                  href="#pablo"
-                  className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
-                    (router.pathname.indexOf("/admin/plans") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
-                  }
-                >
-                  <GoCommentDiscussion 
-                    className={
-                      " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/plans") !== -1
-                        ? "opacity-75"
-                        : "text-slate-300")
-                    }
-                  />
-                   نظرات کتاب ها
                 </a>
               </Link>
             </li>

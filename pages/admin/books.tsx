@@ -8,7 +8,6 @@ import { RiEditFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import Admin from '../../layouts/Admin'
 import axiosInstance from '../../utils/axiosInstance';
-import useUser from '../../utils/useUser';
 import Image from 'next/image';
 import moment from 'jalali-moment';
 import PN from "persian-number";
@@ -32,14 +31,14 @@ const Books : NextPage = () => {
   const [pagenumber, setPageNumber] = useState(1)
   
 
-  const fetchCart = () => {
+  const fetchBooks = () => {
     axiosInstance.get(`admin/books/${pagenumber}`)
     .then(res => setBooksData(res.data.result))
     .then(res => console.log(booksData))
   }
   
   useEffect(()=> {
-    fetchCart()
+    fetchBooks()
      },[pagenumber])
 
   const COLUMNS = [
@@ -119,7 +118,7 @@ const Books : NextPage = () => {
       minWidth: 250,
       Cell: (cell) => (
         <div dir='ltr'>  
-          {PN.convertEnToPe(moment( cell.value, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD HH:mm:ss'))}
+          {PN.convertEnToPe(moment( cell.value, 'YYYY/MM/DD HH:mm:ss').locale('fa').format('YYYY/MM/DD HH:mm:ss'))}
         </div>
         )
     },
@@ -129,7 +128,7 @@ const Books : NextPage = () => {
       minWidth: 250,
       Cell: (cell) => (
         <div dir='ltr'>
-          {PN.convertEnToPe(moment( cell.value, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD HH:mm:ss'))}
+          {PN.convertEnToPe(moment( cell.value, 'YYYY/MM/DD HH:mm:ss').locale('fa').format('YYYY/MM/DD HH:mm:ss'))}
         </div>
         )
     },

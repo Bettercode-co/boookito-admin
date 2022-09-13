@@ -27,7 +27,8 @@ const Login: React.FC = () => {
   const submitForm = (e) => {
     e.preventDefault();
     axiosInstance.post('auth/login', formData, {headers: { 'content-type': 'application/json' }})
-    .then(response => cookieHandler(response) )
+    .then(response => cookieHandler(response))
+    .catch(err => console.log(err))
   }
 
   return (
