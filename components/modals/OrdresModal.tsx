@@ -2,28 +2,79 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import PN from "persian-number";
 import axiosInstance from "../../utils/axiosInstance";
+import { getCookie } from "cookies-next";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+type NewOrder = {
+  user?: string;
+  book?: number;
+  day: number;
+};
 
 const eventHandler = (e) => {
   e.stopPropagation();
 };
 
+// access token
+const token = getCookie("accessToken");
+
+// select day options
 const durationOption = [
-  { value: 10, label: PN.convertEnToPe("10") },
-  { value: 15, label: PN.convertEnToPe("15") },
-  { value: 20, label: PN.convertEnToPe("20") },
-  { value: 25, label: PN.convertEnToPe("25") },
-  { value: 30, label: PN.convertEnToPe("30") },
+  { value: 10, label: PN.convertEnToPe("10 روز") },
+  { value: 15, label: PN.convertEnToPe("15 روز") },
+  { value: 20, label: PN.convertEnToPe("20 روز") },
+  { value: 25, label: PN.convertEnToPe("25 روز") },
+  { value: 30, label: PN.convertEnToPe("30 روز") },
 ];
+
+//tostify
+const notifyError = (err) =>
+  toast.error(err, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    progress: undefined,
+  });
+const notifySuccess = () =>
+  toast.success("درخواست با موفقیت انجام شد", {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    progress: undefined,
+  });
 
 const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
   const [nationId, setNationId] = useState("1");
   const [nationOption, setNationOption] = useState([]);
   const [bookId, setBookId] = useState("1");
   const [bookOption, setBookOption] = useState([]);
+  const [newOrder, setNewOrder] = useState<NewOrder>({
+    day: 15,
+  });
+
+  const neworderHandler = () => {
+    if (newOrder.book && newOrder.user) {
+      axiosInstance
+        .post("admin/neworder", newOrder, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => notifySuccess())
+        .catch((err) => notifyError(err));
+    } else {
+      notifyError("خطا در ارسال سفارش");
+    }
+  };
 
   const fetchNationCode = async () => {
     axiosInstance.get(`admin/user/search/${nationId}`).then((res) => {
       let users = res.data;
+      // console.log(users);
+      
       nationCodeOptionFilter(users);
     });
   };
@@ -59,7 +110,8 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
   useEffect(() => {
     fetchNationCode();
     fetchBook();
-  }, [nationId, bookId]);
+    console.log(newOrder);
+  }, [nationId, bookId, newOrder]);
 
   return (
     <>
@@ -77,6 +129,13 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
             <label htmlFor="nationCode">
               کد ملی
               <Select
+                onChange={(e) =>
+                  setNewOrder({
+                    ...newOrder,
+                    user: e.value,
+                  })
+                }
+                
                 id="nationCode"
                 className=" w-64"
                 onInputChange={(e) => setNationId(e)}
@@ -87,6 +146,12 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
             <label htmlFor="bookCode">
               کد کتاب
               <Select
+                onChange={(e) =>
+                  setNewOrder({
+                    ...newOrder,
+                    book: e.value.trim(),
+                  })
+                }
                 id="bookCode"
                 className=" w-64"
                 onInputChange={(e) => setBookId(e)}
@@ -97,23 +162,37 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
             <label htmlFor="duration">
               مدت سفارش
               <Select
+                onChange={(e) =>
+                  setNewOrder({
+                    ...newOrder,
+                    day: e.value,
+                  })
+                }
                 id="duration"
                 isSearchable={false}
                 className=" w-64"
-                defaultValue={durationOption[0]}
+                defaultValue={durationOption[1]}
                 options={durationOption}
                 placeholder="مدت سفارش"
               />
             </label>
             <button
-              type="submit"
-              className="w-20 bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
+              onClick={neworderHandler}
+              className="w-64 bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
             >
               ثبت
             </button>
           </div>
         </div>
-      ) }
+      )}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+      />
     </>
   );
 };

@@ -4,9 +4,12 @@ import Image from "next/image";
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 
+
+
+const token = getCookie("accessToken")
+
 const UserDropdown: React.FC = () => {
   const [userPhoto, setUserPhoto] = useState<string>("")
-  const token = getCookie("accessToken")
   const fetchUser = () => {
     axiosInstance.get('user/myprofile', {
       headers: {
