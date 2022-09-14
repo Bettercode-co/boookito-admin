@@ -19,9 +19,9 @@ const Admin: React.FC<LayoutProps> = ({ children }) => {
 
 
   return (
-    <div className="">
+    <div className="h-max">
       <Sidebar />
-      <div className="content relative mg:w-full w-max md:mr-64  bg-slate-100 ">
+      <div className="content relative mg:w-full w-max min-h-screen  md:mr-64  bg-slate-100 ">
         <AdminNavbar />
         {/* Header */}
         {isHeaderStats ? <HeaderStats /> : null}

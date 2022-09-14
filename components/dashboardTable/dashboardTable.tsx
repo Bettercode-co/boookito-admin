@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import PN from "persian-number";
+import React, { useMemo } from "react";
+
 
 import {
   useTable,
@@ -9,23 +9,14 @@ import {
 } from "react-table";
 import { IoMdArrowDropup } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { RiSearchLine } from "react-icons/ri";
+
 
 
 const DashboardTable = ({rowsdata, columnsData}) => {
-  // const [products, setProducts] = useState([]);
 
 
-  // const fetchData = async () => {
-  //   await fetch("https://fakestoreapi.com/products")
-  //     .then((res) => res?.json())
-  //     .then((res) => setProducts(res))
-  //     .catch((err) => console.log(err));
-  // };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+
 
   const data = useMemo(() => rowsdata, [rowsdata]);
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -43,17 +34,9 @@ const DashboardTable = ({rowsdata, columnsData}) => {
     getTableBodyProps,
     headerGroups,
     page,
-    nextPage,
-    previousPage,
-    canNextPage,
-    canPreviousPage,
-    pageOptions,
     prepareRow,
-    state,
-    setGlobalFilter,
   } = tableInstanse;
 
-  const { globalFilter, pageIndex } = state;
 
   return (
     <div dir="rtl">
@@ -61,7 +44,7 @@ const DashboardTable = ({rowsdata, columnsData}) => {
       </div>
       <div className="overflow-auto">
         <div className="min-w-screen min-h-fit  bg-gray-100 ">
-          <div className="w-full lg:w-5/6">
+          <div className="w-full ">
             <div className="bg-white shadow-md rounded my-6"></div>
             <table
               className="w-full text-gray-800 dark:text-gray-400 text-right"
@@ -70,7 +53,7 @@ const DashboardTable = ({rowsdata, columnsData}) => {
               <thead className="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 {headerGroups.map((headerGroup) => (
                   <tr
-                    className="bg-gray-300 text-xs  text-gray-600 uppercaseleading-normal"
+                    className="bg-white border-t border-b text-xs font-extrabold text-gray-600 uppercaseleading-normal"
                     key={headerGroup}
                     {...headerGroup.getHeaderGroupProps()}
                   >
@@ -102,14 +85,14 @@ const DashboardTable = ({rowsdata, columnsData}) => {
                   prepareRow(row);
                   return (
                     <tr
-                      className="border-b border-gray-200 hover:bg-gray-100 bg-white"
+                      className="border-b border-gray-200 hover:bg-gray-100 bg-white text-sm"
                       key={row}
                       {...row.getRowProps()}
                     >
                       {row.cells.map((cell) => {
                         return (
                           <td
-                            className="py-3 px-6 text-right"
+                            className="py-3 px-6 text-center"
                             key={cell}
                             {...cell.getCellProps({
                               style: {

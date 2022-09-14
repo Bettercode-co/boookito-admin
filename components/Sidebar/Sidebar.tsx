@@ -7,7 +7,6 @@ import logo from '../../public/img/dashboard/logo.jpg'
 import {
   FaBars,
   FaTv,
-  FaTools,
   FaTimes,
   FaUsers,
 } from "react-icons/fa";
@@ -15,12 +14,9 @@ import {MdOutlineComment, MdExitToApp } from "react-icons/md"
 import {RiPriceTag3Line} from "react-icons/ri"
 import {ImBooks} from 'react-icons/im'
 import {TbTruckLoading} from 'react-icons/tb'
-import {GoCommentDiscussion} from 'react-icons/go'
 import {AiOutlineCloudUpload} from 'react-icons/ai'
 
 
-
-import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
 import Image from "next/image";
 
@@ -51,9 +47,6 @@ const Sidebar: React.FC = () => {
         {/* User */}
         <ul className="md:hidden items-center flex flex-wrap list-none">
           <li className="inline-block relative">
-            <NotificationDropdown />
-          </li>
-          <li className="inline-block relative">
             <UserDropdown />
           </li>
         </ul>
@@ -73,7 +66,6 @@ const Sidebar: React.FC = () => {
                     href="#pablo"
                     className="md:block text-right md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                   >
-                    Notus NextJS
                   </a>
                 </Link>
               </div>
@@ -243,12 +235,12 @@ const Sidebar: React.FC = () => {
               </Link>
             </li>
             <li className="items-center">
-              <Link href="/admin/plans">
+              <Link href="/admin/comments">
                 <a
                   href="#pablo"
                   className={
                     "flex items-center text-xs uppercase py-3 font-bold " +
-                    (router.pathname.indexOf("/admin/plans") !== -1
+                    (router.pathname.indexOf("/admin/comments") !== -1
                       ? "text-sky-500 hover:text-sky-600"
                       : "text-slate-700 hover:text-slate-500")
                   }
@@ -256,7 +248,7 @@ const Sidebar: React.FC = () => {
                   <MdOutlineComment 
                     className={
                       " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/plans") !== -1
+                      (router.pathname.indexOf("/admin/comments") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
                     }

@@ -1,48 +1,28 @@
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import BasicTable from "../../components/basicTable/BasicTable";
+import { MdDelete } from "react-icons/md";
 import Admin from "../../layouts/Admin";
 import axiosInstance from "../../utils/axiosInstance";
 import moment from "jalali-moment";
 import PN from "persian-number";
-import { RiEditFill } from "react-icons/ri";
-import { MdDelete } from "react-icons/md";
 
-const statusHandler = (value) => {
-  switch (value) {
-    case "PUBLISH":
-      return <div className="text-green-700">منتشر شده</div>;
-  }
-};
+const Comments: NextPage = () => {
+  const [commentsData, setCommentsData] = useState(null);
+  const [pagenumber, setPageNumber] = useState(1);
+  const [updateComment, setUpdateComment] = useState(null);
 
-const Bookgram: NextPage = () => {
-  const [pagenumber, setPageNumber] = useState<number>(1);
-  const [postsData, setPostsData] = useState(null);
-  const [updatePosts, setUpdatePosts] = useState(null);
-
-
-  const fetchPosts = () => {
+  const fetchComments = () => {
     axiosInstance
-      .get(`admin/posts/${pagenumber}`)
-      .then((res) => setPostsData(res.data.result));
+      .get(`admin/comments/${pagenumber}`)
+      .then((res) => setCommentsData(res.data))
   };
 
   useEffect(() => {
-    fetchPosts();
-  }, [pagenumber, updatePosts]);
-
+    fetchComments();
+  }, [pagenumber, updateComment]);
 
   const COLUMNS = [
-    {
-      Header: "تصویر",
-      accessor: "mediaSource",
-      minWidth: 100,
-      Cell: (cell) => (
-        <div>
-          <img src={cell.value} className='rounded-lg' alt="book" />
-        </div>
-      ),
-    },
     {
       Header: "شناسه",
       accessor: "id",
@@ -50,31 +30,24 @@ const Bookgram: NextPage = () => {
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
-      Header: "عنوان",
-      accessor: "title",
+      Header: "نظر",
+      accessor: "comment",
       minWidth: 150,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
-      Header: "وضعیت",
-      accessor: "postStatus",
-      minWidth: 100,
-      Cell: (cell) => statusHandler(cell.value),
-    },
-    {
       Header: "نام",
-      accessor: props => `${props.user.firstname} ${props.user.lastname}`,
       minWidth: 300,
+      accessor: (props) => `${props.user.firstname}  ${props.user.lastname}`,
     },
     {
-      Header: "تعداد لایک",
-      accessor: "_count.likes",
+      Header: "کد ملی",
+      accessor: "user.username",
       minWidth: 200,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
-
     },
     {
-      Header: "تاریخ ثبت در سیستم",
+      Header: "تاریخ ثبت",
       accessor: "createdAt",
       minWidth: 250,
       Cell: (cell) => (
@@ -88,16 +61,19 @@ const Bookgram: NextPage = () => {
       ),
     },
 
-
     {
       Header: "عملیات",
-      accessor: "action",
+      accessor: (props) => props.id,
       Cell: (cell) => (
         <div className="">
-          <button value={cell.accessor} onClick={() => handleDelete(cell.row.original.id)}>
-            <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white">
-              <MdDelete /> &nbsp; حذف
-            </span>
+          <button
+            value={cell.accessor}
+            onClick={() => handleDelete(cell.row.original.id)}
+          >
+        <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white ">
+
+<MdDelete /> &nbsp; حذف
+</span>
           </button>
         </div>
       ),
@@ -106,17 +82,18 @@ const Bookgram: NextPage = () => {
 
   const handleDelete = (rowId) => {
     axiosInstance
-      .get(`admin/remove/post/${rowId}`)
-      .then(() => setUpdatePosts(rowId));
+      .get(`admin/remove/comment/${rowId}`)
+      .then(() => setUpdateComment(rowId));
   };
 
-  if (!postsData) {
+  if (!commentsData) {
     return <div>loading . . .</div>;
   }
   return (
-    <>
-          <div className=" mx-auto">
-      <BasicTable rowsdata={postsData} columnsData={COLUMNS} />
+    <div className="pt-14 w-full ">
+      {/* <Sidebar /> */}
+      <BasicTable rowsdata={commentsData} columnsData={COLUMNS} />
+
       <div className="text-center pb-8">
         <button
           className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
@@ -133,10 +110,9 @@ const Bookgram: NextPage = () => {
         </button>
       </div>
     </div>
-    </>
   );
 };
 
-(Bookgram as any).layout = Admin;
+(Comments as any).layout = Admin;
 
-export default Bookgram;
+export default Comments;
