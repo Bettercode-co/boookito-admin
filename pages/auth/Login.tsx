@@ -1,15 +1,18 @@
-import axios from "axios";
+
 import React, { useState } from "react";
-import { setCookie } from 'cookies-next';
+import { setCookie, getCookie } from 'cookies-next';
 
 
 import Auth from "../../layouts/Auth";
 import axiosInstance from "../../utils/axiosInstance";
+import { useRouter } from "next/router";
 
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState(null)
   const [userAuth, setUserAuth] = useState(null)
+
+  const router = useRouter()
 
   const changeHandler = (e) => {
     setFormData({
@@ -28,7 +31,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     axiosInstance.post('auth/login', formData, {headers: { 'content-type': 'application/json' }})
     .then(response => cookieHandler(response))
-    .catch(err => console.log(err))
+    .then((response => getCookie('accessToken') && router.push('/admin/dashboard')))
   }
 
   return (

@@ -55,6 +55,8 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     day: 15,
   });
 
+
+  
   const neworderHandler = () => {
     if (newOrder.book && newOrder.user) {
       axiosInstance
@@ -108,9 +110,18 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
   };
 
   useEffect(() => {
-    fetchNationCode();
-    fetchBook();
-    console.log(newOrder);
+    // fetchNationCode();
+    // fetchBook();
+
+    
+    const timer = setTimeout(() => {
+      fetchNationCode();
+      fetchBook();
+      console.log('settimeout');
+      
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, [nationId, bookId, newOrder]);
 
   return (
@@ -149,7 +160,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 onChange={(e) =>
                   setNewOrder({
                     ...newOrder,
-                    book: e.value.trim(),
+                    book: e.value,
                   })
                 }
                 id="bookCode"
