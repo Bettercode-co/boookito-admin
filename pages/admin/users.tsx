@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import BasicTable from "../../components/basicTable/BasicTable";
@@ -15,6 +16,8 @@ const statusHandler = (value: string) => {
   switch (value) {
     case "PENDING":
       return <div className="text-orange-700">درانتظار</div>;
+    case "ACTIVE":
+      return <div className="text-green-700">فعال</div>;
   }
 };
 
@@ -82,11 +85,13 @@ const Users: NextPage = () => {
       Header: "شماره تماس",
       accessor: "phoneNumber",
       minWidth: 250,
+      Cell: (cell) => <div dir="ltr">{cell.value ? cell.value : "ندارد"}</div>,
     },
     {
       Header: "نام کاربری شبکه اجتماعی",
       accessor: "usernameSocial",
       minWidth: 250,
+      Cell: (cell) => <div dir="ltr">{cell.value ? cell.value : "ندارد"}</div>,
     },
     {
       Header: "مقطع",

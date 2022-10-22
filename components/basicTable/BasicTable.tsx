@@ -42,7 +42,7 @@ const BasicTable = ({rowsdata, columnsData}) => {
       <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
           <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
           <input
-            className=' h-12 w-full lg:w-96 border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
+            className='mt-4 h-12 w-full lg:w-96 border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
             type="text"
             value={globalFilter || ""}
             onChange={(e) => setGlobalFilter(e.target.value)}

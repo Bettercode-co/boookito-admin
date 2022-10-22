@@ -115,7 +115,7 @@ const Bookgram: NextPage = () => {
   }
   return (
     <>
-          <div className=" mx-auto">
+          <div className=" mx-auto ">
       <BasicTable rowsdata={postsData} columnsData={COLUMNS} />
       <div className="text-center pb-8">
         <button

@@ -7,8 +7,10 @@ import Admin from "../../layouts/Admin";
 import axiosInstance from "../../utils/axiosInstance";
 import moment from "jalali-moment";
 import PN from "persian-number";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import BooksModal from "../../components/modals/BooksModal";
 
-const statusHandler = (value) => {
+const statusHandler = (value: string) => {
   switch (value) {
     case "RESERVED":
       return <div className="text-green-700">رزرو شده</div>;
@@ -18,6 +20,11 @@ const statusHandler = (value) => {
 const Books: NextPage = () => {
   const [booksData, setBooksData] = useState(null);
   const [pagenumber, setPageNumber] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const moadalHandler = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const fetchBooks = () => {
     axiosInstance
@@ -161,7 +168,21 @@ const Books: NextPage = () => {
   }
   return (
     <div className="pt-14">
-      {/* <Sidebar /> */}
+      <div className="fixed top-0 right-0 z-50">
+        <BooksModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
+      </div>
+
+      <div className=" flex justify-end">
+        <button
+          onClick={moadalHandler}
+          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+        >
+          <IoIosAddCircleOutline /> اضافه کردن
+        </button>
+      </div>
       <BasicTable rowsdata={booksData} columnsData={COLUMNS} />
 
       <div className="text-center pb-8">

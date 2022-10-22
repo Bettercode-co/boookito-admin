@@ -94,9 +94,7 @@ const Sidebar: React.FC = () => {
           {/* Divider */}
           <hr className="my-4 md:min-w-full" />
           {/* Heading */}
-          <h6 className="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-            منو ها
-          </h6>
+ 
           {/* Navigation */}
 
           <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
@@ -234,7 +232,7 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
-            <li className="items-center">
+            {/* <li className="items-center">
               <Link href="/admin/comments">
                 <a
                   href="#pablo"
@@ -256,7 +254,7 @@ const Sidebar: React.FC = () => {
                    نظرات
                 </a>
               </Link>
-            </li>
+            </li> */}
             <li className="items-center">
               <Link href="/admin/settings">
                 <a

@@ -5,6 +5,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TiTimes } from "react-icons/ti";
 
 type NewOrder = {
   user?: string;
@@ -55,8 +56,6 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     day: 15,
   });
 
-
-  
   const neworderHandler = () => {
     if (newOrder.book && newOrder.user) {
       axiosInstance
@@ -76,7 +75,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     axiosInstance.get(`admin/user/search/${nationId}`).then((res) => {
       let users = res.data;
       // console.log(users);
-      
+
       nationCodeOptionFilter(users);
     });
   };
@@ -113,12 +112,10 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     // fetchNationCode();
     // fetchBook();
 
-    
     const timer = setTimeout(() => {
       fetchNationCode();
       fetchBook();
-      console.log('settimeout');
-      
+      console.log("settimeout");
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -133,8 +130,14 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
         >
           <div
             onClick={eventHandler}
-            className="w-96 h-[60vh] rounded bg-white flex flex-col p-10  justify-around items-center"
+            className="relative w-96 h-[60vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >
+            <div
+              onClick={() => setIsModalOpen(false)}
+              className="absolute right-5 top-5 cursor-pointer"
+            >
+              <TiTimes size={20} />
+            </div>
             <h4>ایجاد سفارش</h4>
             <div className="h-[1px] bg-slate-200 w-full" />
             <label htmlFor="nationCode">
@@ -146,7 +149,6 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                     user: e.value,
                   })
                 }
-                
                 id="nationCode"
                 className=" w-64"
                 onInputChange={(e) => setNationId(e)}

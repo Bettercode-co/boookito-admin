@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     axiosInstance.post('auth/login', formData, {headers: { 'content-type': 'application/json' }})
     .then(response => cookieHandler(response))
-    .then((response => getCookie('accessToken') && router.push('/admin/dashboard')))
+    .then((response => getCookie('accessToken') && getCookie('ruleBase') === 'STUDENT' && router.push('/admin/dashboard')))
   }
 
   return (

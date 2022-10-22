@@ -75,7 +75,7 @@ const HeaderStats: React.FC = () => {
                   statTitle={PN.convertEnToPe(cartData.deactiveusers)}
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="دسته بندی"
                   statIconName={<BiCategoryAlt />}
@@ -83,7 +83,7 @@ const HeaderStats: React.FC = () => {
                   statTitle={PN.convertEnToPe(cartData.allcategories)}
 
                 />
-              </div>
+              </div> */}
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="کتاب ها"
@@ -129,7 +129,7 @@ const HeaderStats: React.FC = () => {
 
                 />
               </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="کامنت ها"
                   statIconName={<MdOutlineComment />}
@@ -137,12 +137,12 @@ const HeaderStats: React.FC = () => {
                   statTitle={PN.convertEnToPe(cartData.allcomments)}
 
                 />
-              </div>
+              </div> */}
 
  
 
 
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="لایک ها"
                   statIconName={<AiTwotoneLike />}
@@ -150,8 +150,8 @@ const HeaderStats: React.FC = () => {
                   statTitle={PN.convertEnToPe(cartData.alllikes)}
 
                 />
-              </div>
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+              </div> */}
+              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="نظرات کتاب ها"
                   statIconName={<FaComments />}
@@ -159,7 +159,7 @@ const HeaderStats: React.FC = () => {
                   statTitle={PN.convertEnToPe(cartData.allbookrates)}
 
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
