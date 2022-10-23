@@ -8,6 +8,7 @@ import { TiTimes } from "react-icons/ti";
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
+import { DatePicker } from "jalali-react-datepicker";
 
 type AthorListType = {
   athor: string;
@@ -15,6 +16,24 @@ type AthorListType = {
 type TranslatorlistType = {
   translator: string;
 };
+type Category = {
+  value: number;
+  label: string;
+}
+interface NewBook {
+  bookName:string;
+  authorName:string[];
+  translatorName:string[];
+  publisherName:string;
+  yearPublish:number;
+  numberPage:number;
+  categoryId:number;
+  // description?:string;
+  shelfName:string;
+  registeredAt:Date;
+  privateId:number;
+  // libraryId:number
+}
 
 const eventHandler = (e) => {
   e.stopPropagation();
@@ -48,16 +67,26 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     { translator: "" },
   ]);
 
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState<Category[]>([])
   const [newBook, setNewBook] = useState({});
 
   useEffect(() => {
     fetchCategory()
-    console.log(categories)
-},[])
+    setNewBook({
+      ...newBook,
+      authorName :ObjectArrayToStringArray(athorList) ,
+      translatorName:ObjectArrayToStringArray(translatorlist) 
+    })
+
+},[athorList, translatorlist])
+
+  const ObjectArrayToStringArray = (objectArray) => {
+  const stringArray = objectArray.map(obj => Object.values(obj))
+  return stringArray
+  }
 
   const fetchNewBook = () => {
-    if(true){
+    
         axiosInstance
           .post("admin/neworder", newBook, {
             headers: {
@@ -66,9 +95,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
           })
           .then((res) => notifySuccess())
           .catch((err) => notifyError(err));
-      }else{
-        notifyError("خطا در ارسال سفارش");
-    }
+      
     
     }
 
@@ -256,12 +283,13 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                       })
                     }
                   />
+                 
                 </label>
               </div>
               <div className="w-full">
                 <label className="text-right w-full" htmlFor="">
                   <h4>تاریخ ثبت</h4>
-                  <input
+                  {/* <input
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="text"
                     onChange={(e) =>
@@ -270,7 +298,13 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                         createdAt: e.target.value,
                       })
                     }
-                  />
+                  /> */}
+                   <DatePicker
+                   className="w-full border border-[#ccc] rounded h-[38px] px-2"
+                    timePicker={false} onClickSubmitButton={value => setNewBook({
+                    ...newBook,
+                    registeredAt: value.value._d
+                  })} />
                 </label>
               </div>
               <div className="w-full">
@@ -348,6 +382,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
 
             <button
             onClick={fetchNewBook}
+            // onClick={fetchNewBook}
             className="w-full mt-10 bg-slate-700 text-white h-10 rounded hover:bg-slate-600">
               ثبت
             </button>

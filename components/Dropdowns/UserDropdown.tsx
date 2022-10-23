@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { createPopper } from "@popperjs/core";
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+import React, { useEffect, useState } from "react";
+
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 
@@ -22,11 +22,6 @@ const UserDropdown: React.FC = () => {
   useEffect(()=> {
     fetchUser()
   },[userPhoto])
-  // dropdown props;
-
-  const btnDropdownRef = useRef<HTMLAnchorElement>();
-
-
 
 
   return (
