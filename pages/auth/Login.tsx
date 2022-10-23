@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState(null)
-  const [userAuth, setUserAuth] = useState(null)
+  // const [userAuth, setUserAuth] = useState(null)
 
   const router = useRouter()
 

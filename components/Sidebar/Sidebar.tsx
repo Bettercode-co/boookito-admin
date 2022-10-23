@@ -165,7 +165,7 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
-            <li className="items-center">
+            {/* <li className="items-center">
               <Link href="/admin/uploader">
                 <a
                   href="#pablo"
@@ -185,7 +185,7 @@ const Sidebar: React.FC = () => {
                   آپلود کاربر 
                 </a>
               </Link>
-            </li>
+            </li> */}
             <li className="items-center">
               <Link href="/admin/orders">
                 <a

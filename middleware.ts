@@ -7,10 +7,13 @@ export default function middleware(req){
     
     let url = req.url;
 
-    // if(verify && url.includes('/index')){
-    //     return NextResponse.redirect('http://localhost:3000/admin/dashboard')
-    // }
-    // if(!verify && url.includes("/dashboard")){
-    //     return NextResponse.redirect('http://localhost:3000/auth/login')
-    // }
+    if(!verify && url.includes("/admin")){
+        return NextResponse.redirect('http://localhost:3000/auth/login')
+    }
+    if(verify && ruleBase === 'ADMIN' && url.includes("/admin")){
+        return NextResponse.redirect('http://localhost:3000/auth/login')
+    }
+    if(verify && ruleBase === 'STUDENT' && url.includes("/login") ){
+        return NextResponse.redirect('http://localhost:3000/admin/dashboard')
+    }
 }
