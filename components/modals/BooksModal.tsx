@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import Cropper from "react-easy-crop";
+import getCroppedImg from '../../utils/cropImage'
+import {generateDownload} from '../../utils/cropImage'
 
 //react icons
 import { RiAddCircleLine } from "react-icons/ri";
@@ -9,6 +12,9 @@ import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import { DatePicker } from "jalali-react-datepicker";
+
+import addImage from '../../public/img/book_modal/addImage.png'
+import Image from "next/image";
 
 type AthorListType = {
   athor: string;
@@ -66,6 +72,43 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   const [translatorlist, setTranslatorList] = useState<TranslatorlistType[]>([
     { translator: "" },
   ]);
+  
+  // START---------------------------IMAGE CROPPER------------------------------
+  const [image, setImage] = useState(null)
+  const [croppedArea, setCroppedArea] = useState(null)
+  const [crop, setCrop] = useState({x:0, y:0})
+  const [zoom, setZoom] = useState(1)
+  const [croppedImage, setCroppedImage] = useState<any>()
+  const [isCropperOpen, setIsCropperOpen] = useState(false)
+  
+  const inputImageUploadeRef = React.useRef(null)
+  const triggerRef = () => inputImageUploadeRef.current.click()
+  
+  const onCropComplete = (croppedAreaPixels) => {
+    setCroppedArea(croppedAreaPixels)
+  }
+
+  const onSelectFile = (event) => {
+    if(event.target.files && event.target.files[0] ){
+      const reader = new FileReader()
+      reader.readAsDataURL(event.target.files[0])
+      reader.addEventListener('load', () => {
+        setImage(reader.result)
+      })
+    }
+  }
+
+  const decodCanvas = async() => {
+    const canv = await getCroppedImg(image, croppedArea)
+    setCroppedImage(canv)
+    console.log(canv.toDataURL())
+  }
+
+  useEffect(() => {
+    decodCanvas()
+  },[croppedArea])
+
+  // END---------------------------IMAGE CROPPER------------------------------
 
   const [categories, setCategories] = useState<Category[]>([])
   const [newBook, setNewBook] = useState({});
@@ -160,7 +203,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
           {/* <form> */}
           <div
             onClick={eventHandler}
-            className="relative mt-96 md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
+            className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
             <div
               onClick={() => setIsModalOpen(false)}
@@ -173,6 +216,9 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
               <div className="h-[1px] bg-slate-200 w-full mt-5" />
             </div>
 
+
+            <div className="w-full flex flex-col lg:flex-row gap-10">
+{/* -------------------------------------FORM---------------------------------------------- */}
             <div className="inputsContainer h-full w-full py-5 text-center grid xl:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-16">
               <div className="w-full">
                 <label className="text-right w-full" htmlFor="">
@@ -379,10 +425,23 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                 </label>
               </div>
             </div>
+            {/* START---------------------------------IMAGE UPLOADER-------------------------- */}
+        <div className="w-full md:w-96 flex flex-col items-center justify-center gap-5">
+        <Image src={image ? image : addImage} width={200} height={200} alt='add_image' />
+        <input type="file" accept="image/*" ref={inputImageUploadeRef} className='hidden' onChange={onSelectFile} />
+        {isCropperOpen && (
+          <Cropper image={image} crop={crop} zoom={zoom} aspect={1} onCropChange={setCrop} onZoomChange={setZoom} onCropComplete={onCropComplete} />
+          )}
+          <button onClick={() => setIsCropperOpen(!isCropperOpen)} className="absolute -bottom-10 z-50" >okey</button>
+          <Image src={croppedImage} width={50} height={50} />
+        
+        <button className="border px-4 py-1" onClick={triggerRef} >انتخاب عکس</button>
+        </div>
+            {/* END---------------------------------IMAGE UPLOADER-------------------------- */}
 
+            </div>
             <button
             onClick={fetchNewBook}
-            // onClick={fetchNewBook}
             className="w-full mt-10 bg-slate-700 text-white h-10 rounded hover:bg-slate-600">
               ثبت
             </button>

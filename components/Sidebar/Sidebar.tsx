@@ -165,27 +165,27 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
-            {/* <li className="items-center">
-              <Link href="/admin/uploader">
+            <li className="items-center">
+              <Link href="/admin/categories">
                 <a
                   href="#pablo"
                   className={
                     "flex items-center text-xs uppercase py-3 font-bold " +
-                    (router.pathname.indexOf("/admin/uploader") !== -1
+                    (router.pathname.indexOf("/admin/categories") !== -1
                       ? "text-sky-500 hover:text-sky-600"
                       : "text-slate-700 hover:text-slate-500")
                   }
                 >
                   <AiOutlineCloudUpload  className={
                       " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/uploader") !== -1
+                      (router.pathname.indexOf("/admin/categories") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
                     } />
-                  آپلود کاربر 
+                    دسته بندی ها
                 </a>
               </Link>
-            </li> */}
+            </li>
             <li className="items-center">
               <Link href="/admin/orders">
                 <a
