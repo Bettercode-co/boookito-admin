@@ -14,7 +14,7 @@ import {MdOutlineComment, MdExitToApp } from "react-icons/md"
 import {RiPriceTag3Line} from "react-icons/ri"
 import {ImBooks} from 'react-icons/im'
 import {TbTruckLoading} from 'react-icons/tb'
-import {AiOutlineCloudUpload} from 'react-icons/ai'
+import {BiCategoryAlt} from 'react-icons/bi'
 
 
 import UserDropdown from "../Dropdowns/UserDropdown";
@@ -176,7 +176,7 @@ const Sidebar: React.FC = () => {
                       : "text-slate-700 hover:text-slate-500")
                   }
                 >
-                  <AiOutlineCloudUpload  className={
+                  <BiCategoryAlt  className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/categories") !== -1
                         ? "opacity-75"
