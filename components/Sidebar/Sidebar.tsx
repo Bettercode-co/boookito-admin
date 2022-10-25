@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import logo from '../../public/img/dashboard/logo.jpg'
+import { deleteCookie } from "cookies-next";
+ 
 
 //react icons
 import {
@@ -16,9 +18,13 @@ import {ImBooks} from 'react-icons/im'
 import {TbTruckLoading} from 'react-icons/tb'
 import {BiCategoryAlt} from 'react-icons/bi'
 
-
 import UserDropdown from "../Dropdowns/UserDropdown";
 import Image from "next/image";
+
+const logoutHandler = () => {
+  deleteCookie('accessToken')
+  deleteCookie('ruleBase')
+}
 
 const Sidebar: React.FC = () => {
   const [collapseShow, setCollapseShow] = React.useState<string>("hidden");
@@ -256,9 +262,9 @@ const Sidebar: React.FC = () => {
               </Link>
             </li> */}
             <li className="items-center">
-              <Link href="/admin/settings">
-                <a
-                  href="#pablo"
+              <div onClick={logoutHandler} className='cursor-pointer'>
+                <div
+                  // href="#pablo"
                   className={
                     "flex items-center text-xs uppercase py-3 font-bold " +
                     (router.pathname.indexOf("/admin/settings") !== -1
@@ -275,8 +281,8 @@ const Sidebar: React.FC = () => {
                     }
                   />
                   خروج
-                </a>
-              </Link>
+                </div>
+              </div>
             </li>
 
           </ul>
