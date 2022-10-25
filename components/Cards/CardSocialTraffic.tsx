@@ -4,7 +4,9 @@ import PN from "persian-number";
 import moment from 'jalali-moment';
 import axiosInstance from "../../utils/axiosInstance";
 import Link from "next/link";
+import { getCookie } from "cookies-next";
 
+const token = getCookie('accessToken')
 
 export default function CardSocialTraffic() {
   const [lastComments, setLastComments] = useState(null)
@@ -12,7 +14,11 @@ export default function CardSocialTraffic() {
     fetchLastComments()
   },[])
   const fetchLastComments = () => {
-    axiosInstance.get('admin/statistics')
+    axiosInstance.get('admin/statistics', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(res => setLastComments(res.data.lastcomments)) 
     .then(res => console.log(lastComments))
   }

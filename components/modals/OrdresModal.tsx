@@ -73,7 +73,11 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
   };
 
   const fetchNationCode = async () => {
-    axiosInstance.get(`admin/user/search/${nationId}`).then((res) => {
+    axiosInstance.get(`admin/user/search/${nationId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
       let users = res.data;
       // console.log(users);
 
@@ -81,7 +85,11 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     });
   };
   const fetchBook = async () => {
-    await axiosInstance.get(`admin/book/search/${bookId}`).then((res) => {
+    await axiosInstance.get(`admin/book/search/${bookId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
       let books = res.data;
       bookOptionFilter(books);
     });

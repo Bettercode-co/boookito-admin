@@ -4,9 +4,10 @@ import moment from 'jalali-moment';
 import axiosInstance from "../../utils/axiosInstance";
 import DashboardTable from "../dashboardTable/dashboardTable";
 import Link from "next/link";
+import { getCookie } from "cookies-next";
 
 
-// components
+const token = getCookie('accessToken')
 
 
 export default function CardPageVisits() {
@@ -15,7 +16,11 @@ export default function CardPageVisits() {
     fetchLastOrders()
   },[])
   const fetchLastOrders = () => {
-    axiosInstance.get('admin/statistics')
+    axiosInstance.get('admin/statistics', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(res => setLastOrders(res.data.lastorders)) 
     .then(res => console.log(lastOrders))
   }
