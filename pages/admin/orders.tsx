@@ -38,7 +38,11 @@ const Orders: NextPage = () => {
 
   const fetchOrders = () => {
     axiosInstance
-      .get(`admin/orders/${pagenumber}`)
+      .get(`admin/orders/${pagenumber}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setOrdersData(res.data));
   };
 
