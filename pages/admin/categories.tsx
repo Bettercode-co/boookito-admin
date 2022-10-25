@@ -4,12 +4,14 @@ import BasicTable from "../../components/basicTable/BasicTable";
 import Admin from "../../layouts/Admin";
 import axiosInstance from "../../utils/axiosInstance";
 import CategoryModal from "../../components/modals/CategoryModal";
+import { getCookie } from "cookies-next";
 
 //react icons
 import { MdDelete } from "react-icons/md";
 import { RiEditFill } from "react-icons/ri";
 import { IoIosAddCircleOutline } from "react-icons/io";
 
+const token = getCookie("accessToken");
 
 
 const Categories: NextPage = () => {
@@ -22,7 +24,11 @@ const Categories: NextPage = () => {
 
   const fetchOrders = () => {
     axiosInstance
-      .get(`admin/categories`)
+      .get(`admin/categories`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
       .then((res) => setCategoriesData(res.data));
   };
 

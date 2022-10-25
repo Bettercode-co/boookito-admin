@@ -7,6 +7,7 @@ import moment from "jalali-moment";
 import PN from "persian-number";
 import { RiEditFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
+import { getCookie } from "cookies-next";
 
 const statusHandler = (value) => {
   switch (value) {
@@ -14,6 +15,7 @@ const statusHandler = (value) => {
       return <div className="text-green-700">منتشر شده</div>;
   }
 };
+const token = getCookie("accessToken");
 
 const Bookgram: NextPage = () => {
   const [pagenumber, setPageNumber] = useState<number>(1);
@@ -23,7 +25,11 @@ const Bookgram: NextPage = () => {
 
   const fetchPosts = () => {
     axiosInstance
-      .get(`admin/posts/${pagenumber}`)
+      .get(`admin/posts/${pagenumber}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
       .then((res) => setPostsData(res.data.result));
   };
 
@@ -106,7 +112,11 @@ const Bookgram: NextPage = () => {
 
   const handleDelete = (rowId) => {
     axiosInstance
-      .get(`admin/remove/post/${rowId}`)
+      .get(`admin/remove/post/${rowId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
       .then(() => setUpdatePosts(rowId));
   };
 

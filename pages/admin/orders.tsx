@@ -6,6 +6,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import moment from "jalali-moment";
 import PN from "persian-number";
 import OrdersModal from "../../components/modals/OrdresModal";
+import { getCookie } from "cookies-next";
 
 //react icons
 import { MdDelete } from "react-icons/md";
@@ -24,6 +25,7 @@ const statusHandler = (value) => {
       return <div className="text-red-600">رد شده</div>;
   }
 };
+const token = getCookie("accessToken");
 
 const Orders: NextPage = () => {
   const [ordersData, setOrdersData] = useState(null);

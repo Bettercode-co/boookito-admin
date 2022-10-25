@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { number } from "yup/lib/locale";
+// import { number } from "yup/lib/locale";
 import axiosInstance from "../../utils/axiosInstance";
 import CardStats from "../Cards/CardStats";
 import PN from "persian-number";
@@ -13,6 +13,7 @@ import {BiCategoryAlt} from 'react-icons/bi'
 import {AiTwotoneLike} from 'react-icons/ai'
 import {TbTruckLoading} from 'react-icons/tb'
 import {ImBooks} from 'react-icons/im'
+import { getCookie } from "cookies-next";
 
 
 const defaultValue = {
@@ -31,11 +32,17 @@ allbooks: 0,
   lastorders: [],
   lastusers: []}
 
+  const token = getCookie('accessToken')
+
 const HeaderStats: React.FC = () => {
   const [cartData, setCartData] = useState(defaultValue)
 
   const fetchCart =  () => {
-    axiosInstance.get('admin/statistics')
+    axiosInstance.get('admin/statistics', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
     .then(res => setCartData(res.data))
   }
   

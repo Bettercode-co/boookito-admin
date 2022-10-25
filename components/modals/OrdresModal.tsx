@@ -11,6 +11,7 @@ type NewOrder = {
   user?: string;
   book?: number;
   day: number;
+  bookCode?: number;
 };
 
 const eventHandler = (e) => {
@@ -188,6 +189,20 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 options={durationOption}
                 placeholder="مدت سفارش"
               />
+            </label>
+            <label className="w-full relative">
+             کد کتاب  
+              <input
+                className="w-full border border-[#ccc] rounded h-[38px] mt-2"
+                type='text'
+                onChange={e => {
+                  setNewOrder({
+                    ...newOrder,
+                    bookCode: +e.target.value
+                  })
+                }}
+              />
+                
             </label>
             <button
               onClick={neworderHandler}

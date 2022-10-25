@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import BasicTable from "../../components/basicTable/BasicTable";
 import moment from "jalali-moment";
 import PN from "persian-number";
+import { getCookie } from "cookies-next";
 
 //react icons
 import { RiEditFill } from "react-icons/ri";
@@ -27,6 +28,7 @@ const rulebaseHandler = (value: string) => {
       return <div className="text-green-700">دانشجو</div>;
   }
 };
+const token = getCookie("accessToken");
 
 const Users: NextPage = () => {
   const [usersData, setUsersData] = useState(null);
@@ -34,7 +36,11 @@ const Users: NextPage = () => {
 
   const fetchUsers = () => {
     axiosInstance
-      .get(`admin/users/${pagenumber}`)
+      .get(`admin/users/${pagenumber}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
       .then((res) => setUsersData(res.data));
   };
 

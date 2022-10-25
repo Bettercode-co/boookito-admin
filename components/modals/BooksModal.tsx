@@ -158,7 +158,11 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   };
 
   const fetchCategory = async() => {
-    await axiosInstance.get('admin/categories')
+    await axiosInstance.get('admin/categories', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
     .then(res => {
         let cat = res.data
         categoryOptionFilter(cat)
