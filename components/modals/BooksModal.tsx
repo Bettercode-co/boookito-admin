@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import { useForm } from "react-hook-form";
+import Cropper from "react-easy-crop";
+import getCroppedImg from '../../utils/cropImage'
+import {generateDownload} from '../../utils/cropImage'
 
 //react icons
 import { RiAddCircleLine } from "react-icons/ri";
@@ -9,6 +13,9 @@ import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import { DatePicker } from "jalali-react-datepicker";
+
+import addImage from '../../public/img/book_modal/addImage.png'
+import Image from "next/image";
 
 type AthorListType = {
   athor: string;
@@ -20,18 +27,20 @@ type Category = {
   value: number;
   label: string;
 }
-interface NewBook {
+type FormValues = {
   bookName:string;
-  authorName:string[];
-  translatorName:string[];
+  // authorName:string[];
+  // translatorName:string[];
   publisherName:string;
   yearPublish:number;
   numberPage:number;
-  categoryId:number;
+  // categoryId:number;
   // description?:string;
   shelfName:string;
-  registeredAt:Date;
+  // registeredAt:Date;
   privateId:number;
+  jelds: number;
+  shabak: string;
   // libraryId:number
 }
 
@@ -66,6 +75,45 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   const [translatorlist, setTranslatorList] = useState<TranslatorlistType[]>([
     { translator: "" },
   ]);
+
+  const { register, handleSubmit, formState: {errors} } = useForm<FormValues>()
+  
+  // START---------------------------IMAGE CROPPER------------------------------
+  // const [image, setImage] = useState(null)
+  // const [croppedArea, setCroppedArea] = useState(null)
+  // const [crop, setCrop] = useState({x:0, y:0})
+  // const [zoom, setZoom] = useState(1)
+  // const [croppedImage, setCroppedImage] = useState<any>()
+  // const [isCropperOpen, setIsCropperOpen] = useState(false)
+  
+  // const inputImageUploadeRef = React.useRef(null)
+  // const triggerRef = () => inputImageUploadeRef.current.click()
+  
+  // const onCropComplete = (croppedAreaPixels) => {
+  //   setCroppedArea(croppedAreaPixels)
+  // }
+
+  // const onSelectFile = (event) => {
+  //   if(event.target.files && event.target.files[0] ){
+  //     const reader = new FileReader()
+  //     reader.readAsDataURL(event.target.files[0])
+  //     reader.addEventListener('load', () => {
+  //       setImage(reader.result)
+  //     })
+  //   }
+  // }
+
+  // const decodCanvas = async() => {
+  //   const canv = await getCroppedImg(image, croppedArea)
+  //   setCroppedImage(canv)
+  //   console.log(canv.toDataURL())
+  // }
+
+  // useEffect(() => {
+  //   decodCanvas()
+  // },[croppedArea])
+
+  // END---------------------------IMAGE CROPPER------------------------------
 
   const [categories, setCategories] = useState<Category[]>([])
   const [newBook, setNewBook] = useState({});
@@ -158,9 +206,10 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
           onClick={() => setIsModalOpen(false)}
         >
           {/* <form> */}
-          <div
+          <form
+            onSubmit={handleSubmit((data) => {console.log(data)})}
             onClick={eventHandler}
-            className="relative mt-96 md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
+            className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
             <div
               onClick={() => setIsModalOpen(false)}
@@ -173,41 +222,49 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
               <div className="h-[1px] bg-slate-200 w-full mt-5" />
             </div>
 
-            <div className="inputsContainer h-full w-full py-5 text-center grid xl:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-16">
+
+            <div className="w-full flex flex-col lg:flex-row gap-10">
+{/* -------------------------------------FORM---------------------------------------------- */}
+            <form  className="inputsContainer h-full w-full py-5 text-center grid xl:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-16">
               <div className="w-full">
-                <label className="text-right w-full" htmlFor="">
+                <label className="text-right w-full relative" htmlFor="">
                   <h4>نام کتاب</h4>
                   <input
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="text"
-                    onChange={(e) =>
-                      setNewBook({
-                        ...newBook,
-                        name: e.target.value,
-                      })
-                    }
+                    {...register('bookName', {required: 'نام کتاب را وارد کنید'})}
+                    // onChange={(e) =>
+                    //   setNewBook({
+                    //     ...newBook,
+                    //     name: e.target.value,
+                    //   })
+                    // }
                   />
+                  {errors.bookName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.bookName.message}</p>}
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full" htmlFor="">
+                <label className="text-right w-full relative" htmlFor="">
                   <h4>کد کتاب</h4>
                   <input
                     className="w-full border-[#ccc] rounded h-[38px]"
-                    type="text"
-                    onChange={(e) =>
-                      setNewBook({
-                        ...newBook,
-                        bookCode: e.target.value,
-                      })
-                    }
+                    type="number"
+                    {...register('privateId', {valueAsNumber: true, required:"کد کتاب را وارد کنید" })}
+                    // onChange={(e) =>
+                    //   setNewBook({
+                    //     ...newBook,
+                    //     bookCode: e.target.value,
+                    //   })
+                    // }
                   />
+                  {errors.privateId && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.privateId.message}</p>}
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full" htmlFor="">
+                <label className="text-right w-full relative" htmlFor="">
                   <h4>دسته بندی</h4>
                   <Select
+                  // {...register('categoryId')}
                     onChange={(e: any) =>
                       setNewBook({
                         ...newBook,
@@ -224,70 +281,78 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full" htmlFor="">
+                <label className="text-right w-full relative" htmlFor="">
                   <h4>انتشارات</h4>
                   <input
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="text"
-                    onChange={(e) =>
-                      setNewBook({
-                        ...newBook,
-                        publisher: e.target.value,
-                      })
-                    }
+                    {...register('publisherName', {required: "نام انتشارات را وارد کنید"})}
+                    // onChange={(e) =>
+                    //   setNewBook({
+                    //     ...newBook,
+                    //     publisher: e.target.value,
+                    //   })
+                    // }
                   />
+                  {errors.publisherName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.publisherName.message}</p>}
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full" htmlFor="">
+                <label className="text-right w-full relative" htmlFor="">
                   <h4>سال انتشار</h4>
                   <input
-                    className="w-full border-[#ccc] rounded h-[38px]"
+                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-xs"
                     type="number"
-                    maxLength={3}
-                    minLength={3}
-                    onChange={(e) =>
-                      setNewBook({
-                        ...newBook,
-                        publishYear: e.target.value,
-                      })
-                    }
+                    {...register('yearPublish', {valueAsNumber: true, maxLength: 4, minLength:4, required: 'سال انتشار را وارد کنید' })}
+                    placeholder='سال انتشار را بصورت چهار رقمی وارد کنید'
+                    // maxLength={4}
+                    // minLength={4}
+                    // onChange={(e) =>
+                    //   setNewBook({
+                    //     ...newBook,
+                    //     publishYear: e.target.value,
+                    //   })
+                    // }
                   />
+                  {errors.yearPublish && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.yearPublish.message}</p>}
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full" htmlFor="">
+                <label className="text-right w-full relative" htmlFor="">
                   <h4>قفسه</h4>
                   <input
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="text"
-                    onChange={(e) =>
-                      setNewBook({
-                        ...newBook,
-                        publisher: e.target.value.toUpperCase(),
-                      })
-                    }
+                    {...register('shelfName', {required: 'نام قفسه را وارد کنید'})}
+                    // onChange={(e) =>
+                    //   setNewBook({
+                    //     ...newBook,
+                    //     publisher: e.target.value.toUpperCase(),
+                    //   })
+                    // }
                   />
+                  {errors.shelfName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.shelfName.message}</p>}
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full" htmlFor="">
+                <label className="text-right w-full relative" htmlFor="">
                   <h4>تعداد صفحات</h4>
                   <input
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="number"
-                    onChange={(e) =>
-                      setNewBook({
-                        ...newBook,
-                        pages: e.target.value,
-                      })
-                    }
+                    {...register('numberPage', {valueAsNumber: true, required:'تعداد صفحات کتاب را وارد کنید' })}
+                    // onChange={(e) =>
+                    //   setNewBook({
+                    //     ...newBook,
+                    //     pages: e.target.value,
+                    //   })
+                    // }
                   />
-                 
+                  {errors.numberPage && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.numberPage.message}</p>}
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full" htmlFor="">
+                <label className="text-right w-full relative" htmlFor="">
                   <h4>تاریخ ثبت</h4>
                   {/* <input
                     className="w-full border-[#ccc] rounded h-[38px]"
@@ -300,11 +365,45 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     }
                   /> */}
                    <DatePicker
-                   className="w-full border border-[#ccc] rounded h-[38px] px-2"
-                    timePicker={false} onClickSubmitButton={value => setNewBook({
+                    className="w-full border border-[#ccc] rounded h-[38px] px-2"
+                    timePicker={false} 
+                    onClickSubmitButton={value => setNewBook({
                     ...newBook,
                     registeredAt: value.value._d
                   })} />
+                </label>
+              </div>
+              <div className="w-full">
+                <label className="text-right w-full relative" htmlFor="">
+                  <h4>تعداد جلد</h4>
+                  <input
+                    className="w-full border-[#ccc] rounded h-[38px]"
+                    type="number"
+                    {...register('jelds')}
+                    // onChange={(e) =>
+                    //   setNewBook({
+                    //     ...newBook,
+                    //     no: e.target.value,
+                    //   })
+                    // }
+                  />
+                </label>
+              </div>              
+              <div className="w-full">
+                <label className="text-right w-full relative" htmlFor="">
+                  <h4>شماره شابک</h4>
+                  <input
+                    className="w-full border-[#ccc] rounded h-[38px]"
+                    type="text"
+                    {...register('shabak', {required: 'شماره شابک را وارد کنید'})}
+                    // onChange={(e) =>
+                    //   setNewBook({
+                    //     ...newBook,
+                    //     shabak: e.target.value,
+                    //   })
+                    // }
+                  />
+                  {errors.shabak && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.shabak.message}</p>}
                 </label>
               </div>
               <div className="w-full">
@@ -378,15 +477,28 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                   ))}
                 </label>
               </div>
-            </div>
+            </form>
+            {/* START---------------------------------IMAGE UPLOADER-------------------------- */}
+        <div className="w-full md:w-96 flex flex-col items-center justify-center gap-5">
+        <Image src={addImage} width={200} height={200} alt='add_image' />
+        {/* <input type="file" accept="image/*" ref={inputImageUploadeRef} className='hidden' onChange={onSelectFile} /> */}
+        {/* {isCropperOpen && (
+          <Cropper image={image} crop={crop} zoom={zoom} aspect={1} onCropChange={setCrop} onZoomChange={setZoom} onCropComplete={onCropComplete} />
+          )}
+          <button onClick={() => setIsCropperOpen(!isCropperOpen)} className="absolute -bottom-10 z-50" >okey</button>        */}
+        {/* <button className="border px-4 py-1" onClick={triggerRef} >انتخاب عکس</button> */}
+        <button className="border px-4 py-1"  >انتخاب عکس</button>
+        </div>
+            {/* END---------------------------------IMAGE UPLOADER-------------------------- */}
 
+            </div>
             <button
+            type="submit"
             onClick={fetchNewBook}
-            // onClick={fetchNewBook}
             className="w-full mt-10 bg-slate-700 text-white h-10 rounded hover:bg-slate-600">
               ثبت
             </button>
-          </div>
+          </form>
           {/* </form> */}
         </div>
       )}
