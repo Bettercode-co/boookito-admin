@@ -40,7 +40,7 @@ const Books: NextPage = () => {
 
   useEffect(() => {
     fetchBooks();
-  }, [pagenumber]);
+  }, [pagenumber, isModalOpen]);
 
   const COLUMNS = [
     {
@@ -59,12 +59,12 @@ const Books: NextPage = () => {
       minWidth: 50,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
-    {
-      Header: "کد کتاب",
-      accessor: "privateId",
-      minWidth: 150,
-      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
-    },
+    // {
+    //   Header: "کد کتاب",
+    //   accessor: "privateId",
+    //   minWidth: 150,
+    //   Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
+    // },
     {
       Header: "کتاب",
       accessor: "bookName",

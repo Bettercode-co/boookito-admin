@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
-import Cropper from "react-easy-crop";
-import getCroppedImg from '../../utils/cropImage'
-import {generateDownload} from '../../utils/cropImage'
+// import Cropper from "react-easy-crop";
+// import getCroppedImg from '../../utils/cropImage'
+// import {generateDownload} from '../../utils/cropImage'
+import AvatarEditor from 'react-avatar-editor'
 
 //react icons
 import { RiAddCircleLine } from "react-icons/ri";
@@ -12,10 +13,12 @@ import { TiTimes } from "react-icons/ti";
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { DatePicker } from "jalali-react-datepicker";
 
 import addImage from '../../public/img/book_modal/addImage.png'
 import Image from "next/image";
+import axios from "axios";
 
 type AthorListType = {
   athor: string;
@@ -38,8 +41,8 @@ type FormValues = {
   // description?:string;
   shelfName:string;
   // registeredAt:Date;
-  privateId:number;
-  jelds: number;
+  // privateId:number;
+  totalEntity: number;
   shabak: string;
   // libraryId:number
 }
@@ -75,73 +78,68 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   const [translatorlist, setTranslatorList] = useState<TranslatorlistType[]>([
     { translator: "" },
   ]);
+  const [categories, setCategories] = useState<Category[]>([])
+  const [newBook, setNewBook] = useState({});
+  const [imageLink, setImageLink] = useState<string>('')
+  const [newImage, setNewImage] = useState(null)
+  const [isImageUplaoded, setIsImageUplaoded] = useState<boolean>(false)
 
   const { register, handleSubmit, formState: {errors} } = useForm<FormValues>()
   
-  // START---------------------------IMAGE CROPPER------------------------------
-  // const [image, setImage] = useState(null)
-  // const [croppedArea, setCroppedArea] = useState(null)
-  // const [crop, setCrop] = useState({x:0, y:0})
-  // const [zoom, setZoom] = useState(1)
-  // const [croppedImage, setCroppedImage] = useState<any>()
-  // const [isCropperOpen, setIsCropperOpen] = useState(false)
+  const inputImageUploadeRef = React.useRef(null)
+  const triggerRef = () => inputImageUploadeRef.current.click()
+
+  const inputUploadHandler = (event) => {
+    const formData = new FormData()
+    setNewImage(URL.createObjectURL(event.target.files[0]))
+    if(event.target.files[0] && event.target.files){
+            formData.append("file" , event.target.files[0])
+            imageUploader(formData)
+    }     
+  }
+
+  const imageUploader = (formImage) => {
+    setIsImageUplaoded(true)
+    axios.post(' https://core.boookito.ir/image/upload', formImage, {
+    headers: {
+       authorization : "c4a12f24ceabef771459150b0a953e81e3776a41800798e27808b87c95dd3b0c31" 
+    }
+  }).then(res => setImageLink(res.data.link))
+    .finally(() => setIsImageUplaoded(false))
+  }
+
+
   
-  // const inputImageUploadeRef = React.useRef(null)
-  // const triggerRef = () => inputImageUploadeRef.current.click()
-  
-  // const onCropComplete = (croppedAreaPixels) => {
-  //   setCroppedArea(croppedAreaPixels)
-  // }
 
-  // const onSelectFile = (event) => {
-  //   if(event.target.files && event.target.files[0] ){
-  //     const reader = new FileReader()
-  //     reader.readAsDataURL(event.target.files[0])
-  //     reader.addEventListener('load', () => {
-  //       setImage(reader.result)
-  //     })
-  //   }
-  // }
-
-  // const decodCanvas = async() => {
-  //   const canv = await getCroppedImg(image, croppedArea)
-  //   setCroppedImage(canv)
-  //   console.log(canv.toDataURL())
-  // }
-
-  // useEffect(() => {
-  //   decodCanvas()
-  // },[croppedArea])
-
-  // END---------------------------IMAGE CROPPER------------------------------
-
-  const [categories, setCategories] = useState<Category[]>([])
-  const [newBook, setNewBook] = useState({});
 
   useEffect(() => {
     fetchCategory()
+  },[])
+
+  useEffect(() => {
     setNewBook({
       ...newBook,
       authorName :ObjectArrayToStringArray(athorList) ,
-      translatorName:ObjectArrayToStringArray(translatorlist) 
+      translatorName:ObjectArrayToStringArray(translatorlist) ,
+      imageSource: newImage
     })
 
-},[athorList, translatorlist])
+},[athorList, translatorlist, newImage ])
 
   const ObjectArrayToStringArray = (objectArray) => {
-  const stringArray = objectArray.map(obj => Object.values(obj))
+  const stringArray = objectArray.map(obj => Object.values(obj)[0])
   return stringArray
   }
 
-  const fetchNewBook = () => {
-    
+  const fetchNewBook = (data) => {
         axiosInstance
-          .post("admin/neworder", newBook, {
+          .post("admin/newbook", {...newBook, ...data, imageSource: imageLink}, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           })
           .then((res) => notifySuccess())
+          .then(res => setIsModalOpen(false))
           .catch((err) => notifyError(err));
       
     
@@ -193,14 +191,15 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     const values = [...athorList];
     values[index][e.target.name] = e.target.value;
     setAthorList(values);
-    console.log(athorList);
+    // console.log(athorList);
   };
   const translatorChangeHandler = (index, e) => {
     const values = [...translatorlist];
     values[index][e.target.name] = e.target.value;
     setTranslatorList(values);
-    console.log(translatorlist);
+    // console.log(translatorlist);
   };
+
 
   return (
     <>
@@ -211,7 +210,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
         >
           {/* <form> */}
           <form
-            onSubmit={handleSubmit((data) => {console.log(data)})}
+            onSubmit={handleSubmit((data) => {fetchNewBook(data)})}
             onClick={eventHandler}
             className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
@@ -229,7 +228,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
 
             <div className="w-full flex flex-col lg:flex-row gap-10">
 {/* -------------------------------------FORM---------------------------------------------- */}
-            <form  className="inputsContainer h-full w-full py-5 text-center grid xl:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-16">
+            <div  className="inputsContainer h-full w-full py-5 text-center grid xl:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-16">
               <div className="w-full">
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>نام کتاب</h4>
@@ -247,7 +246,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                   {errors.bookName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.bookName.message}</p>}
                 </label>
               </div>
-              <div className="w-full">
+              {/* <div className="w-full">
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>کد کتاب</h4>
                   <input
@@ -263,7 +262,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                   />
                   {errors.privateId && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.privateId.message}</p>}
                 </label>
-              </div>
+              </div> */}
               <div className="w-full">
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>دسته بندی</h4>
@@ -272,7 +271,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     onChange={(e: any) =>
                       setNewBook({
                         ...newBook,
-                        category: e.value,
+                        categoryId: e.value,
                       })
                     }
                     id="category"
@@ -373,7 +372,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     timePicker={false} 
                     onClickSubmitButton={value => setNewBook({
                     ...newBook,
-                    registeredAt: value.value._d
+                    registeredAt: new Date( value.value._d  ).toISOString()
                   })} />
                 </label>
               </div>
@@ -383,7 +382,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                   <input
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="number"
-                    {...register('jelds')}
+                    {...register('totalEntity', {valueAsNumber: true})}
                     // onChange={(e) =>
                     //   setNewBook({
                     //     ...newBook,
@@ -481,24 +480,41 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                   ))}
                 </label>
               </div>
-            </form>
+            </div>
             {/* START---------------------------------IMAGE UPLOADER-------------------------- */}
         <div className="w-full md:w-96 flex flex-col items-center justify-center gap-5">
-        <Image src={addImage} width={200} height={200} alt='add_image' />
-        {/* <input type="file" accept="image/*" ref={inputImageUploadeRef} className='hidden' onChange={onSelectFile} /> */}
-        {/* {isCropperOpen && (
-          <Cropper image={image} crop={crop} zoom={zoom} aspect={1} onCropChange={setCrop} onZoomChange={setZoom} onCropComplete={onCropComplete} />
-          )}
-          <button onClick={() => setIsCropperOpen(!isCropperOpen)} className="absolute -bottom-10 z-50" >okey</button>        */}
-        {/* <button className="border px-4 py-1" onClick={triggerRef} >انتخاب عکس</button> */}
-        <button className="border px-4 py-1"  >انتخاب عکس</button>
+        <Image src={newImage? newImage : addImage} width={200} height={200} alt='add_image' />
+        {isImageUplaoded && (
+        <svg
+        className="animate-spin h-14 w-14 mx-auto text-gray-600"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx={12}
+          cy={12}
+          r={10}
+          stroke="currentColor"
+          strokeWidth={4}
+        />
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg> 
+        )}
+        <input type="file" accept="image/*" ref={inputImageUploadeRef} onChange={inputUploadHandler} className='hidden' />
+        <button type="button" className="border px-4 py-1" onClick={triggerRef} >انتخاب عکس</button>
         </div>
             {/* END---------------------------------IMAGE UPLOADER-------------------------- */}
 
             </div>
             <button
             type="submit"
-            onClick={fetchNewBook}
+            // onClick={fetchNewBook}
             className="w-full mt-10 bg-slate-700 text-white h-10 rounded hover:bg-slate-600">
               ثبت
             </button>
