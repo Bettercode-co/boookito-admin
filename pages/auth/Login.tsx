@@ -1,16 +1,27 @@
 
 import React, { useState } from "react";
 import { setCookie, getCookie } from 'cookies-next';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Auth from "../../layouts/Auth";
 import axiosInstance from "../../utils/axiosInstance";
 import { useRouter } from "next/router";
 
+//tostify
+const notifyError = (err) =>
+  toast.error(err, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    progress: undefined,
+  });
+
+
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState(null)
-  // const [userAuth, setUserAuth] = useState(null)
 
   const router = useRouter()
 
@@ -22,8 +33,12 @@ const Login: React.FC = () => {
   }
 
   const cookieHandler = (res) => {
-    setCookie("accessToken", `${res.data.accessToken}`)
-    setCookie("ruleBase", `${res.data.ruleBase}`)
+    if(res.data.accessToken !== null && res.data.ruleBase !== undefined){
+      setCookie("accessToken", `${res.data.accessToken}`)
+      setCookie("ruleBase", `${res.data.ruleBase}`)
+    }else{
+      notifyError('رمز عبور یا نام کاربری اشباه است')
+    }
   }
 
 
@@ -31,7 +46,8 @@ const Login: React.FC = () => {
     e.preventDefault();
     axiosInstance.post('auth/login', formData, {headers: { 'content-type': 'application/json' }})
     .then(response => cookieHandler(response))
-    .then((response => getCookie('accessToken') && getCookie('ruleBase') === 'STUDENT' && router.push('/admin/dashboard')))
+    .then((() => getCookie('accessToken') && getCookie('ruleBase') === 'STUDENT' && router.push('/admin/dashboard')))
+    .catch(() => notifyError('خطا در سرویس. دوباره امتحان کنید'))
   }
 
   return (
@@ -78,7 +94,7 @@ const Login: React.FC = () => {
                       رمز عبور
                     </label>
                     <input
-                      type="text"
+                      type="password"
                       className="placeholder:text-center text-center border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="رمز عبور"
                       name="password"
@@ -101,6 +117,14 @@ const Login: React.FC = () => {
             </div>
           </div>
         </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+      />
       </div>
     </Auth>
   );

@@ -7,6 +7,8 @@ import moment from "jalali-moment";
 import PN from "persian-number";
 import OrdersModal from "../../components/modals/OrdresModal";
 import { getCookie } from "cookies-next";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //react icons
 import { MdDelete } from "react-icons/md";
@@ -16,15 +18,33 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 const statusHandler = (value) => {
   switch (value) {
     case "PENDING":
-      return <div className="text-yellow-500">در انتظار</div>;
+      return <div className="text-white rounded-md bg-yellow-500 border border-yellow-700">در انتظار</div>;
     case "CLOSED":
-      return <div className="text-black-700">بسته شده</div>;
+      return <div className="text-white rounded-md bg-rose-500 border border-rose-700">بسته شده</div>;
     case "ACTIVE":
-      return <div className="text-green-600">فعال</div>;
+      return <div className="text-white rounded-md bg-green-500 border border-green-600">فعال</div>;
     case "REJECT":
-      return <div className="text-red-600">رد شده</div>;
+      return <div className="text-white rounded-md bg-orange-500 border border-orange-600">رد شده</div>;
   }
 };
+
+//tostify
+const notifyError = (err) =>
+  toast.error(err, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    progress: undefined,
+  });
+const notifySuccess = () =>
+  toast.success("درخواست با موفقیت انجام شد", {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    progress: undefined,
+  });
 const token = getCookie("accessToken");
 
 const Orders: NextPage = () => {
@@ -48,7 +68,7 @@ const Orders: NextPage = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [pagenumber]);
+  }, [pagenumber, isModalOpen]);
 
   const COLUMNS = [
     {
@@ -81,7 +101,7 @@ const Orders: NextPage = () => {
     },
     {
       Header: "وضعیت",
-      accessor: "status",
+      accessor: "orderStatus",
       minWidth: 200,
       Cell: (cell) => {
         return statusHandler(cell.value);
@@ -149,16 +169,16 @@ const Orders: NextPage = () => {
       accessor: "action",
       Cell: (cell) => (
         <div className="flex items-center gap-3">
-          <button value={cell.accessor} className="felx items-center min-w-max" onClick={handleEdit}>
+          {/* <button value={cell.accessor} className="felx items-center min-w-max" onClick={handleEdit}>
           <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
 
               <RiEditFill /> &nbsp; ویرایش
             </span>
-          </button>
-          <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  onClick={handleDelete}>
+          </button> */}
+          <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  onClick={() => handleDelete(cell.row.original.trakingCode)}>
           <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white ">
 
-              <MdDelete /> &nbsp; حذف
+              <MdDelete /> &nbsp; بستن سفارش
             </span>
           </button>
         </div>
@@ -169,8 +189,14 @@ const Orders: NextPage = () => {
   const handleEdit = (e) => {
     console.log("edit button");
   };
-  const handleDelete = () => {
-    console.log("delete button");
+  const handleDelete = (rowDetail) => {
+    axiosInstance.post('admin/closeorder', { trakingCode:rowDetail }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then(() => notifySuccess())
+    .catch(() => notifyError("خطا در بستن سفارش"))
   };
 
   if (!ordersData) {
@@ -230,6 +256,14 @@ const Orders: NextPage = () => {
           قبل
         </button>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+      />
     </div>
   );
 };

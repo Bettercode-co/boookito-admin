@@ -11,7 +11,6 @@ type NewOrder = {
   user?: string;
   book?: number;
   day: number;
-  bookCode?: number;
 };
 
 const eventHandler = (e) => {
@@ -51,14 +50,12 @@ const notifySuccess = () =>
 const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
   const [nationId, setNationId] = useState("1");
   const [nationOption, setNationOption] = useState([]);
-  const [bookId, setBookId] = useState("1");
-  const [bookOption, setBookOption] = useState([]);
   const [newOrder, setNewOrder] = useState<NewOrder>({
     day: 15,
   });
 
   const neworderHandler = () => {
-    if (newOrder.book && newOrder.user) {
+      console.log(newOrder)
       axiosInstance
         .post("admin/neworder", newOrder, {
           headers: {
@@ -67,9 +64,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
         })
         .then((res) => notifySuccess())
         .catch((err) => notifyError(err));
-    } else {
       notifyError("خطا در ارسال سفارش");
-    }
   };
 
   const fetchNationCode = async () => {
@@ -79,21 +74,10 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
       },
     }).then((res) => {
       let users = res.data;
-      // console.log(users);
-
       nationCodeOptionFilter(users);
     });
   };
-  const fetchBook = async () => {
-    await axiosInstance.get(`admin/book/search/${bookId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      let books = res.data;
-      bookOptionFilter(books);
-    });
-  };
+
 
   const nationCodeOptionFilter = (data) => {
     const dataArray = data.map((item) => {
@@ -107,28 +91,15 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     setNationOption(dataArray);
   };
 
-  const bookOptionFilter = (data) => {
-    const dataArray = data.map((item) => {
-      return {
-        value: item.id,
-        label: item.bookName,
-      };
-    });
-    setBookOption(dataArray);
-  };
 
   useEffect(() => {
-    // fetchNationCode();
-    // fetchBook();
-
     const timer = setTimeout(() => {
       fetchNationCode();
-      fetchBook();
       console.log("settimeout");
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [nationId, bookId, newOrder]);
+  }, [nationId, newOrder]);
 
   return (
     <>
@@ -165,7 +136,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 placeholder="کد ملی متقاضی"
               />
             </label>
-            <label htmlFor="bookCode">
+            {/* <label htmlFor="bookCode">
               کد کتاب
               <Select
                 onChange={(e) =>
@@ -180,7 +151,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 options={bookOption}
                 placeholder="کد کتاب"
               />
-            </label>
+            </label> */}
             <label htmlFor="duration">
               مدت سفارش
               <Select
@@ -198,15 +169,17 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 placeholder="مدت سفارش"
               />
             </label>
-            <label className="w-full relative">
+            <label className="w-64 flex flex-col items-center relative">
+              <span className="w-full text-right" >
              کد کتاب  
+              </span>
               <input
-                className="w-full border border-[#ccc] rounded h-[38px] mt-2"
-                type='text'
+                className="w-64 border border-[#ccc] rounded h-[38px] mt-2"
+                type='number'
                 onChange={e => {
                   setNewOrder({
                     ...newOrder,
-                    bookCode: +e.target.value
+                    book: +e.target.value
                   })
                 }}
               />
