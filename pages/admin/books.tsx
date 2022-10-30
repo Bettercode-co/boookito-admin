@@ -10,6 +10,7 @@ import PN from "persian-number";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import BooksModal from "../../components/modals/BooksModal";
 import { getCookie } from "cookies-next";
+import EditBooksModal from "../../components/modals/EditBookModal";
 
 const statusHandler = (value: string) => {
   switch (value) {
@@ -21,8 +22,10 @@ const token = getCookie("accessToken");
 
 const Books: NextPage = () => {
   const [booksData, setBooksData] = useState(null);
-  const [pagenumber, setPageNumber] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pagenumber, setPageNumber] = useState<number>(1);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setEditIsModalOpen] = useState<boolean>(false);
+  const [rowDataId , setRowDataId] = useState([])
 
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -94,16 +97,19 @@ const Books: NextPage = () => {
       Header: "تعداد صفحات",
       accessor: "numberPage",
       minWidth: 200,
+      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
       Header: "نام قفسه",
       accessor: "shelfName",
       minWidth: 150,
+      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
       Header: "نام کتابخانه",
       accessor: "library.libraryName",
       minWidth: 270,
+      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
       Header: "تاریخ ثبت در کتابخانه",
@@ -133,19 +139,19 @@ const Books: NextPage = () => {
         </div>
       ),
     },
-    {
-      Header: "وضعیت",
-      accessor: "status",
-      minWidth: 100,
-      Cell: (cell) => statusHandler(cell.value),
-    },
+    // {
+    //   Header: "وضعیت",
+    //   accessor: "status",
+    //   minWidth: 100,
+    //   Cell: (cell) => statusHandler(cell.value),
+    // },
 
     {
       Header: "عملیات",
       accessor: "action",
       Cell: (cell) => (
         <div className="flex items-center justify-between  gap-3">
-          <button value={cell.accessor} className="felx items-center min-w-max" onClick={handleEdit}>
+          <button value={cell.accessor} className="felx items-center min-w-max" onClick={() => handleEdit(cell.row.original)}>
           <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
 
               <RiEditFill /> &nbsp; ویرایش
@@ -162,8 +168,9 @@ const Books: NextPage = () => {
     },
   ];
 
-  const handleEdit = (e) => {
-    console.log("edit button");
+  const handleEdit = (rowData) => {
+    setRowDataId(rowData.id)
+    setEditIsModalOpen(true)
   };
   const handleDelete = () => {
     console.log("delete button");
@@ -200,6 +207,12 @@ const Books: NextPage = () => {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
         />
+      </div>
+      <div className="fixed top-0 right-0 z-50">
+      <EditBooksModal 
+      isEditModalOpen={isEditModalOpen} 
+      setIsEditModalOpen={setEditIsModalOpen} 
+      rowDataId={rowDataId} />
       </div>
 
       <div className=" flex justify-end">

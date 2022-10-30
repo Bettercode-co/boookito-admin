@@ -11,20 +11,22 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //react icons
-import { MdDelete } from "react-icons/md";
-import { RiEditFill } from "react-icons/ri";
+import { MdDelete, MdDone } from "react-icons/md";
+import { RiCloseLine } from "react-icons/ri";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { CgSandClock } from "react-icons/cg";
+import { AiOutlineStop } from "react-icons/ai";
 
 const statusHandler = (value) => {
   switch (value) {
     case "PENDING":
-      return <div className="text-white rounded-md bg-yellow-500 border border-yellow-700">در انتظار</div>;
+      return <div className="flex items-center justify-center  text-yellow-700"><CgSandClock /> در انتظار </div>;
     case "CLOSED":
-      return <div className="text-white rounded-md bg-rose-500 border border-rose-700">بسته شده</div>;
+      return <div className="flex items-center justify-center  text-rose-700"><RiCloseLine /> بسته شده </div>;
     case "ACTIVE":
-      return <div className="text-white rounded-md bg-green-500 border border-green-600">فعال</div>;
+      return <div className="flex items-center justify-center  text-green-600"><MdDone /> فعال </div>;
     case "REJECT":
-      return <div className="text-white rounded-md bg-orange-500 border border-orange-600">رد شده</div>;
+      return <div className="flex items-center justify-center  text-orange-600"><AiOutlineStop /> رد شده </div>;
   }
 };
 
