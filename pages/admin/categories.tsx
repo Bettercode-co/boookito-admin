@@ -46,7 +46,7 @@ const Categories: NextPage = () => {
       Header: "عملیات",
       accessor: "action",
       Cell: (cell) => (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center gap-3">
           <button value={cell.accessor} className="felx items-center min-w-max" onClick={handleEdit}>
           <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
 

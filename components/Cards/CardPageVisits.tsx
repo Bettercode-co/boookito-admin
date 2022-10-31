@@ -22,7 +22,6 @@ export default function CardPageVisits() {
       },
     })
     .then(res => setLastOrders(res.data.lastorders)) 
-    .then(res => console.log(lastOrders))
   }
 
 

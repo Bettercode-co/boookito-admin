@@ -108,7 +108,6 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
 }
 
   const bookInputHandler = async(data) => {
-    console.log(data.imageSource)
         let authorListArray = await data.authorName.map((author) => {
             return({
                 athor: author
@@ -143,9 +142,6 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
     fetchCategory()
   },[isEditModalOpen])
 
-  useEffect(() => {
-    console.log(bookData)
-}, [bookData])
 
   useEffect(() => {
     setNewBook({

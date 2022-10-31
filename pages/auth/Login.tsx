@@ -33,7 +33,7 @@ const Login: React.FC = () => {
   }
 
   const cookieHandler = (res) => {
-    if(res.data.accessToken !== null && res.data.ruleBase !== undefined){
+    if(res.data.accessToken  && res.data.ruleBase){
       setCookie("accessToken", `${res.data.accessToken}`)
       setCookie("ruleBase", `${res.data.ruleBase}`)
     }else{
@@ -47,7 +47,7 @@ const Login: React.FC = () => {
     axiosInstance.post('auth/login', formData, {headers: { 'content-type': 'application/json' }})
     .then(response => cookieHandler(response))
     .then((() => getCookie('accessToken') && getCookie('ruleBase') === 'STUDENT' && router.push('/admin/dashboard')))
-    .catch(() => notifyError('خطا در سرویس. دوباره امتحان کنید'))
+    .catch((err) => notifyError(err.response.data.message[0]))
   }
 
   return (
