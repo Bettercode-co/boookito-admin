@@ -103,7 +103,7 @@ const Books: NextPage = () => {
       Header: "نام قفسه",
       accessor: "shelfName",
       minWidth: 150,
-      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
+      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value.toUpperCase())}</div>,
     },
     {
       Header: "نام کتابخانه",
