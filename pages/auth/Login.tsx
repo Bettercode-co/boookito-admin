@@ -46,7 +46,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     axiosInstance.post('auth/login', formData, {headers: { 'content-type': 'application/json' }})
     .then(response => cookieHandler(response))
-    .then((() => getCookie('accessToken') && getCookie('ruleBase') === 'STUDENT' && router.push('/admin/dashboard')))
+    .then((() => getCookie('accessToken') && getCookie('ruleBase') === 'ADMIN' && router.push('/admin/dashboard')))
     .catch((err) => notifyError(err.response.data.message[0]))
   }
 

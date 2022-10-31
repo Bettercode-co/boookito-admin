@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
-// import Cropper from "react-easy-crop";
-// import getCroppedImg from '../../utils/cropImage'
-// import {generateDownload} from '../../utils/cropImage'
-import AvatarEditor from 'react-avatar-editor'
 
 //react icons
 import { RiAddCircleLine } from "react-icons/ri";
@@ -106,6 +102,15 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     }
   }).then(res => setImageLink(res.data.link))
     .then(() => notifySuccess("عکس با موفقیت آپلود شد"))
+    .catch((err) => {
+      if(err.response.data.message.length > 1){
+        err.response.data.message.map(errMsg => {
+          notifyError(errMsg)
+        })
+      }else{
+        notifyError(err.response.data.message[0])
+      }
+    })
     .finally(() => setIsImageUplaoded(false))
   }
 
@@ -139,9 +144,17 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
               Authorization: `Bearer ${token}`,
             },
           })
-          .then((res) => notifySuccess("درخواست با موفقیت انجام شد"))
-          .then(res => setIsModalOpen(false))
-          .catch((err) => notifyError(err));
+          .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
+          .then(() => setIsModalOpen(false))
+          .catch((err) => {
+            if(err.response.data.message.length > 1){
+              err.response.data.message.map(errMsg => {
+                notifyError(errMsg)
+              })
+            }else{
+              notifyError(err.response.data.message[0])
+            }
+          })
       
     
     }

@@ -167,7 +167,15 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
           })
           .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
           .then(() => setIsEditModalOpen(false))
-          .catch((err) => notifyError(err.message));
+          .catch((err) => {
+            if(err.response.data.message.length > 1){
+              err.response.data.message.map(errMsg => {
+                notifyError(errMsg)
+              })
+            }else{
+              notifyError(err.response.data.message[0])
+            }
+          });
       
     
     }

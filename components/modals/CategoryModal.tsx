@@ -52,8 +52,16 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((res) => notifySuccess())
-        .catch((err) => notifyError(err));
+        .then(() => notifySuccess())
+        .catch((err) => {
+          if(err.response.data.message.length > 1){
+            err.response.data.message.map(errMsg => {
+              notifyError(errMsg)
+            })
+          }else{
+            notifyError(err.response.data.message[0])
+          }
+        })
     } else {
       notifyError("خطا در ارسال سفارش");
     }
