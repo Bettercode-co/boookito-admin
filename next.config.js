@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  images: {
+    domains: ['bookito-object-storage.storage.iran.liara.space'],
+  },
   async redirects() {
     return [
       {
@@ -9,6 +12,7 @@ const nextConfig = {
         destination: '/admin/dashboard',
         permanent: false,
       },
+      
     ]
   },
 }
