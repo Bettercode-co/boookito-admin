@@ -270,7 +270,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>نام کتاب</h4>
                   <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="text"
                     {...register('bookName', {required: 'نام کتاب را وارد کنید'})}
                     placeholder={bookData.bookName}
@@ -301,7 +301,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>انتشارات</h4>
                   <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="text"
                     {...register('publisherName', {required: "نام انتشارات را وارد کنید"})}
                     placeholder={bookData.publisherName}
@@ -313,7 +313,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>سال انتشار (بصورت چهار رقمی)</h4>
                   <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="number"
                     {...register('yearPublish', {valueAsNumber: true, maxLength: 4, minLength:4, required: 'سال انتشار را وارد کنید' })}
                     placeholder={bookData.yearPublish}
@@ -326,7 +326,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>قفسه</h4>
                   <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="text"
                     {...register('shelfName', {required: 'نام قفسه را وارد کنید'})}
                     placeholder={bookData.shelfName}
@@ -338,7 +338,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>تعداد صفحات</h4>
                   <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="number"
                     {...register('numberPage', {valueAsNumber: true, required:'تعداد صفحات کتاب را وارد کنید' })}
                     placeholder={bookData.numberPage}
@@ -364,7 +364,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>تعداد جلد</h4>
                   <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="number"
                     {...register('totalEntity', {valueAsNumber: true})}
                     placeholder={bookData.totalEntity}
@@ -375,7 +375,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>شماره شابک</h4>
                   <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="text"
                     {...register('shabak', {required: 'شماره شابک را وارد کنید'})}
                     placeholder={bookData.shabak}
@@ -392,7 +392,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                   {athorList.map((athor, index) => (
                     <div key={index} className="flex relative">
                       <input
-                        className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                        className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                         type="text"
                         name="athor"
                         value={athor.athor}
@@ -427,7 +427,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                   {translatorlist.map((translator, index) => (
                     <div key={index} className="relative flex">
                       <input
-                        className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-700"
+                        className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                         type="text"
                         name="translator"
                         value={translator.translator}
@@ -481,7 +481,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
       </svg> 
         )}
         <input type="file" accept="image/*" ref={inputImageUploadeRef} onChange={inputUploadHandler} className='hidden' />
-        <button type="button" className="border px-4 py-1" onClick={triggerRef} >انتخاب عکس</button>
+        <button type="button" className="text-white bg-slate-500 border-white drop-shadow hover:drop-shadow-xl rounded-md hover:bg-white hover:text-slate-700 hover:border-2 hover:border-slate-700 transition-all border-2 px-4 py-1" onClick={triggerRef} >انتخاب عکس</button>
         </div>
             {/* END---------------------------------IMAGE UPLOADER-------------------------- */}
 

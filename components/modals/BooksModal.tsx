@@ -508,7 +508,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
       </svg> 
         )}
         <input type="file" accept="image/*" ref={inputImageUploadeRef} onChange={inputUploadHandler} className='hidden' />
-        <button type="button" className="border px-4 py-1" onClick={triggerRef} >انتخاب عکس</button>
+        <button type="button" className="text-white bg-slate-500 border-white hover:drop-shadow-xl drop-shadow rounded-md hover:bg-white hover:text-slate-700 hover:border-2 hover:border-slate-700 transition-all border-2 px-4 py-1" onClick={triggerRef} >انتخاب عکس</button>
         </div>
             {/* END---------------------------------IMAGE UPLOADER-------------------------- */}
 
