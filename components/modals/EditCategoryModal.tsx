@@ -39,14 +39,13 @@ const notifySuccess = () =>
     progress: undefined,
   });
 
-const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
-  // const [newCategory, setNewCategory] = useState<NewOrder>({});
-
+const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) => {
   const {register, handleSubmit, formState: {errors}} = useForm<FormValues>()
 
-  const newCategoryHandler = (data) => {
+
+  const editCategoryHandler = (data, rowDataId) => {
       axiosInstance
-        .post("admin/categories", {...data}, {
+        .patch(` admin/categories/${rowDataId}`, {...data}, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,31 +65,32 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
 
   return (
     <>
-      {isModalOpen && (
+      {isEditModalOpen && (
         <div
           className={`w-full h-full  flex justify-center items-center fixed t-0 r-0  bg-gray-300 bg-opacity-50 transition-all duration-300 ease-in`}
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {setIsEditModalOpen(false)}}
         >
           <form
-          onSubmit={handleSubmit((data) => {newCategoryHandler(data)})}
+          onSubmit={handleSubmit((data) => {editCategoryHandler(data, rowDataId)})}
             onClick={eventHandler}
             className="relative w-96 h-[40vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >
             <div
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => setIsEditModalOpen(false)}
               className="absolute right-5 top-5 cursor-pointer"
             >
               <TiTimes size={20} />
             </div>
             <div className="w-full text-center">
-            <h4>دسته بندی جدید</h4>
+            <h4>ویرایش دسته بندی</h4>
             <div className="h-[1px] bg-slate-200 w-full mt-5" />
             </div>
             <label className="w-full relative">
              نام دسته بندی
               <input
-                className="w-full border border-[#ccc] rounded h-[38px] mt-2"
+                className="w-full border border-[#ccc] rounded h-[38px] mt-2  px-3"
                 {...register('categoryName', {required: 'نام دسته بندی را وارد کنید'})}
+                placeholder={ rowDataId.categoryName}
               />
                 {errors.categoryName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.categoryName.message}</p>}
             </label>
@@ -116,4 +116,4 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
   );
 };
 
-export default CategoryModal;
+export default EditCategoryModal;

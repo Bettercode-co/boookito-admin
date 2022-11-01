@@ -177,8 +177,8 @@ const Orders: NextPage = () => {
               <RiEditFill /> &nbsp; ویرایش
             </span>
           </button> */}
-          <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  onClick={() => handleDelete(cell.row.original.trakingCode)}>
-          <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white ">
+          <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  disabled={cell.row.original.orderStatus === 'CLOSED'}  onClick={() => handleDelete(cell.row.original)}>
+          <span className={`flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${cell.row.original.orderStatus === 'CLOSED' && 'bg-gray-200 hover:bg-gray-200 hover:text-white hover:cursor-not-allowed'} `}>
 
               <MdDelete /> &nbsp; بستن سفارش
             </span>
@@ -192,13 +192,14 @@ const Orders: NextPage = () => {
     console.log("edit button");
   };
   const handleDelete = (rowDetail) => {
-    axiosInstance.post('admin/closeorder', { trakingCode:rowDetail }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    })
-    .then(() => notifySuccess())
-    .catch(() => notifyError("خطا در بستن سفارش"))
+    console.log(rowDetail.trakingCode)
+    // axiosInstance.post('admin/closeorder', { trakingCode:rowDetail.trakingCode }, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   }
+    // })
+    // .then(() => notifySuccess())
+    // .catch(() => notifyError("خطا در بستن سفارش"))
   };
 
   if (!ordersData) {

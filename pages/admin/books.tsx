@@ -24,7 +24,7 @@ const Books: NextPage = () => {
   const [booksData, setBooksData] = useState(null);
   const [pagenumber, setPageNumber] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isEditModalOpen, setEditIsModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [rowDataId , setRowDataId] = useState([])
 
   const moadalHandler = () => {
@@ -170,7 +170,7 @@ const Books: NextPage = () => {
 
   const handleEdit = (rowData) => {
     setRowDataId(rowData.id)
-    setEditIsModalOpen(true)
+    setIsEditModalOpen(true)
   };
   const handleDelete = () => {
     console.log("delete button");
@@ -211,7 +211,7 @@ const Books: NextPage = () => {
       <div className="fixed top-0 right-0 z-50">
       <EditBooksModal 
       isEditModalOpen={isEditModalOpen} 
-      setIsEditModalOpen={setEditIsModalOpen} 
+      setIsEditModalOpen={setIsEditModalOpen} 
       rowDataId={rowDataId} />
       </div>
 

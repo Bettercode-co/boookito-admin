@@ -10,14 +10,18 @@ import { getCookie } from "cookies-next";
 import { MdDelete } from "react-icons/md";
 import { RiEditFill } from "react-icons/ri";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import EditBooksModal from "../../components/modals/EditBookModal";
+import EditCategoryModal from "../../components/modals/EditCategoryModal";
 
 const token = getCookie("accessToken");
 
 
 const Categories: NextPage = () => {
   const [categoriesData, setCategoriesData] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false)
+  const [rowDataId , setRowDataId] = useState([])
+  
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -34,7 +38,7 @@ const Categories: NextPage = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, []);
+  }, [isModalOpen]);
 
   const COLUMNS = [
     {
@@ -47,13 +51,13 @@ const Categories: NextPage = () => {
       accessor: "action",
       Cell: (cell) => (
         <div className="flex items-center justify-center gap-3">
-          <button value={cell.accessor} className="felx items-center min-w-max" onClick={handleEdit}>
+          <button value={cell.accessor} className="felx items-center min-w-max" onClick={() => handleEdit(cell.row.original)}>
           <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
 
               <RiEditFill /> &nbsp; ویرایش
             </span>
           </button>
-          <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  onClick={handleDelete}>
+          <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  onClick={() => handleDelete(cell.row.original)}>
           <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white ">
 
               <MdDelete /> &nbsp; حذف
@@ -64,11 +68,15 @@ const Categories: NextPage = () => {
     },
   ];
 
-  const handleEdit = (e) => {
-    console.log("edit button");
+
+  const handleEdit = (rowData) => {
+    setRowDataId(rowData)
+    setIsEditModalOpen(true)
+    console.log(rowDataId);
   };
-  const handleDelete = () => {
-    console.log("delete button");
+  const handleDelete = (rowData) => {
+    setRowDataId(rowData.id)
+    console.log(rowData.id);
   };
 
   if (!categoriesData) {
@@ -102,6 +110,12 @@ const Categories: NextPage = () => {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
         />
+      </div>
+      <div className="fixed top-0 right-0 z-50">
+      <EditCategoryModal 
+      isEditModalOpen={isEditModalOpen} 
+      setIsEditModalOpen={setIsEditModalOpen} 
+      rowDataId={rowDataId} />
       </div>
       <div className=" flex justify-end">
         <button

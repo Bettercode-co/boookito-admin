@@ -66,7 +66,7 @@ const Sidebar: React.FC = () => {
           }
         >
           {/* Collapse header */}
-          <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-slate-200">
+          <div className=" md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-slate-200">
             <div className="flex flex-wrap">
               <div className="w-6/12">
                 <Link href="/">
@@ -105,16 +105,16 @@ const Sidebar: React.FC = () => {
  
           {/* Navigation */}
 
-          <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+          <ul className="md:flex-col md:min-w-full gap-2 flex flex-col list-none md:mb-4">
             <li className="items-center">
               <Link href="/admin/dashboard">
                 <a
                   href="#pablo"
                   className={
-                    "flex items-center text-xs uppercase py-3 font-bold  " +
+                    "flex items-center text-base  uppercase py-3 font-semibold  " +
                     (router.pathname.indexOf("/admin/dashboard") !== -1
                       ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
+                      : "text-slate-600 hover:text-slate-500")
                   }
                 >
                   <FaTv
@@ -135,10 +135,10 @@ const Sidebar: React.FC = () => {
                 <a
                   href="#pablo"
                   className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/books") !== -1
                       ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
+                      : "text-slate-600 hover:text-slate-500")
                   }
                 >
                   <ImBooks  className={
@@ -157,10 +157,10 @@ const Sidebar: React.FC = () => {
                 <a
                   href="#pablo"
                   className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/users") !== -1
                       ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
+                      : "text-slate-600 hover:text-slate-500")
                   }
                 >
                   <FaUsers  className={
@@ -178,10 +178,10 @@ const Sidebar: React.FC = () => {
                 <a
                   href="#pablo"
                   className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/categories") !== -1
                       ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
+                      : "text-slate-600 hover:text-slate-500")
                   }
                 >
                   <BiCategoryAlt  className={
@@ -199,10 +199,10 @@ const Sidebar: React.FC = () => {
                 <a
                   href="#pablo"
                   className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/orders") !== -1
                       ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
+                      : "text-slate-600 hover:text-slate-500")
                   }
                 >
                   <TbTruckLoading
@@ -222,10 +222,10 @@ const Sidebar: React.FC = () => {
                 <a
                   href="#pablo"
                   className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/bookgram") !== -1
                       ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
+                      : "text-slate-600 hover:text-slate-500")
                   }
                 >
                   <RiPriceTag3Line 
@@ -245,10 +245,10 @@ const Sidebar: React.FC = () => {
                 <a
                   href="#pablo"
                   className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/comments") !== -1
                       ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
+                      : "text-slate-600 hover:text-slate-500")
                   }
                 >
                   <MdOutlineComment 
@@ -268,10 +268,10 @@ const Sidebar: React.FC = () => {
                 <div
                   // href="#pablo"
                   className={
-                    "flex items-center text-xs uppercase py-3 font-bold " +
+                    "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/settings") !== -1
                       ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-700 hover:text-slate-500")
+                      : "text-slate-600 hover:text-slate-500")
                   }
                 >
                   <MdExitToApp

@@ -10,6 +10,7 @@ import { TiTimes } from "react-icons/ti";
 type NewOrder = {
   user?: string;
   book?: number;
+  bookCode?: number;
   day: number;
 };
 
@@ -49,6 +50,8 @@ const notifySuccess = () =>
 
 const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
   const [nationId, setNationId] = useState("1");
+  const [bookId, setBookId] = useState("1");
+  const [bookOption, setBookOption] = useState([]);
   const [nationOption, setNationOption] = useState([]);
   const [newOrder, setNewOrder] = useState<NewOrder>({
     day: 15,
@@ -72,7 +75,6 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
             notifyError(err.response.data.message[0])
           }
         })
-      notifyError("خطا در ارسال سفارش");
   };
 
   const fetchNationCode = async () => {
@@ -84,6 +86,30 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
       let users = res.data;
       nationCodeOptionFilter(users);
     });
+  };
+
+  const fetchBook = async () => {
+     axiosInstance.get(`admin/book/${bookId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      let books = res.data.result;
+      bookOptionFilter(books);
+    });
+  };
+
+  const bookOptionFilter = (data) => {
+    const dataArray = []
+    dataArray.push(data)
+    const filterdData = dataArray.map((item) => {
+      return {
+        value: item.id,
+        label: `${PN.convertEnToPe(item.id)} - ${item.bookName}`
+      };
+    });
+    setBookOption(filterdData);
   };
 
 
@@ -102,26 +128,37 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      fetchNationCode();
-      console.log("settimeout");
-    }, 2000);
-
+      fetchBook();
+    }, 1000);
     return () => clearTimeout(timer);
-  }, [nationId, newOrder]);
+  }, [bookId]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchNationCode();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [nationId]);
 
   return (
     <>
       {isModalOpen && (
         <div
           className={`w-full h-full  flex justify-center items-center fixed t-0 r-0  bg-gray-300 bg-opacity-50 transition-all duration-300 ease-in`}
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {
+            setNewOrder({day: 15})  
+            setIsModalOpen(false)
+          }}
         >
           <div
             onClick={eventHandler}
             className="relative w-96 h-[60vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >
             <div
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setNewOrder({day: 15})  
+                setIsModalOpen(false)
+              }}
               className="absolute right-5 top-5 cursor-pointer"
             >
               <TiTimes size={20} />
@@ -144,8 +181,8 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 placeholder="کد ملی متقاضی"
               />
             </label>
-            {/* <label htmlFor="bookCode">
-              کد کتاب
+            <label htmlFor="bookCode">
+              شناسه کتاب
               <Select
                 onChange={(e) =>
                   setNewOrder({
@@ -157,9 +194,26 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 className=" w-64"
                 onInputChange={(e) => setBookId(e)}
                 options={bookOption}
-                placeholder="کد کتاب"
+                placeholder="شناسه کتاب"
               />
-            </label> */}
+            </label>
+            <label className="w-64 flex flex-col items-center relative">
+              <span className="w-full text-right" >
+             کد کتاب  
+              </span>
+              <input
+                className="w-64 border border-[#ccc] rounded h-[38px] mt-2 disabled:bg-gray-200"
+                type='number'
+                disabled={!newOrder.bookCode }
+                onChange={e => {
+                  setNewOrder({
+                    ...newOrder,
+                    bookCode: +e.target.value
+                  })
+                }}
+              />
+                
+            </label>
             <label htmlFor="duration">
               مدت سفارش
               <Select
@@ -176,22 +230,6 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 options={durationOption}
                 placeholder="مدت سفارش"
               />
-            </label>
-            <label className="w-64 flex flex-col items-center relative">
-              <span className="w-full text-right" >
-             کد کتاب  
-              </span>
-              <input
-                className="w-64 border border-[#ccc] rounded h-[38px] mt-2"
-                type='number'
-                onChange={e => {
-                  setNewOrder({
-                    ...newOrder,
-                    book: +e.target.value
-                  })
-                }}
-              />
-                
             </label>
             <button
               onClick={neworderHandler}
