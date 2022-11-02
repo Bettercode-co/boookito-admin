@@ -77,11 +77,21 @@ const Books: NextPage = () => {
       Header: "نویسنده",
       accessor: "authorName",
       minWidth: 200,
+      Cell: (cell) => <div dir="ltr">{cell.value.map(auth => {
+        return(
+            <div key={auth}>{auth}</div>
+          )
+      })}</div>,
     },
     {
       Header: "مترجم",
       accessor: "translatorName",
       minWidth: 200,
+      Cell: (cell) => <div dir="ltr">{cell.value.map(auth => {
+        return(
+            <div key={auth}>{auth}</div>
+          )
+      })}</div>,
     },
     {
       Header: "دسته بندی",
@@ -139,13 +149,6 @@ const Books: NextPage = () => {
         </div>
       ),
     },
-    // {
-    //   Header: "وضعیت",
-    //   accessor: "status",
-    //   minWidth: 100,
-    //   Cell: (cell) => statusHandler(cell.value),
-    // },
-
     {
       Header: "عملیات",
       accessor: "action",
@@ -157,8 +160,11 @@ const Books: NextPage = () => {
               <RiEditFill /> &nbsp; ویرایش
             </span>
           </button>
-          <button value={cell.accessor} className="felx items-center min-w-max bg-red-500 rounded text-white  hover:text-red-900 hover:bg-white disabled:bg-gray-300 disabled:hover:text-gray-500 disabled:cursor-not-allowed" disabled onClick={handleDelete}>
-          <span className="flex items-center  px-[4px] ">
+          <button value={cell.accessor} 
+            className="felx items-center min-w-max bg-red-500 rounded text-white  hover:text-red-900 hover:bg-white disabled:bg-gray-300 disabled:hover:text-gray-500 disabled:cursor-not-allowed" 
+            // disabled 
+            onClick={() => handleDelete(cell.row.original)}>
+            <span className="flex items-center  px-[4px] ">
 
               <MdDelete /> &nbsp; حذف
             </span>
@@ -172,8 +178,8 @@ const Books: NextPage = () => {
     setRowDataId(rowData.id)
     setIsEditModalOpen(true)
   };
-  const handleDelete = () => {
-    console.log("delete button");
+  const handleDelete = (rowData) => {
+    console.log(rowData.id);
   };
 
   if (!booksData) {

@@ -98,6 +98,17 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
     .finally(() => setIsImageUplaoded(false))
   }
 
+  const closeAndClearModal = () => {
+    setIsEditModalOpen(false)
+    setNewBook({})
+    setAthorList([{ athor: "" }])
+    setTranslatorList([
+      { translator: "" },
+    ])
+    setImageLink('')
+    setNewImage(null)
+  }
+
   const getBookData = (id) => {
     axiosInstance.get(`admin/book/search/${id}`, {
         headers: {
@@ -148,7 +159,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
       ...newBook,
       authorName :ObjectArrayToStringArray(athorList) ,
       translatorName:ObjectArrayToStringArray(translatorlist) ,
-      imageSource: newImage
+      // imageSource: newImage
     })
 
 },[athorList, translatorlist, newImage ])
@@ -159,14 +170,15 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   }
 
   const fetchEditBook = (data, id) => {
+    const allData = imageLink ? {...newBook, ...data, shelfName: data.shelfName.toUpperCase() , imageSource: imageLink} : {...newBook, ...data, shelfName: data.shelfName.toUpperCase()}
         axiosInstance
-          .patch(`admin/editbook/${id}`, {...newBook, ...data, imageSource: imageLink}, {
+          .patch(`admin/editbook/${id}`, allData, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           })
           .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
-          .then(() => setIsEditModalOpen(false))
+          .then(() => closeAndClearModal())
           .catch((err) => {
             if(err.response.data.message.length > 1){
               err.response.data.message.map(errMsg => {
@@ -239,11 +251,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
       {isEditModalOpen && (
         <div
           className={`overflow-y-scroll md:overflow-hidden  w-full h-full  flex justify-center items-center fixed   bg-gray-300 bg-opacity-50 transition-all duration-300 ease-in`}
-          onClick={() => {
-            setNewImage(null)
-            setBookData(null)
-            setIsEditModalOpen(false)
-        }}
+          onClick={closeAndClearModal}
         >
           {/* <form> */}
           <form
@@ -252,11 +260,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
             className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
             <div
-              onClick={() => {
-                setNewImage(null)
-                setBookData(null)
-                setIsEditModalOpen(false)
-            }}
+              onClick={closeAndClearModal}
               className="absolute right-5 top-5 cursor-pointer"
             >
               <TiTimes size={20} />

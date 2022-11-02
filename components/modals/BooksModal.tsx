@@ -114,7 +114,16 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     .finally(() => setIsImageUplaoded(false))
   }
 
-
+  const closeAndClearModal = () => {
+    setIsModalOpen(false)
+    setNewBook({})
+    setAthorList([{ athor: "" }])
+    setTranslatorList([
+      { translator: "" },
+    ])
+    setImageLink('')
+    setNewImage(null)
+  }
   
 
 
@@ -127,7 +136,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
       ...newBook,
       authorName :ObjectArrayToStringArray(athorList) ,
       translatorName:ObjectArrayToStringArray(translatorlist) ,
-      imageSource: newImage
+      // imageSource: newImage
     })
 
 },[athorList, translatorlist, newImage ])
@@ -138,25 +147,24 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   }
 
   const fetchNewBook = (data) => {
+    const allData = imageLink ? {...newBook, ...data, shelfName: data.shelfName.toUpperCase() , imageSource: imageLink} : {...newBook, ...data, shelfName: data.shelfName.toUpperCase()}
         axiosInstance
-          .post("admin/newbook", {...newBook, ...data, imageSource: imageLink}, {
+          .post("admin/newbook", allData , {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           })
           .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
-          .then(() => setIsModalOpen(false))
+          .then(() => closeAndClearModal())
           .catch((err) => {
             if(err.response.data.message.length > 1){
               err.response.data.message.map(errMsg => {
                 notifyError(errMsg)
               })
             }else{
-              notifyError(err.response.data.message[0])
+               notifyError(err.response.data.message[0])
             }
           })
-      
-    
     }
 
   const categoryOptionFilter = (data) => {
@@ -214,13 +222,12 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     // console.log(translatorlist);
   };
 
-
   return (
     <>
       {isModalOpen && (
         <div
           className={`overflow-y-scroll md:overflow-hidden  w-full h-full  flex justify-center items-center fixed   bg-gray-300 bg-opacity-50 transition-all duration-300 ease-in`}
-          onClick={() => setIsModalOpen(false)}
+          onClick={closeAndClearModal}
         >
           {/* <form> */}
           <form
@@ -229,7 +236,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
             className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
             <div
-              onClick={() => setIsModalOpen(false)}
+              onClick={closeAndClearModal}
               className="absolute right-5 top-5 cursor-pointer"
             >
               <TiTimes size={20} />
