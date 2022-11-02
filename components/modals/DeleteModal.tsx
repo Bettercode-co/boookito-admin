@@ -33,11 +33,11 @@ const notifySuccess = () =>
     progress: undefined,
   });
 
-const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowDataId, fetchUrl}) => {
+const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUrl}) => {
 
   const deleteHandler = () => {
       axiosInstance
-        .delete(fetchUrl + rowDataId, {
+        .delete(fetchUrl + rowData.id, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,19 +66,20 @@ const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowDataId, fetch
               <TiTimes size={20} />
             </div>
             <div className="w-full text-center">
-            <h4 className=" text-slate-800 font-semibold">مطمئن هستید می خواهید حذف کنید ؟</h4>
-            <div className="h-[1px] bg-slate-200 w-full mt-5" />
+                <h3 className="mb-1 text-lg font-semibold">{rowData.bookName}{rowData.categoryName}</h3>
+            <div className="h-[1px] bg-slate-200 w-full mb-5" />
+            <h4 className=" ">مطمئن هستید می خواهید حذف کنید ؟</h4>
             </div>
             <div className="w-full flex gap-5">
             <button
               onClick={() => setIsDeleteModalOpen(false)}
-              className="w-full bg-slate-300 text-white h-10 rounded hover:bg-slate-500"
+              className="transition-all w-full bg-slate-300 text-white h-10 rounded hover:bg-slate-500"
             >
               بستن
             </button>
             <button
               onClick={deleteHandler}
-              className="w-full bg-red-600 text-white h-10 rounded hover:bg-red-800"
+              className="transition-all w-full bg-red-600 text-white h-10 rounded hover:bg-red-800"
             >
               حذف
             </button>

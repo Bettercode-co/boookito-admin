@@ -39,7 +39,7 @@ const Bookgram: NextPage = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, [pagenumber, updatePosts]);
+  }, [pagenumber, updatePosts, isDeleteModalOpen]);
 
 
   const COLUMNS = [
@@ -115,7 +115,7 @@ const Bookgram: NextPage = () => {
   ];
 
   const handleDelete = (rowData) => {
-    setRowDataId(rowData.id)
+    setRowDataId(rowData)
     console.log(rowDataId)
   };
   // const handleDelete = (rowId) => {
@@ -160,7 +160,7 @@ const Bookgram: NextPage = () => {
       <DeleteModal 
       isDeleteModalOpen={isDeleteModalOpen} 
       setIsDeleteModalOpen={setIsDeleteModalOpen} 
-      rowDataId={rowDataId}
+      rowData={rowDataId}
       fetchUrl={null}
       />
       </div>

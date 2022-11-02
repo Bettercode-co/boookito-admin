@@ -140,6 +140,8 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     return () => clearTimeout(timer);
   }, [nationId]);
 
+
+
   return (
     <>
       {isModalOpen && (
@@ -204,7 +206,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
               <input
                 className="w-64 border border-[#ccc] rounded h-[38px] mt-2 disabled:bg-gray-200"
                 type='number'
-                disabled={!newOrder.bookCode }
+                disabled={!newOrder.book }
                 onChange={e => {
                   setNewOrder({
                     ...newOrder,

@@ -188,18 +188,18 @@ const Orders: NextPage = () => {
     },
   ];
 
-  const handleEdit = (e) => {
-    console.log("edit button");
-  };
+  // const handleEdit = (e) => {
+  //   console.log("edit button");
+  // };
   const handleDelete = (rowDetail) => {
-    console.log(rowDetail.trakingCode)
-    // axiosInstance.post('admin/closeorder', { trakingCode:rowDetail.trakingCode }, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   }
-    // })
-    // .then(() => notifySuccess())
-    // .catch(() => notifyError("خطا در بستن سفارش"))
+    // console.log(rowDetail.trakingCode)
+    axiosInstance.post('admin/closeorder', { trakingCode:rowDetail.trakingCode }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then(() => notifySuccess())
+    .catch(() => notifyError("خطا در بستن سفارش"))
   };
 
   if (!ordersData) {

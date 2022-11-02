@@ -11,6 +11,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import BooksModal from "../../components/modals/BooksModal";
 import { getCookie } from "cookies-next";
 import EditBooksModal from "../../components/modals/EditBookModal";
+import DeleteModal from "../../components/modals/DeleteModal";
 
 const statusHandler = (value: string) => {
   switch (value) {
@@ -26,6 +27,8 @@ const Books: NextPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [rowDataId , setRowDataId] = useState([])
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false)
+
 
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -43,7 +46,7 @@ const Books: NextPage = () => {
 
   useEffect(() => {
     fetchBooks();
-  }, [pagenumber, isModalOpen]);
+  }, [pagenumber, isModalOpen, isEditModalOpen, isDeleteModalOpen]);
 
   const COLUMNS = [
     {
@@ -179,7 +182,8 @@ const Books: NextPage = () => {
     setIsEditModalOpen(true)
   };
   const handleDelete = (rowData) => {
-    console.log(rowData.id);
+    setRowDataId(rowData)
+    setIsDeleteModalOpen(true);
   };
 
   if (!booksData) {
@@ -220,7 +224,14 @@ const Books: NextPage = () => {
       setIsEditModalOpen={setIsEditModalOpen} 
       rowDataId={rowDataId} />
       </div>
-
+      <div className="fixed top-0 right-0 z-50">
+      <DeleteModal 
+      isDeleteModalOpen={isDeleteModalOpen} 
+      setIsDeleteModalOpen={setIsDeleteModalOpen} 
+      rowData={rowDataId}
+      fetchUrl='admin/deletebook/'
+      />
+      </div>
       <div className=" flex justify-end">
         <button
           onClick={moadalHandler}
