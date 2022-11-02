@@ -24,15 +24,30 @@ type Category = {
   label: string;
 }
 type FormValues = {
-  bookName:string;
-  publisherName:string;
-  yearPublish:number;
-  numberPage:number;
-  shelfName:string;
-  totalEntity: number;
-  shabak: string;
+  bookName?:string;
+  publisherName?:string;
+  yearPublish?:number;
+  numberPage?:number;
+  // shelfName?:string;
+  totalEntity?: number;
+  shabak?: string;
 }
 
+//shelf select box options
+const shelfLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+const shelfNubmers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
+const shelfLettersOptions = shelfLetters.map(letter => {
+  return {
+    value: letter,
+    label: letter
+  };
+})
+const shelfNumbersOptions = shelfNubmers.map(letter => {
+  return {
+    value: letter,
+    label: letter
+  };
+})
 
 const eventHandler = (e) => {
   e.stopPropagation();
@@ -71,6 +86,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const [imageLink, setImageLink] = useState<string>('')
   const [newImage, setNewImage] = useState(null)
   const [isImageUplaoded, setIsImageUplaoded] = useState<boolean>(false)
+  const [shelfOject, setShelfObject] = useState<any>()
 
   const { register, handleSubmit, formState: {errors} } = useForm<FormValues>()
   
@@ -134,7 +150,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
         setTranslatorList(translateListArray)
 
         setBookData({
-            ...bookData,
+            // ...bookData,
             bookName: data.bookName,
             publisherName: data.publisherName,
             yearPublish: data.yearPublish,
@@ -156,7 +172,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
 
   useEffect(() => {
     setNewBook({
-      ...newBook,
+      // ...newBook,
       authorName :ObjectArrayToStringArray(athorList) ,
       translatorName:ObjectArrayToStringArray(translatorlist) ,
       // imageSource: newImage
@@ -164,13 +180,15 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
 
 },[athorList, translatorlist, newImage ])
 
+
   const ObjectArrayToStringArray = (objectArray) => {
   const stringArray = objectArray.map(obj => Object.values(obj)[0])
   return stringArray
   }
 
   const fetchEditBook = (data, id) => {
-    const allData = imageLink ? {...newBook, ...data, shelfName: data.shelfName.toUpperCase() , imageSource: imageLink} : {...newBook, ...data, shelfName: data.shelfName.toUpperCase()}
+    const allData = imageLink ? { ...data, ...bookData, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber , imageSource: imageLink} : {...data, ...bookData ,  shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber}
+    // console.log(allData)
         axiosInstance
           .patch(`admin/editbook/${id}`, allData, {
             headers: {
@@ -179,15 +197,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
           })
           .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
           .then(() => closeAndClearModal())
-          .catch((err) => {
-            if(err.response.data.message.length > 1){
-              err.response.data.message.map(errMsg => {
-                notifyError(errMsg)
-              })
-            }else{
-              notifyError(err.response.data.message[0])
-            }
-          });
+          .catch(() => notifyError('خطا در ارسال '));
       
     
     }
@@ -280,10 +290,9 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                   <input
                     className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="text"
-                    {...register('bookName', {required: 'نام کتاب را وارد کنید'})}
+                    {...register('bookName')}
                     placeholder={bookData.bookName}
                   />
-                  {errors.bookName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.bookName.message}</p>}
                 </label>
               </div>
               <div className="w-full">
@@ -300,7 +309,6 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                     isSearchable={false}
                     className=" w-full"
                     options={categories}
-                    placeholder="دسته بندی"
                     defaultValue={categories.filter(cat => cat.value === bookData.categoryId)}
                   />
                 </label>
@@ -311,10 +319,9 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                   <input
                     className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="text"
-                    {...register('publisherName', {required: "نام انتشارات را وارد کنید"})}
+                    {...register('publisherName')}
                     placeholder={bookData.publisherName}
                   />
-                  {errors.publisherName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.publisherName.message}</p>}
                 </label>
               </div>
               <div className="w-full">
@@ -323,23 +330,47 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                   <input
                     className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="number"
-                    {...register('yearPublish', {valueAsNumber: true, maxLength: 4, minLength:4, required: 'سال انتشار را وارد کنید' })}
-                    placeholder={bookData.yearPublish}
-                    // placeholder='سال انتشار را بصورت چهار رقمی وارد کنید'
-                  />
-                  {errors.yearPublish && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.yearPublish.message}</p>}
+                    {...register('yearPublish', {valueAsNumber: true, maxLength: 4, minLength:4 })}
+                    placeholder={bookData.yearPublish}                  />
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full relative" htmlFor="">
+                {/* <label className="text-right w-full relative" htmlFor="">
                   <h4>قفسه</h4>
                   <input
                     className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="text"
-                    {...register('shelfName', {required: 'نام قفسه را وارد کنید'})}
+                    {...register('shelfName')}
                     placeholder={bookData.shelfName}
                   />
-                  {errors.shelfName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.shelfName.message}</p>}
+                </label> */}
+                <label className="text-right w-full relative" htmlFor="">
+                  <h4>قفسه</h4>
+                  <div className="flex items-center gap-2">
+                    <Select 
+                      className="w-full"
+                      options={shelfNumbersOptions}
+                      placeholder='شماره'
+                      onChange={e => {
+                        setShelfObject({
+                          ...shelfOject,
+                          shelfLetter: e.value
+                        })
+                      }}
+                    />
+                    -
+                    <Select 
+                      className="w-full"
+                      options={shelfLettersOptions}
+                      placeholder='حرف'
+                      onChange={e => {
+                        setShelfObject({
+                          ...shelfOject,
+                          shelfNumber: e.value
+                        })
+                      }}
+                    />
+                  </div>
                 </label>
               </div>
               <div className="w-full">
@@ -348,18 +379,15 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                   <input
                     className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="number"
-                    {...register('numberPage', {valueAsNumber: true, required:'تعداد صفحات کتاب را وارد کنید' })}
+                    {...register('numberPage', {valueAsNumber: true })}
                     placeholder={bookData.numberPage}
-
                   />
-                  {errors.numberPage && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.numberPage.message}</p>}
                 </label>
               </div>
               <div className="w-full">
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>تاریخ ثبت</h4>
                    <DatePicker
-                    
                     className="w-full border border-[#ccc] rounded h-[38px] px-2"
                     timePicker={false} 
                     onClickSubmitButton={value => setNewBook({
@@ -385,10 +413,9 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                   <input
                     className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
                     type="text"
-                    {...register('shabak', {required: 'شماره شابک را وارد کنید'})}
+                    {...register('shabak')}
                     placeholder={bookData.shabak}
                   />
-                  {errors.shabak && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.shabak.message}</p>}
                 </label>
               </div>
               <div className="w-full">

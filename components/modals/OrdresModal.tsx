@@ -67,13 +67,9 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
         })
         .then(() => notifySuccess())
         .catch((err) => {
-          if(err.response.data.message.length > 1){
             err.response.data.message.map(errMsg => {
               notifyError(errMsg)
             })
-          }else{
-            notifyError(err.response.data.message[0])
-          }
         })
   };
 
@@ -139,6 +135,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     }, 1000);
     return () => clearTimeout(timer);
   }, [nationId]);
+
 
 
 

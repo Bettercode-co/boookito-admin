@@ -35,13 +35,29 @@ type FormValues = {
   numberPage:number;
   // categoryId:number;
   // description?:string;
-  shelfName:string;
+  // shelfName:string;
   // registeredAt:Date;
   // privateId:number;
   totalEntity: number;
   shabak: string;
   // libraryId:number
 }
+
+//shelf select box options
+const shelfLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+const shelfNubmers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
+const shelfLettersOptions = shelfLetters.map(letter => {
+  return {
+    value: letter,
+    label: letter
+  };
+})
+const shelfNumbersOptions = shelfNubmers.map(letter => {
+  return {
+    value: letter,
+    label: letter
+  };
+})
 
 const eventHandler = (e) => {
   e.stopPropagation();
@@ -79,6 +95,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   const [imageLink, setImageLink] = useState<string>('')
   const [newImage, setNewImage] = useState(null)
   const [isImageUplaoded, setIsImageUplaoded] = useState<boolean>(false)
+  const [shelfOject, setShelfObject] = useState<any>()
 
   const { register, handleSubmit, formState: {errors} } = useForm<FormValues>()
   
@@ -132,6 +149,10 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   },[])
 
   useEffect(() => {
+    console.log(shelfOject?.shelfLetter + shelfOject?.shelfNumber)
+  },[shelfOject])
+
+  useEffect(() => {
     setNewBook({
       ...newBook,
       authorName :ObjectArrayToStringArray(athorList) ,
@@ -147,7 +168,8 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   }
 
   const fetchNewBook = (data) => {
-    const allData = imageLink ? {...newBook, ...data, shelfName: data.shelfName.toUpperCase() , imageSource: imageLink} : {...newBook, ...data, shelfName: data.shelfName.toUpperCase()}
+    const allData = imageLink ? {...newBook, ...data, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber , imageSource: imageLink} : {...newBook, ...data, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber}
+    // console.log(allData)
         axiosInstance
           .post("admin/newbook", allData , {
             headers: {
@@ -342,7 +364,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                 </label>
               </div>
               <div className="w-full">
-                <label className="text-right w-full relative" htmlFor="">
+                {/* <label className="text-right w-full relative" htmlFor="">
                   <h4>قفسه</h4>
                   <input
                     className="w-full border-[#ccc] rounded h-[38px]"
@@ -356,6 +378,34 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     // }
                   />
                   {errors.shelfName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.shelfName.message}</p>}
+                </label> */}
+                <label className="text-right w-full relative" htmlFor="">
+                  <h4>قفسه</h4>
+                  <div className="flex items-center gap-2">
+                    <Select 
+                      className="w-full"
+                      options={shelfNumbersOptions}
+                      placeholder='شماره'
+                      onChange={e => {
+                        setShelfObject({
+                          ...shelfOject,
+                          shelfLetter: e.value
+                        })
+                      }}
+                    />
+                    -
+                    <Select 
+                      className="w-full"
+                      options={shelfLettersOptions}
+                      placeholder='حرف'
+                      onChange={e => {
+                        setShelfObject({
+                          ...shelfOject,
+                          shelfNumber: e.value
+                        })
+                      }}
+                    />
+                  </div>
                 </label>
               </div>
               <div className="w-full">

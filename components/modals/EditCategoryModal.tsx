@@ -45,7 +45,7 @@ const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) =
 
   const editCategoryHandler = (data, rowDataId) => {
       axiosInstance
-        .patch(`admin/categories/${rowDataId}`, {...data}, {
+        .patch(`admin/categories/${rowDataId.id}`, {...data}, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
