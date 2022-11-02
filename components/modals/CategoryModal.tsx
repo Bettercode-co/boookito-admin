@@ -52,15 +52,8 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
           },
         })
         .then(() => notifySuccess())
-        .catch((err) => {
-          if(err.response.data.message.length > 1){
-            err.response.data.message.map(errMsg => {
-              notifyError(errMsg)
-            })
-          }else{
-            notifyError(err.response.data.message[0])
-          }
-        })
+        .then(() => setIsModalOpen(false))
+        .catch((err) => notifyError(err.response.data.message[0]))
   };
 
 
@@ -89,7 +82,7 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
             <label className="w-full relative">
              نام دسته بندی
               <input
-                className="w-full border border-[#ccc] rounded h-[38px] mt-2"
+                className="w-full border border-[#ccc] rounded h-[38px] mt-2 px-3"
                 {...register('categoryName', {required: 'نام دسته بندی را وارد کنید'})}
               />
                 {errors.categoryName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.categoryName.message}</p>}

@@ -40,7 +40,7 @@ const Categories: NextPage = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [isModalOpen]);
+  }, [isModalOpen, isEditModalOpen, isDeleteModalOpen]);
 
   const COLUMNS = [
     {
@@ -76,7 +76,7 @@ const Categories: NextPage = () => {
     setIsEditModalOpen(true)
   };
   const handleDelete = (rowData) => {
-    setRowDataId(rowData.id)
+    setRowDataId(rowData)
     setIsDeleteModalOpen(true)
   };
 
@@ -122,7 +122,7 @@ const Categories: NextPage = () => {
       <DeleteModal 
       isDeleteModalOpen={isDeleteModalOpen} 
       setIsDeleteModalOpen={setIsDeleteModalOpen} 
-      rowDataId={rowDataId}
+      rowData={rowDataId}
       fetchUrl='admin/categories/'
       />
       </div>
