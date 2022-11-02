@@ -12,6 +12,7 @@ import { RiEditFill } from "react-icons/ri";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import EditBooksModal from "../../components/modals/EditBookModal";
 import EditCategoryModal from "../../components/modals/EditCategoryModal";
+import DeleteModal from "../../components/modals/DeleteModal";
 
 const token = getCookie("accessToken");
 
@@ -21,6 +22,7 @@ const Categories: NextPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false)
   const [rowDataId , setRowDataId] = useState([])
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false)
   
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -72,11 +74,10 @@ const Categories: NextPage = () => {
   const handleEdit = (rowData) => {
     setRowDataId(rowData)
     setIsEditModalOpen(true)
-    console.log(rowDataId);
   };
   const handleDelete = (rowData) => {
     setRowDataId(rowData.id)
-    console.log(rowData.id);
+    setIsDeleteModalOpen(true)
   };
 
   if (!categoriesData) {
@@ -116,6 +117,14 @@ const Categories: NextPage = () => {
       isEditModalOpen={isEditModalOpen} 
       setIsEditModalOpen={setIsEditModalOpen} 
       rowDataId={rowDataId} />
+      </div>
+      <div className="fixed top-0 right-0 z-50">
+      <DeleteModal 
+      isDeleteModalOpen={isDeleteModalOpen} 
+      setIsDeleteModalOpen={setIsDeleteModalOpen} 
+      rowDataId={rowDataId}
+      fetchUrl='admin/categories/'
+      />
       </div>
       <div className=" flex justify-end">
         <button

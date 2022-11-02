@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import BasicTable from "../../components/basicTable/BasicTable";
@@ -8,6 +9,7 @@ import PN from "persian-number";
 import { RiEditFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import { getCookie } from "cookies-next";
+import DeleteModal from "../../components/modals/DeleteModal";
 
 const statusHandler = (value) => {
   switch (value) {
@@ -21,6 +23,8 @@ const Bookgram: NextPage = () => {
   const [pagenumber, setPageNumber] = useState<number>(1);
   const [postsData, setPostsData] = useState(null);
   const [updatePosts, setUpdatePosts] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false)
+  const [rowDataId , setRowDataId] = useState([])
 
 
   const fetchPosts = () => {
@@ -100,7 +104,7 @@ const Bookgram: NextPage = () => {
       accessor: "action",
       Cell: (cell) => (
         <div className="">
-          <button value={cell.accessor} onClick={() => handleDelete(cell.row.original.id)}>
+          <button value={cell.accessor} onClick={() => handleDelete(cell.row.original)}>
             <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white">
               <MdDelete /> &nbsp; حذف
             </span>
@@ -110,15 +114,21 @@ const Bookgram: NextPage = () => {
     },
   ];
 
-  const handleDelete = (rowId) => {
-    axiosInstance
-      .get(`admin/remove/post/${rowId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      })
-      .then(() => setUpdatePosts(rowId));
+  const handleDelete = (rowData) => {
+    setRowDataId(rowData.id)
+    console.log(rowDataId)
   };
+  // const handleDelete = (rowId) => {
+  //   axiosInstance
+  //     .get(`admin/remove/post/${rowId}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       }
+  //     })
+  //     .then(() => setUpdatePosts(rowId));
+  // };
+
+
 
   if (!postsData) {
     return <div className="h-[80vh] w-full mx-auto flex items-center justify-center">
@@ -146,6 +156,14 @@ const Bookgram: NextPage = () => {
   }
   return (
     <>
+          <div className="fixed top-0 right-0 z-50">
+      <DeleteModal 
+      isDeleteModalOpen={isDeleteModalOpen} 
+      setIsDeleteModalOpen={setIsDeleteModalOpen} 
+      rowDataId={rowDataId}
+      fetchUrl={null}
+      />
+      </div>
           <div className=" mx-auto ">
       <BasicTable rowsdata={postsData} columnsData={COLUMNS} />
       <div className="text-center pb-8">

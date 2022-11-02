@@ -148,27 +148,23 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
 
   const fetchNewBook = (data) => {
     const allData = imageLink ? {...newBook, ...data, shelfName: data.shelfName.toUpperCase() , imageSource: imageLink} : {...newBook, ...data, shelfName: data.shelfName.toUpperCase()}
-    console.log(allData)
-    console.log(imageLink)
-        // axiosInstance
-        //   .post("admin/newbook", allData , {
-        //     headers: {
-        //       Authorization: `Bearer ${token}`,
-        //     },
-        //   })
-        //   .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
-        //   .then(() => closeAndClearModal())
-        //   .catch((err) => {
-        //     if(err.response.data.message.length > 1){
-        //       err.response.data.message.map(errMsg => {
-        //         notifyError(errMsg)
-        //       })
-        //     }else{
-        //       notifyError(err.response.data.message[0])
-        //     }
-        //   })
-      
-    
+        axiosInstance
+          .post("admin/newbook", allData , {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
+          .then(() => closeAndClearModal())
+          .catch((err) => {
+            if(err.response.data.message.length > 1){
+              err.response.data.message.map(errMsg => {
+                notifyError(errMsg)
+              })
+            }else{
+               notifyError(err.response.data.message[0])
+            }
+          })
     }
 
   const categoryOptionFilter = (data) => {
