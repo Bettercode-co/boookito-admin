@@ -14,14 +14,13 @@ import { RiSearchLine } from "react-icons/ri";
 
 const BasicTable = ({rowsdata, columnsData}) => {
   const router = useRouter()
-  console.log(router.pathname)
 
   const data = useMemo(() => rowsdata, [rowsdata]);
   const columns = useMemo(() => columnsData, [columnsData]);
 
 
   const tableInstanse = useTable(
-    { data, columns, initialState: { pageSize: '/admin/categories' ? 1500 : 10 } },
+    { data, columns, initialState: { pageSize: router.pathname === '/admin/categories' ? 1500 : 10 } },
     useGlobalFilter,
     useSortBy,
     usePagination,
