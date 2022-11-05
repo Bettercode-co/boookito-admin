@@ -98,14 +98,16 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
 
   const bookOptionFilter = (data) => {
     const dataArray = []
-    dataArray.push(data)
-    const filterdData = dataArray.map((item) => {
-      return {
-        value: item.id,
-        label: `${PN.convertEnToPe(item.id)} - ${item.bookName}`
-      };
-    });
-    setBookOption(filterdData);
+    if(data){
+      dataArray.push(data)
+      const filterdData = dataArray.map((item) => {
+        return {
+          value: item.id,
+          label: `${PN.convertEnToPe(item.id)} - ${item.bookName}`
+        };
+      });
+      setBookOption(filterdData);
+    }
   };
 
 

@@ -182,10 +182,6 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
         
 }
 
-useEffect(() => {
-  console.log(shelfOject)
-},[shelfOject])
-
 
   useEffect(() => {
     getBookData(rowDataId)
@@ -211,19 +207,18 @@ useEffect(() => {
 
   const fetchEditBook = (data, id, event) => {
     const allData = imageLink ? { ...data, ...bookData, ...newBook, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber , imageSource: imageLink} : {...data, ...bookData, ...newBook ,  shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber}
-    console.log(allData)
-        // axiosInstance
-        //   .patch(`admin/editbook/${id}`, allData, {
-        //     headers: {
-        //       Authorization: `Bearer ${token}`,
-        //     },
-        //   })
-        //   .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
-        //   .then(() => {
-        //   event.target.reset()
-        //     closeAndClearModal()
-        //   })
-        //   .catch(() => notifyError('خطا در ارسال '));
+        axiosInstance
+          .patch(`admin/editbook/${id}`, allData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
+          .then(() => {
+          event.target.reset()
+            closeAndClearModal()
+          })
+          .catch(() => notifyError('خطا در ارسال '));
       
     }
 
@@ -334,7 +329,7 @@ useEffect(() => {
                     isSearchable={false}
                     className=" w-full"
                     options={categories}
-                    defaultValue={bookData && categories.filter(cat => cat.value === bookData.categoryId)}
+                    placeholder={bookData && categories.filter(cat => cat.value === bookData.categoryId)[0].label}
                   />
                 </label>
               </div>
@@ -375,8 +370,8 @@ useEffect(() => {
                     <Select 
                       className="w-full"
                       options={shelfNumbersOptions}
-                      placeholder='شماره'
-                      defaultValue={shelfNumbersOptions.filter(letter => letter.value == shelfOject?.shelfNumber)}
+                      placeholder={shelfOject?.shelfNumber}
+                      // defaultValue={shelfNumbersOptions.filter(letter => letter.value == shelfOject?.shelfNumber)}
                       onChange={e => {
                         setShelfObject({
                           ...shelfOject,
@@ -388,8 +383,9 @@ useEffect(() => {
                     <Select 
                       className="w-full"
                       options={shelfLettersOptions}
-                      placeholder='حرف'
-                      defaultValue={shelfLettersOptions.filter(letter => letter.value == shelfOject?.shelfLetter)}
+                      // placeholder='حرف'
+                      placeholder={shelfOject?.shelfLetter}
+                      // defaultValue={shelfLettersOptions.filter(letter => letter.value == shelfOject?.shelfLetter)}
                       onChange={e => {
                         setShelfObject({
                           ...shelfOject,
