@@ -13,6 +13,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import EditBooksModal from "../../components/modals/EditBookModal";
 import EditCategoryModal from "../../components/modals/EditCategoryModal";
 import DeleteModal from "../../components/modals/DeleteModal";
+import SearchBox from "../../components/SearchBox/SearchBox";
 
 const token = getCookie("accessToken");
 
@@ -23,6 +24,7 @@ const Categories: NextPage = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false)
   const [rowDataId , setRowDataId] = useState([])
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false)
+  // const [searchValue, setSearchValue] = useState()
   
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -126,6 +128,7 @@ const Categories: NextPage = () => {
       fetchUrl='admin/categories/'
       />
       </div>
+      {/* <SearchBox /> */}
       <div className=" flex justify-end">
         <button
           onClick={moadalHandler}
