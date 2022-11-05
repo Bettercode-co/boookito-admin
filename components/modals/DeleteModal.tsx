@@ -57,7 +57,7 @@ const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUr
       })
       .then(() => notifySuccess())
       .then(() => setIsDeleteModalOpen(false))
-      .catch((err) =>  console.log(err.response.data.error.message))
+      .catch((err) =>  notifyError(err.response.data.error.message))
   };
 
 
