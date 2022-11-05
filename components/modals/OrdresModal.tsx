@@ -10,7 +10,7 @@ import { TiTimes } from "react-icons/ti";
 type NewOrder = {
   user?: string;
   book?: number;
-  bookCode?: number;
+  bookCode?: string;
   day: number;
 };
 
@@ -207,7 +207,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 onChange={e => {
                   setNewOrder({
                     ...newOrder,
-                    bookCode: +e.target.value
+                    bookCode: e.target.value
                   })
                 }}
               />

@@ -43,7 +43,7 @@ const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) =
   const {register, handleSubmit, formState: {errors}} = useForm<FormValues>()
 
 
-  const editCategoryHandler = (data, rowDataId) => {
+  const editCategoryHandler = (data, rowDataId, event) => {
       axiosInstance
         .patch(`admin/categories/${rowDataId.id}`, {...data}, {
           headers: {
@@ -51,8 +51,12 @@ const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) =
           },
         })
         .then(() => notifySuccess())
-        .then(() => setIsEditModalOpen(false))
+        .then(() => {
+          setIsEditModalOpen(false)
+          event.target.reset()
+        })
         .catch((err) => notifyError(err.response.data.message))
+
   };
 
 
@@ -64,7 +68,7 @@ const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) =
           onClick={() => {setIsEditModalOpen(false)}}
         >
           <form
-          onSubmit={handleSubmit((data) => {editCategoryHandler(data, rowDataId)})}
+          onSubmit={handleSubmit((data, event) => {editCategoryHandler(data, rowDataId, event)})}
             onClick={eventHandler}
             className="relative w-96 h-[40vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >

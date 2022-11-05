@@ -41,6 +41,7 @@ const Categories: NextPage = () => {
   };
 
   useEffect(() => {
+    console.log(categoriesData)
     fetchOrders();
   }, [isModalOpen, isEditModalOpen, isDeleteModalOpen]);
 
