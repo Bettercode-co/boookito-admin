@@ -148,9 +148,6 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     fetchCategory()
   },[])
 
-  useEffect(() => {
-    console.log(shelfOject?.shelfLetter + shelfOject?.shelfNumber)
-  },[shelfOject])
 
   useEffect(() => {
     setNewBook({

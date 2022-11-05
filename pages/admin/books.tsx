@@ -165,7 +165,6 @@ const Books: NextPage = () => {
           </button>
           <button value={cell.accessor} 
             className="felx items-center min-w-max bg-red-500 rounded text-white  hover:text-red-900 hover:bg-white disabled:bg-gray-300 disabled:hover:text-gray-500 disabled:cursor-not-allowed" 
-            // disabled 
             onClick={() => handleDelete(cell.row.original)}>
             <span className="flex items-center  px-[4px] ">
 

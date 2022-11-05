@@ -104,8 +104,11 @@ const Bookgram: NextPage = () => {
       accessor: "action",
       Cell: (cell) => (
         <div className="">
-          <button value={cell.accessor} onClick={() => handleDelete(cell.row.original)}>
-            <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white">
+          <button value={cell.accessor} 
+            className="felx items-center min-w-max bg-red-500 rounded text-white  hover:text-red-900 hover:bg-white disabled:bg-gray-300 disabled:hover:text-gray-500 disabled:cursor-not-allowed" 
+            onClick={() => handleDelete(cell.row.original)}>
+            <span className="flex items-center  px-[4px] ">
+
               <MdDelete /> &nbsp; حذف
             </span>
           </button>
@@ -114,9 +117,13 @@ const Bookgram: NextPage = () => {
     },
   ];
 
+  // const handleDelete = (rowData) => {
+  //   setRowDataId(rowData)
+  //   console.log(rowDataId)
+  // };
   const handleDelete = (rowData) => {
     setRowDataId(rowData)
-    console.log(rowDataId)
+    setIsDeleteModalOpen(true);
   };
   // const handleDelete = (rowId) => {
   //   axiosInstance

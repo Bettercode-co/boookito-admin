@@ -355,15 +355,6 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 </label>
               </div>
               <div className="w-full">
-                {/* <label className="text-right w-full relative" htmlFor="">
-                  <h4>قفسه</h4>
-                  <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
-                    type="text"
-                    {...register('shelfName')}
-                    placeholder={bookData.shelfName}
-                  />
-                </label> */}
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>قفسه</h4>
                   <div className="flex items-center gap-2">
@@ -383,7 +374,6 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                     <Select 
                       className="w-full"
                       options={shelfLettersOptions}
-                      // placeholder='حرف'
                       placeholder={shelfOject?.shelfLetter}
                       // defaultValue={shelfLettersOptions.filter(letter => letter.value == shelfOject?.shelfLetter)}
                       onChange={e => {
