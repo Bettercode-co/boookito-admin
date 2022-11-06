@@ -52,8 +52,9 @@ const token = getCookie("accessToken");
 
 const Orders: NextPage = () => {
   const [ordersData, setOrdersData] = useState(null);
-  const [pagenumber, setPageNumber] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pagenumber, setPageNumber] = useState<number>(1);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [rowDataId, setRowDataId] = useState<number>(0)
 
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -71,7 +72,7 @@ const Orders: NextPage = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [pagenumber, isModalOpen]);
+  }, [pagenumber, isModalOpen, rowDataId]);
 
   const COLUMNS = [
     {
@@ -128,7 +129,7 @@ const Orders: NextPage = () => {
     },
     {
       Header: "شماره تماس",
-      accessor: "phoneNumber",
+      accessor: "user.phoneNumber",
       minWidth: 150,
       Cell: (cell) => {
         return cell.value ? (
@@ -172,12 +173,6 @@ const Orders: NextPage = () => {
       accessor: "action",
       Cell: (cell) => (
         <div className="flex items-center gap-3">
-          {/* <button value={cell.accessor} className="felx items-center min-w-max" onClick={handleEdit}>
-          <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
-
-              <RiEditFill /> &nbsp; ویرایش
-            </span>
-          </button> */}
           <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  disabled={cell.row.original.orderStatus === 'CLOSED'}  onClick={() => handleDelete(cell.row.original)}>
           <span className={`flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${cell.row.original.orderStatus === 'CLOSED' && 'bg-gray-200 hover:bg-gray-200 hover:text-white hover:cursor-not-allowed'} `}>
 
@@ -197,6 +192,7 @@ const Orders: NextPage = () => {
       }
     })
     .then(() => notifySuccess())
+    .then(() => setRowDataId(rowDetail.id))
     .catch(() => notifyError("خطا در بستن سفارش"))
   };
 

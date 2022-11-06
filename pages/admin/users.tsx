@@ -92,14 +92,24 @@ const Users: NextPage = () => {
       Header: "شماره تماس",
       accessor: "phoneNumber",
       minWidth: 250,
-      Cell: (cell) => <div dir="ltr">{cell.value ? cell.value : "ندارد"}</div>,
-    },
+      Cell: (cell) => {
+        return cell.value ? (
+          <div>{PN.convertEnToPe(cell.value)}</div>
+        ) : (
+          <div>ندارد</div>
+        );
+      },    },
     {
       Header: "نام کاربری شبکه اجتماعی",
       accessor: "usernameSocial",
       minWidth: 250,
-      Cell: (cell) => <div dir="ltr">{cell.value ? cell.value : "ندارد"}</div>,
-    },
+      Cell: (cell) => {
+        return cell.value ? (
+          <div>{PN.convertEnToPe(cell.value)}</div>
+        ) : (
+          <div>ندارد</div>
+        );
+      },    },
     {
       Header: "مقطع",
       accessor: "level",

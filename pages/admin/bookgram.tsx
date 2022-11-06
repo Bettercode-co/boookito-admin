@@ -42,7 +42,7 @@ const Bookgram: NextPage = () => {
       accessor: "mediaSource",
       minWidth: 100,
       Cell: (cell) => (
-        <div>
+        <div className="flex justify-center items-center">
           <img src={cell.value} className='rounded-lg xl:w-1/2' alt="book" />
         </div>
       ),
