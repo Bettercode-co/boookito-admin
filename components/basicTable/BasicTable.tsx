@@ -41,15 +41,15 @@ const BasicTable = ({rowsdata, columnsData}) => {
 
   return (
     <div dir="rtl">
-      {/* <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
+      {router.pathname === '/admin/categories' && (<div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
           <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
           <input
-            className='mt-4 h-12 w-full lg:w-96 border-slate-200 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
+            className='mt-4 h-10 rounded-lg w-full lg:w-96 border-slate-400 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
             type="text"
             value={globalFilter || ""}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
-      </div> */}
+      </div>)}
       <div className="overflow-auto">
         <div className="min-w-screen min-h-fit  bg-gray-100 ">
           <div className="w-full ">

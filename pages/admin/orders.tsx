@@ -52,8 +52,9 @@ const token = getCookie("accessToken");
 
 const Orders: NextPage = () => {
   const [ordersData, setOrdersData] = useState(null);
-  const [pagenumber, setPageNumber] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pagenumber, setPageNumber] = useState<number>(1);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [rowDataId, setRowDataId] = useState<number>(0)
 
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -71,7 +72,7 @@ const Orders: NextPage = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [pagenumber, isModalOpen]);
+  }, [pagenumber, isModalOpen, rowDataId]);
 
   const COLUMNS = [
     {
@@ -90,17 +91,6 @@ const Orders: NextPage = () => {
       accessor: "book.id",
       minWidth: 150,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
-    },
-
-    {
-      Header: "ثبت کننده",
-      accessor: "reference",
-      minWidth: 200,
-      Cell: (cell) => {
-        {
-          return cell.value === "USER" ? <div>کاربر</div> : <div>ادمین</div>;
-        }
-      },
     },
     {
       Header: "وضعیت",
@@ -191,6 +181,7 @@ const Orders: NextPage = () => {
       }
     })
     .then(() => notifySuccess())
+    .then(() => setRowDataId(rowDetail.id))
     .catch(() => notifyError("خطا در بستن سفارش"))
   };
 
