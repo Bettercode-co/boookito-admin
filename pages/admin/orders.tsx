@@ -128,7 +128,7 @@ const Orders: NextPage = () => {
     },
     {
       Header: "شماره تماس",
-      accessor: "phoneNumber",
+      accessor: "user.phoneNumber",
       minWidth: 150,
       Cell: (cell) => {
         return cell.value ? (
@@ -172,12 +172,6 @@ const Orders: NextPage = () => {
       accessor: "action",
       Cell: (cell) => (
         <div className="flex items-center gap-3">
-          {/* <button value={cell.accessor} className="felx items-center min-w-max" onClick={handleEdit}>
-          <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
-
-              <RiEditFill /> &nbsp; ویرایش
-            </span>
-          </button> */}
           <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  disabled={cell.row.original.orderStatus === 'CLOSED'}  onClick={() => handleDelete(cell.row.original)}>
           <span className={`flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${cell.row.original.orderStatus === 'CLOSED' && 'bg-gray-200 hover:bg-gray-200 hover:text-white hover:cursor-not-allowed'} `}>
 

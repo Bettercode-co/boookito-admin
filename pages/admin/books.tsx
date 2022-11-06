@@ -42,6 +42,7 @@ const Books: NextPage = () => {
 
   useEffect(() => {
     fetchBooks();
+    console.log(booksData)
   }, [pagenumber, isModalOpen, isEditModalOpen, isDeleteModalOpen]);
 
   const COLUMNS = [
@@ -56,9 +57,9 @@ const Books: NextPage = () => {
       ),
     },
     {
-      Header: "شناسه",
+      Header: "کد کتاب",
       accessor: "id",
-      minWidth: 50,
+      minWidth: 150,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
@@ -82,19 +83,25 @@ const Books: NextPage = () => {
       minWidth: 200,
       Cell: (cell) => <div dir="ltr">{cell.value.map(auth => {
         return(
-            <div key={auth}>{auth}</div>
+            <div key={auth}>{auth === '' ? 'ندارد' : auth}</div>
           )
       })}</div>,
     },
     {
       Header: "دسته بندی",
       accessor: "category.categoryName",
-      minWidth: 150,
+      minWidth: 250,
     },
     {
       Header: "انتشارات",
       accessor: "publisherName",
       minWidth: 200,
+    },
+    {
+      Header: "تعداد موجودی",
+      accessor: "totalEntity",
+      minWidth: 200,
+      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
       Header: "تعداد صفحات",
