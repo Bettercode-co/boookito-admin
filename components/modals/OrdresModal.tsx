@@ -10,7 +10,7 @@ import { TiTimes } from "react-icons/ti";
 type NewOrder = {
   user?: string;
   book?: number;
-  bookCode?: number;
+  bookCode?: string;
   day: number;
 };
 
@@ -98,14 +98,16 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
 
   const bookOptionFilter = (data) => {
     const dataArray = []
-    dataArray.push(data)
-    const filterdData = dataArray.map((item) => {
-      return {
-        value: item.id,
-        label: `${PN.convertEnToPe(item.id)} - ${item.bookName}`
-      };
-    });
-    setBookOption(filterdData);
+    if(data){
+      dataArray.push(data)
+      const filterdData = dataArray.map((item) => {
+        return {
+          value: item.id,
+          label: `${PN.convertEnToPe(item.id)} - ${item.bookName}`
+        };
+      });
+      setBookOption(filterdData);
+    }
   };
 
 
@@ -207,7 +209,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 onChange={e => {
                   setNewOrder({
                     ...newOrder,
-                    bookCode: +e.target.value
+                    bookCode: e.target.value
                   })
                 }}
               />

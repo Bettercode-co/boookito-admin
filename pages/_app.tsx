@@ -10,7 +10,6 @@ import Script from "next/script";
 import { AppWrapper } from "../components/context/AppContext";
 
 Router.events.on("routeChangeStart", (url) => {
-  console.log(`Loading: ${url}`);
   document.body.classList.add("body-page-transition");
   ReactDOM.render(
     <PageChange  />,

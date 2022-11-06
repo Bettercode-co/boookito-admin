@@ -1,4 +1,5 @@
 import React, {  useMemo } from "react";
+import { useRouter } from "next/router";
 
 import {
   useTable,
@@ -12,17 +13,18 @@ import { RiSearchLine } from "react-icons/ri";
 
 
 const BasicTable = ({rowsdata, columnsData}) => {
-
+  const router = useRouter()
 
   const data = useMemo(() => rowsdata, [rowsdata]);
   const columns = useMemo(() => columnsData, [columnsData]);
 
 
   const tableInstanse = useTable(
-    { data, columns },
+    { data, columns, initialState: { pageSize: router.pathname === '/admin/categories' ? 1500 : 10 } },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
+
   );
 
   const {

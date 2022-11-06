@@ -75,7 +75,16 @@ const notifySuccess = (msg) =>
 const token = getCookie("accessToken");
 
 const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
-    const [bookData, setBookData] = useState<any>()
+    const [bookData, setBookData] = useState<any>({
+      bookName :'',
+      publisherName :'',
+      yearPublish: 0,
+      numberPage: 0,
+      // shelfName?:string;
+      totalEntity: 0,
+      shabak:'',
+
+    })
   //   -----------------------MULTI INPUT STATE----------------------------------
   const [athorList, setAthorList] = useState<AthorListType[]>([{ athor: "" }]);
   const [translatorlist, setTranslatorList] = useState<TranslatorlistType[]>([
@@ -88,7 +97,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const [isImageUplaoded, setIsImageUplaoded] = useState<boolean>(false)
   const [shelfOject, setShelfObject] = useState<any>()
 
-  const { register, handleSubmit, formState: {errors} } = useForm<FormValues>()
+  const { register, handleSubmit } = useForm<FormValues>()
   
   const inputImageUploadeRef = React.useRef(null)
   const triggerRef = () => inputImageUploadeRef.current.click()
@@ -117,6 +126,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const closeAndClearModal = () => {
     setIsEditModalOpen(false)
     setNewBook({})
+    // setBookData(null)
     setAthorList([{ athor: "" }])
     setTranslatorList([
       { translator: "" },
@@ -131,36 +141,45 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
           Authorization: `Bearer ${token}`,
         }
       })
-        .then((res) => bookInputHandler(res.data[0]))
+        .then((res) =>  bookInputHandler(res.data[0]))
 }
 
   const bookInputHandler = async(data) => {
-        let authorListArray = await data.authorName.map((author) => {
-            return({
-                athor: author
-            })
+    if(data){
+      let authorListArray = await data.authorName.map((author) => {
+        return({
+            athor: author
         })
-        setAthorList(authorListArray)
+    })
+    setAthorList(authorListArray)
 
-        let translateListArray = await data.translatorName.map((trnaslate) => {
-            return({
-                translator: trnaslate 
-            })
+    let translateListArray = await data.translatorName.map((trnaslate) => {
+        return({
+            translator: trnaslate 
         })
-        setTranslatorList(translateListArray)
+    })
+    setTranslatorList(translateListArray)
 
-        setBookData({
-            // ...bookData,
-            bookName: data.bookName,
-            publisherName: data.publisherName,
-            yearPublish: data.yearPublish,
-            shelfName: data.shelfName,
-            numberPage: data.numberPage,
-            totalEntity: data.totalEntity,
-            shabak: data.shabak,
-            categoryId: data.categoryId,
-            imageSource: data.imageSource
-        })
+    setBookData({
+        // ...bookData,
+        bookName: data.bookName,
+        publisherName: data.publisherName,
+        yearPublish: data.yearPublish,
+        shelfName: data.shelfName,
+        numberPage: data.numberPage,
+        totalEntity: data.totalEntity,
+        shabak: data.shabak,
+        categoryId: data.categoryId,
+        imageSource: data.imageSource
+    })
+
+    let shelfNameSplited = await data.shelfName.split('')
+      setShelfObject({
+      shelfNumber: +shelfNameSplited.slice(0, -1).join(''),
+      shelfLetter: shelfNameSplited.pop()
+    })
+    }
+        
 }
 
 
@@ -172,7 +191,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
 
   useEffect(() => {
     setNewBook({
-      // ...newBook,
+      ...newBook,
       authorName :ObjectArrayToStringArray(athorList) ,
       translatorName:ObjectArrayToStringArray(translatorlist) ,
       // imageSource: newImage
@@ -186,9 +205,8 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   return stringArray
   }
 
-  const fetchEditBook = (data, id) => {
-    const allData = imageLink ? { ...data, ...bookData, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber , imageSource: imageLink} : {...data, ...bookData ,  shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber}
-    // console.log(allData)
+  const fetchEditBook = (data, id, event) => {
+    const allData = imageLink ? { ...data, ...bookData, ...newBook, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber , imageSource: imageLink} : {...data, ...bookData, ...newBook ,  shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber}
         axiosInstance
           .patch(`admin/editbook/${id}`, allData, {
             headers: {
@@ -196,10 +214,12 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
             },
           })
           .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
-          .then(() => closeAndClearModal())
+          .then(() => {
+          event.target.reset()
+            closeAndClearModal()
+          })
           .catch(() => notifyError('خطا در ارسال '));
       
-    
     }
 
   const categoryOptionFilter = (data) => {
@@ -265,7 +285,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
         >
           {/* <form> */}
           <form
-            onSubmit={handleSubmit((data) => {fetchEditBook(data, rowDataId)})}
+            onSubmit={handleSubmit((data, event) => {fetchEditBook(data, rowDataId, event)})}
             onClick={eventHandler}
             className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
@@ -309,7 +329,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                     isSearchable={false}
                     className=" w-full"
                     options={categories}
-                    defaultValue={categories.filter(cat => cat.value === bookData.categoryId)}
+                    placeholder={bookData && categories.filter(cat => cat.value === bookData.categoryId)[0].label}
                   />
                 </label>
               </div>
@@ -335,26 +355,18 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 </label>
               </div>
               <div className="w-full">
-                {/* <label className="text-right w-full relative" htmlFor="">
-                  <h4>قفسه</h4>
-                  <input
-                    className="w-full border-[#ccc] rounded h-[38px] placeholder:text-sm placeholder:text-slate-400"
-                    type="text"
-                    {...register('shelfName')}
-                    placeholder={bookData.shelfName}
-                  />
-                </label> */}
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>قفسه</h4>
                   <div className="flex items-center gap-2">
                     <Select 
                       className="w-full"
                       options={shelfNumbersOptions}
-                      placeholder='شماره'
+                      placeholder={shelfOject?.shelfNumber}
+                      // defaultValue={shelfNumbersOptions.filter(letter => letter.value == shelfOject?.shelfNumber)}
                       onChange={e => {
                         setShelfObject({
                           ...shelfOject,
-                          shelfLetter: e.value
+                          shelfNumber: e.value.toString()
                         })
                       }}
                     />
@@ -362,11 +374,12 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                     <Select 
                       className="w-full"
                       options={shelfLettersOptions}
-                      placeholder='حرف'
+                      placeholder={shelfOject?.shelfLetter}
+                      // defaultValue={shelfLettersOptions.filter(letter => letter.value == shelfOject?.shelfLetter)}
                       onChange={e => {
                         setShelfObject({
                           ...shelfOject,
-                          shelfNumber: e.value
+                          shelfLetter: e.value
                         })
                       }}
                     />

@@ -44,7 +44,7 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
 
   const {register, handleSubmit, formState: {errors}} = useForm<FormValues>()
 
-  const newCategoryHandler = (data) => {
+  const newCategoryHandler = (data, event) => {
       axiosInstance
         .post("admin/categories", {...data}, {
           headers: {
@@ -52,8 +52,12 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
           },
         })
         .then(() => notifySuccess())
-        .then(() => setIsModalOpen(false))
+        .then(() => {
+          setIsModalOpen(false)
+        event.target.reset()
+        })
         .catch((err) => notifyError(err.response.data.message[0]))
+
   };
 
 
@@ -65,7 +69,7 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
           onClick={() => setIsModalOpen(false)}
         >
           <form
-          onSubmit={handleSubmit((data) => {newCategoryHandler(data)})}
+          onSubmit={handleSubmit((data, event) => {newCategoryHandler(data, event)})}
             onClick={eventHandler}
             className="relative w-96 h-[40vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >

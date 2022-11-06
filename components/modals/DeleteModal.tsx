@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TiTimes } from "react-icons/ti";
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 
 const eventHandler = (e) => {
@@ -34,6 +34,7 @@ const notifySuccess = () =>
   });
 
 const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUrl}) => {
+  const router = useRouter()
 
   const deleteHandler = () => {
       axiosInstance
@@ -45,6 +46,18 @@ const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUr
         .then(() => notifySuccess())
         .then(() => setIsDeleteModalOpen(false))
         .catch((err) =>  notifyError(err.response.data.error.message) )
+  };
+
+    const handleBookgramDelete = () => {
+    axiosInstance
+      .get(`admin/remove/post/${rowData.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
+      .then(() => notifySuccess())
+      .then(() => setIsDeleteModalOpen(false))
+      .catch((err) =>  notifyError(err.response.data.error.message))
   };
 
 
@@ -66,7 +79,7 @@ const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUr
               <TiTimes size={20} />
             </div>
             <div className="w-full text-center">
-                <h3 className="mb-1 text-lg font-semibold">{rowData.bookName}{rowData.categoryName}</h3>
+                <h3 className="mb-1 text-lg font-semibold">{rowData.bookName}{rowData.categoryName}{rowData.title}</h3>
             <div className="h-[1px] bg-slate-200 w-full mb-5" />
             <h4 className=" ">مطمئن هستید می خواهید حذف کنید ؟</h4>
             </div>
@@ -78,7 +91,7 @@ const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUr
               بستن
             </button>
             <button
-              onClick={deleteHandler}
+              onClick={router.pathname === "/admin/bookgram" ? handleBookgramDelete : deleteHandler}
               className="transition-all w-full bg-red-600 text-white h-10 rounded hover:bg-red-800"
             >
               حذف

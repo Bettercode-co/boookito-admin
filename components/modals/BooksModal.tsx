@@ -148,9 +148,6 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     fetchCategory()
   },[])
 
-  useEffect(() => {
-    console.log(shelfOject?.shelfLetter + shelfOject?.shelfNumber)
-  },[shelfOject])
 
   useEffect(() => {
     setNewBook({
@@ -167,7 +164,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   return stringArray
   }
 
-  const fetchNewBook = (data) => {
+  const fetchNewBook = (data, event) => {
     const allData = imageLink ? {...newBook, ...data, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber , imageSource: imageLink} : {...newBook, ...data, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber}
     // console.log(allData)
         axiosInstance
@@ -177,7 +174,10 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
             },
           })
           .then(() => notifySuccess("درخواست با موفقیت انجام شد"))
-          .then(() => closeAndClearModal())
+          .then(() => {
+            closeAndClearModal()
+            event.target.reset()
+          })
           .catch((err) => {
             if(err.response.data.message.length > 1){
               err.response.data.message.map(errMsg => {
@@ -253,7 +253,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
         >
           {/* <form> */}
           <form
-            onSubmit={handleSubmit((data) => {fetchNewBook(data)})}
+            onSubmit={handleSubmit((data,e) => {fetchNewBook(data,e)})}
             onClick={eventHandler}
             className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
