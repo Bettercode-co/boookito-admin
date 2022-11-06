@@ -67,6 +67,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
           },
         })
         .then(() => notifySuccess())
+        .then(() => setIsModalOpen(false))
         .catch((err) => {
             err.response.data.message.map(errMsg => {
               notifyError(errMsg)

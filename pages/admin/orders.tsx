@@ -92,17 +92,6 @@ const Orders: NextPage = () => {
       minWidth: 150,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
-
-    {
-      Header: "ثبت کننده",
-      accessor: "reference",
-      minWidth: 200,
-      Cell: (cell) => {
-        {
-          return cell.value === "USER" ? <div>کاربر</div> : <div>ادمین</div>;
-        }
-      },
-    },
     {
       Header: "وضعیت",
       accessor: "orderStatus",
