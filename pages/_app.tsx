@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import Head from "next/head";
 import Router from "next/router";
 import PageChange from "../components/PageChange/PageChange";
-// import "@fontawesome/fontawesome-free/css/all.min.css";
 import { AppProps } from "../interfaces";
 import Script from "next/script";
 import { AppWrapper } from "../components/context/AppContext";
@@ -35,7 +34,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <title>Notus NextJS by Creative Tim</title>
+        <title>پنل مدیدریت بوکیتو</title>
       </Head>
       <Script
         defer

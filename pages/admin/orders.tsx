@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import BasicTable from "../../components/basicTable/BasicTable";
@@ -188,11 +189,8 @@ const Orders: NextPage = () => {
     },
   ];
 
-  // const handleEdit = (e) => {
-  //   console.log("edit button");
-  // };
+
   const handleDelete = (rowDetail) => {
-    // console.log(rowDetail.trakingCode)
     axiosInstance.post('admin/closeorder', { trakingCode:rowDetail.trakingCode }, {
       headers: {
         Authorization: `Bearer ${token}`,

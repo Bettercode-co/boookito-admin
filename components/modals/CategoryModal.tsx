@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TiTimes } from "react-icons/ti";
-import { useForm } from "react-hook-form";
 
-type NewOrder = {
-    categoryName?: string;
-};
-type FormValues = {
-    categoryName: string;
-};
 
 const eventHandler = (e) => {
   e.stopPropagation();
@@ -40,13 +33,12 @@ const notifySuccess = () =>
   });
 
 const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
-  // const [newCategory, setNewCategory] = useState<NewOrder>({});
+  const [inputValue, setInputValue] = useState<string>('')
 
-  const {register, handleSubmit, formState: {errors}} = useForm<FormValues>()
-
-  const newCategoryHandler = (data, event) => {
+  const newCategoryHandler = (event) => {
+    event.preventDefault()
       axiosInstance
-        .post("admin/categories", {...data}, {
+        .post("admin/categories", {categoryName: inputValue}, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -54,7 +46,7 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
         .then(() => notifySuccess())
         .then(() => {
           setIsModalOpen(false)
-        event.target.reset()
+          setInputValue('')
         })
         .catch((err) => notifyError(err.response.data.message[0]))
 
@@ -66,16 +58,22 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
       {isModalOpen && (
         <div
           className={`w-full h-full  flex justify-center items-center fixed t-0 r-0  bg-gray-300 bg-opacity-50 transition-all duration-300 ease-in`}
-          onClick={() => setIsModalOpen(false)}
-        >
+          onClick={() => {
+            setIsModalOpen(false);
+            setInputValue('')
+          }}
+                  >
           <form
-          onSubmit={handleSubmit((data, event) => {newCategoryHandler(data, event)})}
+          onSubmit={(event) => newCategoryHandler(event)}
             onClick={eventHandler}
             className="relative w-96 h-[40vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >
             <div
-              onClick={() => setIsModalOpen(false)}
-              className="absolute right-5 top-5 cursor-pointer"
+          onClick={() => {
+            setIsModalOpen(false);
+            setInputValue('')
+          }}
+            className="absolute right-5 top-5 cursor-pointer"
             >
               <TiTimes size={20} />
             </div>
@@ -87,13 +85,12 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
              نام دسته بندی
               <input
                 className="w-full border border-[#ccc] rounded h-[38px] mt-2 px-3"
-                {...register('categoryName', {required: 'نام دسته بندی را وارد کنید'})}
+                value={inputValue}
+                onChange={event => setInputValue(event.target.value)}
               />
-                {errors.categoryName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.categoryName.message}</p>}
             </label>
             <button
               type="submit"
-              // onClick={neworderHandler}
               className="w-full bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
             >
               ثبت
