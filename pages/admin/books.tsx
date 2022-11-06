@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import BasicTable from "../../components/basicTable/BasicTable";
@@ -13,12 +15,6 @@ import { getCookie } from "cookies-next";
 import EditBooksModal from "../../components/modals/EditBookModal";
 import DeleteModal from "../../components/modals/DeleteModal";
 
-const statusHandler = (value: string) => {
-  switch (value) {
-    case "RESERVED":
-      return <div className="text-green-700">رزرو شده</div>;
-  }
-};
 const token = getCookie("accessToken");
 
 const Books: NextPage = () => {
@@ -65,12 +61,6 @@ const Books: NextPage = () => {
       minWidth: 50,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
-    // {
-    //   Header: "کد کتاب",
-    //   accessor: "privateId",
-    //   minWidth: 150,
-    //   Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
-    // },
     {
       Header: "کتاب",
       accessor: "bookName",
@@ -177,7 +167,7 @@ const Books: NextPage = () => {
   ];
 
   const handleEdit = (rowData) => {
-    setRowDataId(rowData.id)
+    setRowDataId(rowData)
     setIsEditModalOpen(true)
   };
   const handleDelete = (rowData) => {

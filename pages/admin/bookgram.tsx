@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
@@ -6,23 +7,16 @@ import Admin from "../../layouts/Admin";
 import axiosInstance from "../../utils/axiosInstance";
 import moment from "jalali-moment";
 import PN from "persian-number";
-import { RiEditFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import { getCookie } from "cookies-next";
 import DeleteModal from "../../components/modals/DeleteModal";
 
-const statusHandler = (value) => {
-  switch (value) {
-    case "PUBLISH":
-      return <div className="text-green-700">منتشر شده</div>;
-  }
-};
+
 const token = getCookie("accessToken");
 
 const Bookgram: NextPage = () => {
   const [pagenumber, setPageNumber] = useState<number>(1);
   const [postsData, setPostsData] = useState(null);
-  const [updatePosts, setUpdatePosts] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false)
   const [rowDataId , setRowDataId] = useState([])
 
@@ -39,7 +33,7 @@ const Bookgram: NextPage = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, [pagenumber, updatePosts, isDeleteModalOpen]);
+  }, [pagenumber,  isDeleteModalOpen]);
 
 
   const COLUMNS = [
@@ -49,27 +43,15 @@ const Bookgram: NextPage = () => {
       minWidth: 100,
       Cell: (cell) => (
         <div>
-          <img src={cell.value} className='rounded-lg' alt="book" />
+          <img src={cell.value} className='rounded-lg xl:w-1/2' alt="book" />
         </div>
       ),
-    },
-    {
-      Header: "شناسه",
-      accessor: "id",
-      minWidth: 50,
-      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
       Header: "عنوان",
       accessor: "title",
       minWidth: 150,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
-    },
-    {
-      Header: "وضعیت",
-      accessor: "postStatus",
-      minWidth: 100,
-      Cell: (cell) => statusHandler(cell.value),
     },
     {
       Header: "نام",
@@ -117,23 +99,10 @@ const Bookgram: NextPage = () => {
     },
   ];
 
-  // const handleDelete = (rowData) => {
-  //   setRowDataId(rowData)
-  //   console.log(rowDataId)
-  // };
   const handleDelete = (rowData) => {
     setRowDataId(rowData)
     setIsDeleteModalOpen(true);
   };
-  // const handleDelete = (rowId) => {
-  //   axiosInstance
-  //     .get(`admin/remove/post/${rowId}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       }
-  //     })
-  //     .then(() => setUpdatePosts(rowId));
-  // };
 
 
 
@@ -168,7 +137,7 @@ const Bookgram: NextPage = () => {
       isDeleteModalOpen={isDeleteModalOpen} 
       setIsDeleteModalOpen={setIsDeleteModalOpen} 
       rowData={rowDataId}
-      fetchUrl={null}
+      fetchUrl='admin/deletepost/'
       />
       </div>
           <div className=" mx-auto ">

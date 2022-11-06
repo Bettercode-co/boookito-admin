@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TiTimes } from "react-icons/ti";
-import { useForm } from "react-hook-form";
-
-type NewOrder = {
-    categoryName?: string;
-};
-type FormValues = {
-    categoryName: string;
-};
 
 const eventHandler = (e) => {
   e.stopPropagation();
@@ -40,12 +32,12 @@ const notifySuccess = () =>
   });
 
 const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) => {
-  const {register, handleSubmit, formState: {errors}} = useForm<FormValues>()
+  const [inputValue, setInputValue] = useState<string>('')
 
-
-  const editCategoryHandler = (data, rowDataId, event) => {
+  const editCategoryHandler = (rowDataId, event) => {
+    event.preventDefault()
       axiosInstance
-        .patch(`admin/categories/${rowDataId.id}`, {...data}, {
+        .patch(`admin/categories/${rowDataId.id}`, {categoryName: inputValue}, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,7 +45,7 @@ const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) =
         .then(() => notifySuccess())
         .then(() => {
           setIsEditModalOpen(false)
-          event.target.reset()
+          setInputValue('')
         })
         .catch((err) => notifyError(err.response.data.message))
 
@@ -65,15 +57,21 @@ const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) =
       {isEditModalOpen && (
         <div
           className={`w-full h-full  flex justify-center items-center fixed t-0 r-0  bg-gray-300 bg-opacity-50 transition-all duration-300 ease-in`}
-          onClick={() => {setIsEditModalOpen(false)}}
+          onClick={() => {
+            setIsEditModalOpen(false);
+            setInputValue('')
+          }}
         >
           <form
-          onSubmit={handleSubmit((data, event) => {editCategoryHandler(data, rowDataId, event)})}
+          onSubmit={(event) => {editCategoryHandler(rowDataId, event)}}
             onClick={eventHandler}
             className="relative w-96 h-[40vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >
             <div
-              onClick={() => setIsEditModalOpen(false)}
+              onClick={() => {
+                setIsEditModalOpen(false);
+                setInputValue('')
+              }}
               className="absolute right-5 top-5 cursor-pointer"
             >
               <TiTimes size={20} />
@@ -86,14 +84,13 @@ const EditCategoryModal = ({ isEditModalOpen, setIsEditModalOpen, rowDataId }) =
              نام دسته بندی
               <input
                 className="w-full border border-[#ccc] rounded h-[38px] mt-2  px-3"
-                {...register('categoryName', {required: 'نام دسته بندی را وارد کنید'})}
-                placeholder={ rowDataId.categoryName}
+                value={inputValue}
+                onChange={event => setInputValue(event.target.value)}
+            placeholder={ rowDataId.categoryName}
               />
-                {errors.categoryName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.categoryName.message}</p>}
             </label>
             <button
               type="submit"
-              // onClick={neworderHandler}
               className="w-full bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
             >
               ثبت

@@ -34,9 +34,10 @@ const notifySuccess = () =>
   });
 
 const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUrl}) => {
-  const router = useRouter()
+  // const router = useRouter()
 
   const deleteHandler = () => {
+    // console.log(fetchUrl + rowData.id);
       axiosInstance
         .delete(fetchUrl + rowData.id, {
           headers: {
@@ -46,19 +47,20 @@ const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUr
         .then(() => notifySuccess())
         .then(() => setIsDeleteModalOpen(false))
         .catch((err) =>  notifyError(err.response.data.error.message) )
+        // .catch((err) =>  console.log(err.response.data.message))
   };
 
-    const handleBookgramDelete = () => {
-    axiosInstance
-      .get(`admin/remove/post/${rowData.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      })
-      .then(() => notifySuccess())
-      .then(() => setIsDeleteModalOpen(false))
-      .catch((err) =>  notifyError(err.response.data.error.message))
-  };
+  //   const handleBookgramDelete = () => {
+  //   axiosInstance
+  //     .get(`admin/remove/post/${rowData.id}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       }
+  //     })
+  //     .then(() => notifySuccess())
+  //     .then(() => setIsDeleteModalOpen(false))
+  //     .catch((err) =>  notifyError(err.response.data.error.message))
+  // };
 
 
   return (
@@ -91,7 +93,8 @@ const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUr
               بستن
             </button>
             <button
-              onClick={router.pathname === "/admin/bookgram" ? handleBookgramDelete : deleteHandler}
+              onClick={deleteHandler}
+              // onClick={router.pathname === "/admin/bookgram" ? handleBookgramDelete : deleteHandler}
               className="transition-all w-full bg-red-600 text-white h-10 rounded hover:bg-red-800"
             >
               حذف

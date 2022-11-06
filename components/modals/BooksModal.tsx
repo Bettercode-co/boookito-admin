@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
@@ -10,7 +11,8 @@ import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { DatePicker } from "jalali-react-datepicker";
+import moment from "jalali-moment";
+import PN from "persian-number";
 
 import addImage from '../../public/img/book_modal/addImage.png'
 import Image from "next/image";
@@ -28,19 +30,11 @@ type Category = {
 }
 type FormValues = {
   bookName:string;
-  // authorName:string[];
-  // translatorName:string[];
   publisherName:string;
   yearPublish:number;
   numberPage:number;
-  // categoryId:number;
-  // description?:string;
-  // shelfName:string;
-  // registeredAt:Date;
-  // privateId:number;
   totalEntity: number;
   shabak: string;
-  // libraryId:number
 }
 
 //shelf select box options
@@ -83,6 +77,8 @@ const notifySuccess = (msg) =>
 
 // access token
 const token = getCookie("accessToken");
+
+let todayDate = new Date().toISOString()
 
 const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   //   -----------------------MULTI INPUT STATE----------------------------------
@@ -154,7 +150,6 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
       ...newBook,
       authorName :ObjectArrayToStringArray(athorList) ,
       translatorName:ObjectArrayToStringArray(translatorlist) ,
-      // imageSource: newImage
     })
 
 },[athorList, translatorlist, newImage ])
@@ -165,9 +160,12 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   }
 
   const fetchNewBook = (data, event) => {
-    const allData = imageLink ? {...newBook, ...data, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber , imageSource: imageLink} : {...newBook, ...data, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber}
-    // console.log(allData)
-        axiosInstance
+    const allData = imageLink ? 
+    {...newBook, ...data, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber , imageSource: imageLink, registeredAt: todayDate}
+     : 
+    {...newBook, ...data, shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber, registeredAt: todayDate}
+
+    axiosInstance
           .post("admin/newbook", allData , {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -235,13 +233,11 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     const values = [...athorList];
     values[index][e.target.name] = e.target.value;
     setAthorList(values);
-    // console.log(athorList);
   };
   const translatorChangeHandler = (index, e) => {
     const values = [...translatorlist];
     values[index][e.target.name] = e.target.value;
     setTranslatorList(values);
-    // console.log(translatorlist);
   };
 
   return (
@@ -279,38 +275,14 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="text"
                     {...register('bookName', {required: 'نام کتاب را وارد کنید'})}
-                    // onChange={(e) =>
-                    //   setNewBook({
-                    //     ...newBook,
-                    //     name: e.target.value,
-                    //   })
-                    // }
                   />
                   {errors.bookName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.bookName.message}</p>}
                 </label>
               </div>
-              {/* <div className="w-full">
-                <label className="text-right w-full relative" htmlFor="">
-                  <h4>کد کتاب</h4>
-                  <input
-                    className="w-full border-[#ccc] rounded h-[38px]"
-                    type="number"
-                    {...register('privateId', {valueAsNumber: true, required:"کد کتاب را وارد کنید" })}
-                    // onChange={(e) =>
-                    //   setNewBook({
-                    //     ...newBook,
-                    //     bookCode: e.target.value,
-                    //   })
-                    // }
-                  />
-                  {errors.privateId && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.privateId.message}</p>}
-                </label>
-              </div> */}
               <div className="w-full">
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>دسته بندی</h4>
                   <Select
-                  // {...register('categoryId')}
                     onChange={(e: any) =>
                       setNewBook({
                         ...newBook,
@@ -318,9 +290,8 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                       })
                     }
                     id="category"
-                    isSearchable={false}
+                    isSearchable={true}
                     className=" w-full"
-                    // defaultValue={durationOption[1]}
                     options={categories}
                     placeholder="دسته بندی"
                   />
@@ -333,12 +304,6 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="text"
                     {...register('publisherName', {required: "نام انتشارات را وارد کنید"})}
-                    // onChange={(e) =>
-                    //   setNewBook({
-                    //     ...newBook,
-                    //     publisher: e.target.value,
-                    //   })
-                    // }
                   />
                   {errors.publisherName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.publisherName.message}</p>}
                 </label>
@@ -351,34 +316,11 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     type="number"
                     {...register('yearPublish', {valueAsNumber: true, maxLength: 4, minLength:4, required: 'سال انتشار را وارد کنید' })}
                     placeholder='سال انتشار را بصورت چهار رقمی وارد کنید'
-                    // maxLength={4}
-                    // minLength={4}
-                    // onChange={(e) =>
-                    //   setNewBook({
-                    //     ...newBook,
-                    //     publishYear: e.target.value,
-                    //   })
-                    // }
                   />
                   {errors.yearPublish && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.yearPublish.message}</p>}
                 </label>
               </div>
               <div className="w-full">
-                {/* <label className="text-right w-full relative" htmlFor="">
-                  <h4>قفسه</h4>
-                  <input
-                    className="w-full border-[#ccc] rounded h-[38px]"
-                    type="text"
-                    {...register('shelfName', {required: 'نام قفسه را وارد کنید'})}
-                    // onChange={(e) =>
-                    //   setNewBook({
-                    //     ...newBook,
-                    //     publisher: e.target.value.toUpperCase(),
-                    //   })
-                    // }
-                  />
-                  {errors.shelfName && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.shelfName.message}</p>}
-                </label> */}
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>قفسه</h4>
                   <div className="flex items-center gap-2">
@@ -415,12 +357,6 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="number"
                     {...register('numberPage', {valueAsNumber: true, required:'تعداد صفحات کتاب را وارد کنید' })}
-                    // onChange={(e) =>
-                    //   setNewBook({
-                    //     ...newBook,
-                    //     pages: e.target.value,
-                    //   })
-                    // }
                   />
                   {errors.numberPage && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.numberPage.message}</p>}
                 </label>
@@ -428,23 +364,16 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
               <div className="w-full">
                 <label className="text-right w-full relative" htmlFor="">
                   <h4>تاریخ ثبت</h4>
-                  {/* <input
-                    className="w-full border-[#ccc] rounded h-[38px]"
+                  <input
+                    className="w-full border-[#ccc] rounded h-[38px] text-left disabled:bg-gray-200"
                     type="text"
-                    onChange={(e) =>
-                      setNewBook({
-                        ...newBook,
-                        createdAt: e.target.value,
-                      })
-                    }
-                  /> */}
-                   <DatePicker
-                    className="w-full border border-[#ccc] rounded h-[38px] px-2"
-                    timePicker={false} 
-                    onClickSubmitButton={value => setNewBook({
-                    ...newBook,
-                    registeredAt: new Date( value.value._d  ).toISOString()
-                  })} />
+                    disabled
+                    value={PN.convertEnToPe(
+                      moment(todayDate, "YYYY/MM/DD HH:mm:ss")
+                        .locale("fa")
+                        .format("YYYY/MM/DD")
+                    )}
+                  />
                 </label>
               </div>
               <div className="w-full">
@@ -454,12 +383,6 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="number"
                     {...register('totalEntity', {valueAsNumber: true})}
-                    // onChange={(e) =>
-                    //   setNewBook({
-                    //     ...newBook,
-                    //     no: e.target.value,
-                    //   })
-                    // }
                   />
                 </label>
               </div>              
@@ -470,12 +393,6 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     className="w-full border-[#ccc] rounded h-[38px]"
                     type="text"
                     {...register('shabak', {required: 'شماره شابک را وارد کنید'})}
-                    // onChange={(e) =>
-                    //   setNewBook({
-                    //     ...newBook,
-                    //     shabak: e.target.value,
-                    //   })
-                    // }
                   />
                   {errors.shabak && <p className="absolute -bottom-8 text-sm text-rose-600">{errors.shabak.message}</p>}
                 </label>
