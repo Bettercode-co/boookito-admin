@@ -1,7 +1,4 @@
 import React from "react";
-
-import Navbar from "../components/Navbars/AuthNavbar";
-import FooterSmall from "../components/Footers/FooterSmall";
 import { LayoutProps } from "../interfaces";
 
 const Auth: React.FC<LayoutProps> = (props) => {
@@ -18,7 +15,6 @@ const Auth: React.FC<LayoutProps> = (props) => {
             }}
           ></div>
           {props.children}
-          {/* <FooterSmall absolute={true} /> */}
         </section>
       </main>
     </>

@@ -204,12 +204,12 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
       });
 
       let shelfNameSplited = await data.shelfName.split("");
-      if(shelfLetters.includes(shelfNameSplited.pop())){
+      if (shelfLetters.includes(shelfNameSplited.pop())) {
         setShelfObject({
           shelfNumber: +shelfNameSplited.slice(0, -1).join(""),
           shelfLetter: shelfNameSplited.pop(),
         });
-      }else{
+      } else {
         setShelfObject({
           shelfNumber: +shelfNameSplited.slice(1).join(""),
           shelfLetter: shelfNameSplited.shift(),
@@ -237,24 +237,26 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   };
 
   const fetchEditBook = (data, id, event) => {
+    Object.keys(data).forEach((key) => {
+      if (!data[key]) {
+        delete data[key];
+      }
+    });
     const allData = imageLink
       ? {
-          ...data,
           ...bookData,
-          ...newBook,
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           imageSource: imageLink,
           registeredAt: todayDate,
         }
       : {
-          ...data,
           ...bookData,
-          ...newBook,
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           registeredAt: todayDate,
         };
+    const newAllData = { ...allData, ...data, ...newBook };
     axiosInstance
-      .patch(`admin/editbook/${id}`, allData, {
+      .patch(`admin/editbook/${id}`, newAllData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -399,7 +401,6 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                         valueAsNumber: true,
                         maxLength: 4,
                         minLength: 4,
-                        
                       })}
                       placeholder={bookData.yearPublish}
                     />

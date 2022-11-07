@@ -10,10 +10,7 @@ import { AppWrapper } from "../components/context/AppContext";
 
 Router.events.on("routeChangeStart", (url) => {
   document.body.classList.add("body-page-transition");
-  ReactDOM.render(
-    <PageChange  />,
-    document.getElementById("page-transition")
-  );
+  ReactDOM.render(<PageChange />, document.getElementById("page-transition"));
 });
 Router.events.on("routeChangeComplete", () => {
   ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
@@ -34,16 +31,16 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <title>پنل مدیدریت بوکیتو</title>
+        <title>پنل مدیریت بوکیتو</title>
       </Head>
       <Script
         defer
         src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"
       ></Script>
       <AppWrapper>
-      <Layout >
-        <Component {...pageProps} />
-      </Layout>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </AppWrapper>
     </React.Fragment>
   );

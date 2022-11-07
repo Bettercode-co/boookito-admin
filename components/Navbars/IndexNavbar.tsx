@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
                   className="bg-slate-700 text-white active:bg-slate-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:ml-1 lg:mb-0 mr-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
-                   Download <i className="fas fa-arrow-alt-circle-down"></i>
+                  Download <i className="fas fa-arrow-alt-circle-down"></i>
                 </button>
               </li>
             </ul>

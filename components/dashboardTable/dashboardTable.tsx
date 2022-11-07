@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 
-
 import {
   useTable,
   useSortBy,
@@ -10,17 +9,9 @@ import {
 import { IoMdArrowDropup } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-
-
-const DashboardTable = ({rowsdata, columnsData}) => {
-
-
-
-
-
+const DashboardTable = ({ rowsdata, columnsData }) => {
   const data = useMemo(() => rowsdata, [rowsdata]);
   const columns = useMemo(() => columnsData, [columnsData]);
-
 
   const tableInstanse = useTable(
     { data, columns },
@@ -29,19 +20,12 @@ const DashboardTable = ({rowsdata, columnsData}) => {
     usePagination
   );
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    prepareRow,
-  } = tableInstanse;
-
+  const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } =
+    tableInstanse;
 
   return (
     <div dir="rtl">
-      <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
-      </div>
+      <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 "></div>
       <div className="overflow-auto">
         <div className="min-w-screen min-h-fit  bg-gray-100 ">
           <div className="w-full ">
@@ -109,39 +93,10 @@ const DashboardTable = ({rowsdata, columnsData}) => {
                   );
                 })}
               </tbody>
-              {/* <tfoot>
-          {footerGroups.map((footerGroup) => (
-            <tr key={footerGroup} {...footerGroup.getFooterGroupProps()}>
-              {footerGroup.headers.map((column) => (
-                <td key={column} {...column.getFooterProps()}>{column.render("Footer")}</td>
-              ))}
-            </tr>
-          ))}
-        </tfoot> */}
             </table>
           </div>
         </div>
       </div>
-
-      {/* <div className="text-center pb-8">
-        <button
-          className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
-          onClick={() => nextPage}
-          disabled={!canNextPage}
-        >
-          بعد
-        </button>
-        <button
-          className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
-          onClick={() => previousPage}
-          disabled={!canPreviousPage}
-        >
-          قبل
-        </button>
-        <span className="mx-5 mt-3 text-slate-700">
-          صفحه : {PN.convertEnToPe(pageIndex + 1)} از {PN.convertEnToPe(pageOptions.length)}
-        </span>
-      </div> */}
     </div>
   );
 };

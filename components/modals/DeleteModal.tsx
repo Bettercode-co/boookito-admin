@@ -4,8 +4,6 @@ import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TiTimes } from "react-icons/ti";
-import { useRouter } from "next/router";
-
 
 const eventHandler = (e) => {
   e.stopPropagation();
@@ -13,7 +11,6 @@ const eventHandler = (e) => {
 
 // access token
 const token = getCookie("accessToken");
-
 
 //tostify
 const notifyError = (err) =>
@@ -33,35 +30,23 @@ const notifySuccess = () =>
     progress: undefined,
   });
 
-const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUrl}) => {
-  // const router = useRouter()
-
+const DeleteModal = ({
+  setIsDeleteModalOpen,
+  isDeleteModalOpen,
+  rowData,
+  fetchUrl,
+}) => {
   const deleteHandler = () => {
-    // console.log(fetchUrl + rowData.id);
-      axiosInstance
-        .delete(fetchUrl + rowData.id, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then(() => notifySuccess())
-        .then(() => setIsDeleteModalOpen(false))
-        .catch((err) =>  notifyError(err.response.data.error.message) )
-        // .catch((err) =>  console.log(err.response.data.message))
+    axiosInstance
+      .delete(fetchUrl + rowData.id, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => notifySuccess())
+      .then(() => setIsDeleteModalOpen(false))
+      .catch((err) => notifyError(err.response.data.error.message));
   };
-
-  //   const handleBookgramDelete = () => {
-  //   axiosInstance
-  //     .get(`admin/remove/post/${rowData.id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       }
-  //     })
-  //     .then(() => notifySuccess())
-  //     .then(() => setIsDeleteModalOpen(false))
-  //     .catch((err) =>  notifyError(err.response.data.error.message))
-  // };
-
 
   return (
     <>
@@ -81,24 +66,27 @@ const DeleteModal = ({ setIsDeleteModalOpen, isDeleteModalOpen, rowData, fetchUr
               <TiTimes size={20} />
             </div>
             <div className="w-full text-center">
-                <h3 className="mb-1 text-lg font-semibold">{rowData.bookName}{rowData.categoryName}{rowData.title}</h3>
-            <div className="h-[1px] bg-slate-200 w-full mb-5" />
-            <h4 className=" ">مطمئن هستید می خواهید حذف کنید ؟</h4>
+              <h3 className="mb-1 text-lg font-semibold">
+                {rowData.bookName}
+                {rowData.categoryName}
+                {rowData.title}
+              </h3>
+              <div className="h-[1px] bg-slate-200 w-full mb-5" />
+              <h4 className=" ">مطمئن هستید می خواهید حذف کنید ؟</h4>
             </div>
             <div className="w-full flex gap-5">
-            <button
-              onClick={() => setIsDeleteModalOpen(false)}
-              className="transition-all w-full bg-slate-300 text-white h-10 rounded hover:bg-slate-500"
-            >
-              بستن
-            </button>
-            <button
-              onClick={deleteHandler}
-              // onClick={router.pathname === "/admin/bookgram" ? handleBookgramDelete : deleteHandler}
-              className="transition-all w-full bg-red-600 text-white h-10 rounded hover:bg-red-800"
-            >
-              حذف
-            </button>
+              <button
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="transition-all w-full bg-slate-300 text-white h-10 rounded hover:bg-slate-500"
+              >
+                بستن
+              </button>
+              <button
+                onClick={deleteHandler}
+                className="transition-all w-full bg-red-600 text-white h-10 rounded hover:bg-red-800"
+              >
+                حذف
+              </button>
             </div>
           </div>
         </div>
