@@ -57,7 +57,7 @@ const DeleteModal = ({
         >
           <div
             onClick={eventHandler}
-            className="relative w-[400px] h-[25vh] rounded bg-white flex flex-col p-10  justify-around items-center"
+            className="relative w-[400px] h-[35vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >
             <div
               onClick={() => setIsDeleteModalOpen(false)}

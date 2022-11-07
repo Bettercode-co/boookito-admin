@@ -204,15 +204,15 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
       });
 
       let shelfNameSplited = await data.shelfName.split("");
-      if (shelfLetters.includes(shelfNameSplited.pop())) {
+      if (shelfLetters.includes(shelfNameSplited.at(-1))) {
         setShelfObject({
           shelfNumber: +shelfNameSplited.slice(0, -1).join(""),
           shelfLetter: shelfNameSplited.pop(),
         });
       } else {
         setShelfObject({
-          shelfNumber: +shelfNameSplited.slice(1).join(""),
           shelfLetter: shelfNameSplited.shift(),
+          shelfNumber: +shelfNameSplited.slice(0).join(""),
         });
       }
     }
@@ -335,7 +335,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
               fetchEditBook(data, rowDataId.id, event);
             })}
             onClick={eventHandler}
-            className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
+            className="relative mt-[250vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
             <div
               onClick={closeAndClearModal}
