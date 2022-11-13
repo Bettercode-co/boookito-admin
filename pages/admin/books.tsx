@@ -10,6 +10,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import moment from "jalali-moment";
 import PN from "persian-number";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { RiSearchLine } from "react-icons/ri";
 import BooksModal from "../../components/modals/BooksModal";
 import { getCookie } from "cookies-next";
 import EditBooksModal from "../../components/modals/EditBookModal";
@@ -24,6 +25,7 @@ const Books: NextPage = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [rowDataId, setRowDataId] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const [searchInputValue, setSearchInputValue] = useState<string>('')
 
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -40,8 +42,24 @@ const Books: NextPage = () => {
   };
 
   useEffect(() => {
-    fetchBooks();
-  }, [pagenumber, isModalOpen, isEditModalOpen, isDeleteModalOpen]);
+    if(searchInputValue){
+      searchFetchBook(searchInputValue)
+    }else{
+      fetchBooks()
+    }
+  }, [pagenumber, isModalOpen, isEditModalOpen, isDeleteModalOpen, searchInputValue]);
+
+  const searchFetchBook = (value) => {
+    if(searchInputValue){
+      axiosInstance.get(`admin/searchbooks/${value}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(res => setBooksData(res.data.result))
+      .catch(() => console.log('مشکل در جست و جوی کتاب'))
+    }
+  }
 
   const COLUMNS = [
     {
@@ -243,6 +261,15 @@ const Books: NextPage = () => {
         >
           <IoIosAddCircleOutline /> اضافه کردن
         </button>
+      </div>
+      <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
+          <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
+          <input
+            className='mt-4 h-10 rounded-lg w-full lg:w-96 border-slate-400 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
+            type="text"
+            value={searchInputValue}
+            onChange={e => setSearchInputValue(e.target.value)}
+          />
       </div>
       <BasicTable rowsdata={booksData} columnsData={COLUMNS} />
 

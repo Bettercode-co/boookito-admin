@@ -20,7 +20,7 @@ const BasicTable = ({rowsdata, columnsData}) => {
 
 
   const tableInstanse = useTable(
-    { data, columns, initialState: { pageSize: router.pathname === '/admin/categories' ? 1500 : 10 } },
+    { data, columns, initialState: { pageSize: router.pathname === '/admin/categories' || router.pathname === '/admin/books' ? 1500 : 10 } },
     useGlobalFilter,
     useSortBy,
     usePagination,

@@ -128,7 +128,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const [isImageUplaoded, setIsImageUplaoded] = useState<boolean>(false);
   const [shelfOject, setShelfObject] = useState<any>();
 
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const inputImageUploadeRef = React.useRef(null);
   const triggerRef = () => inputImageUploadeRef.current.click();
@@ -236,6 +236,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
     return stringArray;
   };
 
+
   const fetchEditBook = (data, id, event) => {
     Object.keys(data).forEach((key) => {
       if (!data[key]) {
@@ -265,6 +266,14 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
       .then(() => {
         event.target.reset();
         closeAndClearModal();
+        reset(
+          {bookName: null,
+          numberPage: null,
+          publisherName: null,
+          shabak: null,
+          totalEntity: null,
+          yearPublish: null
+      })
       })
       .catch(() => notifyError("خطا در ارسال "));
   };
