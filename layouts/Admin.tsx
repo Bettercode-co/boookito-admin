@@ -3,20 +3,20 @@ import React, { useEffect } from "react";
 import { useAppContext } from "../components/context/AppContext";
 import HeaderStats from "../components/Headers/HeaderStats";
 import AdminNavbar from "../components/Navbars/AdminNavbar";
-// import FooterAdmin from "../components/Footers/FooterAdmin";
-
 import Sidebar from "../components/Sidebar/Sidebar";
 import { LayoutProps } from "../interfaces";
 
 const Admin: React.FC<LayoutProps> = ({ children }) => {
-  const {isHeaderStats, setIsHeaderStats} = useAppContext()
-  const router = useRouter()
-  
+  const { isHeaderStats, setIsHeaderStats } = useAppContext();
+  const router = useRouter();
 
-  useEffect(()=> {
-    router.route === "/admin/dashboard" ? setIsHeaderStats(true) : isHeaderStats === false ? isHeaderStats : setIsHeaderStats(false)
-  },[router.route, isHeaderStats, setIsHeaderStats])
-
+  useEffect(() => {
+    router.route === "/admin/dashboard"
+      ? setIsHeaderStats(true)
+      : isHeaderStats === false
+      ? isHeaderStats
+      : setIsHeaderStats(false);
+  }, [router.route, isHeaderStats, setIsHeaderStats]);
 
   return (
     <div className="h-max">

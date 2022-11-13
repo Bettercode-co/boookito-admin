@@ -1,37 +1,29 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import logo from '../../public/img/dashboard/logo.jpg'
+import logo from "../../public/img/dashboard/logo.jpg";
 import { deleteCookie } from "cookies-next";
- 
 
 //react icons
-import {
-  FaBars,
-  FaTv,
-  FaTimes,
-  FaUsers,
-} from "react-icons/fa";
-import {MdOutlineComment, MdExitToApp } from "react-icons/md"
-import {RiPriceTag3Line} from "react-icons/ri"
-import {ImBooks} from 'react-icons/im'
-import {TbTruckLoading} from 'react-icons/tb'
-import {BiCategoryAlt} from 'react-icons/bi'
+import { FaBars, FaTv, FaTimes, FaUsers } from "react-icons/fa";
+import { MdExitToApp } from "react-icons/md";
+import { RiPriceTag3Line } from "react-icons/ri";
+import { ImBooks } from "react-icons/im";
+import { TbTruckLoading } from "react-icons/tb";
+import { BiCategoryAlt } from "react-icons/bi";
 
 import UserDropdown from "../Dropdowns/UserDropdown";
 import Image from "next/image";
-
-
 
 const Sidebar: React.FC = () => {
   const [collapseShow, setCollapseShow] = React.useState<string>("hidden");
   const router = useRouter();
 
   const logoutHandler = () => {
-    deleteCookie('accessToken')
-    deleteCookie('ruleBase')
-    router.push('/auth/login')
-  }
+    deleteCookie("accessToken");
+    deleteCookie("ruleBase");
+    router.push("/auth/login");
+  };
   return (
     <nav className="  md:right-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
       <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
@@ -49,7 +41,13 @@ const Sidebar: React.FC = () => {
             href="#pablo"
             className="h-10 md:block text-center md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0  "
           >
-            <Image src={logo} alt='logo' width={100} height={40} className='absolute top' /> 
+            <Image
+              src={logo}
+              alt="logo"
+              width={100}
+              height={40}
+              className="absolute top"
+            />
           </a>
         </Link>
         {/* User */}
@@ -73,8 +71,7 @@ const Sidebar: React.FC = () => {
                   <a
                     href="#pablo"
                     className="md:block text-right md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                  >
-                  </a>
+                  ></a>
                 </Link>
               </div>
               <div className="w-6/12 flex justify-end">
@@ -102,7 +99,7 @@ const Sidebar: React.FC = () => {
           {/* Divider */}
           <hr className="my-4 md:min-w-full" />
           {/* Heading */}
- 
+
           {/* Navigation */}
 
           <ul className="md:flex-col md:min-w-full gap-2 flex flex-col list-none md:mb-4">
@@ -141,12 +138,14 @@ const Sidebar: React.FC = () => {
                       : "text-slate-600 hover:text-slate-500")
                   }
                 >
-                  <ImBooks  className={
+                  <ImBooks
+                    className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/books") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
-                    } />
+                    }
+                  />
                   کتاب ها
                 </a>
               </Link>
@@ -163,13 +162,15 @@ const Sidebar: React.FC = () => {
                       : "text-slate-600 hover:text-slate-500")
                   }
                 >
-                  <FaUsers  className={
+                  <FaUsers
+                    className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/users") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
-                    } />
-                  کاربران 
+                    }
+                  />
+                  کاربران
                 </a>
               </Link>
             </li>
@@ -184,13 +185,15 @@ const Sidebar: React.FC = () => {
                       : "text-slate-600 hover:text-slate-500")
                   }
                 >
-                  <BiCategoryAlt  className={
+                  <BiCategoryAlt
+                    className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/categories") !== -1
                         ? "opacity-75"
                         : "text-slate-300")
-                    } />
-                    دسته بندی ها
+                    }
+                  />
+                  دسته بندی ها
                 </a>
               </Link>
             </li>
@@ -228,7 +231,7 @@ const Sidebar: React.FC = () => {
                       : "text-slate-600 hover:text-slate-500")
                   }
                 >
-                  <RiPriceTag3Line 
+                  <RiPriceTag3Line
                     className={
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/bookgram") !== -1
@@ -236,37 +239,13 @@ const Sidebar: React.FC = () => {
                         : "text-slate-300")
                     }
                   />
-                   بوکگرام
+                  بوکگرام
                 </a>
               </Link>
             </li>
-            {/* <li className="items-center">
-              <Link href="/admin/comments">
-                <a
-                  href="#pablo"
-                  className={
-                    "flex items-center text-base  uppercase py-3 font-semibold " +
-                    (router.pathname.indexOf("/admin/comments") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
-                  }
-                >
-                  <MdOutlineComment 
-                    className={
-                      " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/comments") !== -1
-                        ? "opacity-75"
-                        : "text-slate-300")
-                    }
-                  />
-                   نظرات
-                </a>
-              </Link>
-            </li> */}
             <li className="items-center">
-              <div onClick={logoutHandler} className='cursor-pointer'>
+              <div onClick={logoutHandler} className="cursor-pointer">
                 <div
-                  // href="#pablo"
                   className={
                     "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/settings") !== -1
@@ -286,7 +265,6 @@ const Sidebar: React.FC = () => {
                 </div>
               </div>
             </li>
-
           </ul>
         </div>
       </div>

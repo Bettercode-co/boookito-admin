@@ -1,55 +1,53 @@
 import React, { useEffect, useState } from "react";
-// import { number } from "yup/lib/locale";
 import axiosInstance from "../../utils/axiosInstance";
 import CardStats from "../Cards/CardStats";
 import PN from "persian-number";
 
 //react icons
-import {FaUsers, FaUserSlash, FaComments} from 'react-icons/fa'
-import {RiUserStarFill} from 'react-icons/ri'
-import {BsFilePostFill} from 'react-icons/bs'
-import {MdOutlineComment,  MdFileDownloadDone, MdPendingActions} from 'react-icons/md'
-import {BiCategoryAlt} from 'react-icons/bi'
-import {AiTwotoneLike} from 'react-icons/ai'
-import {TbTruckLoading} from 'react-icons/tb'
-import {ImBooks} from 'react-icons/im'
+import { FaUsers, FaUserSlash } from "react-icons/fa";
+import { RiUserStarFill } from "react-icons/ri";
+import { BsFilePostFill } from "react-icons/bs";
+import { MdFileDownloadDone, MdPendingActions } from "react-icons/md";
+import { TbTruckLoading } from "react-icons/tb";
+import { ImBooks } from "react-icons/im";
 import { getCookie } from "cookies-next";
-
 
 const defaultValue = {
   activeorders: 0,
   activeusers: 0,
   allbookrates: 0,
-allbooks: 0,
+  allbooks: 0,
   allcategories: 0,
   allcomments: 0,
   alldoneorders: 0,
   alllikes: 0,
- allorders: 0,
+  allorders: 0,
   allposts: 0,
-  allusers:  0,
+  allusers: 0,
   deactiveusers: 0,
   lastorders: [],
-  lastusers: []}
+  lastusers: [],
+};
 
-  const token = getCookie('accessToken')
+const token = getCookie("accessToken");
 
 const HeaderStats: React.FC = () => {
-  const [cartData, setCartData] = useState(defaultValue)
+  const [cartData, setCartData] = useState(defaultValue);
 
-  const fetchCart =  () => {
-    axiosInstance.get('admin/statistics', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    })
-    .then(res => setCartData(res.data))
-  }
-  
-  useEffect(()=> {
-    fetchCart()
-     },[])
-     
+  const fetchCart = () => {
+    axiosInstance
+      .get("admin/statistics", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setCartData(res.data));
+  };
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
   return (
     <>
       {/* Header */}
@@ -82,22 +80,12 @@ const HeaderStats: React.FC = () => {
                   statTitle={PN.convertEnToPe(cartData.deactiveusers)}
                 />
               </div>
-              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                <CardStats
-                  statSubtitle="دسته بندی"
-                  statIconName={<BiCategoryAlt />}
-                  statIconColor="bg-gray-500"
-                  statTitle={PN.convertEnToPe(cartData.allcategories)}
-
-                />
-              </div> */}
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="کتاب ها"
                   statIconName={<ImBooks />}
                   statIconColor="bg-green-500"
                   statTitle={PN.convertEnToPe(cartData.allbooks)}
-
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -106,7 +94,6 @@ const HeaderStats: React.FC = () => {
                   statIconName={<TbTruckLoading />}
                   statIconColor="bg-blue-500"
                   statTitle={PN.convertEnToPe(cartData.allorders)}
-
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -115,7 +102,6 @@ const HeaderStats: React.FC = () => {
                   statIconName={<MdFileDownloadDone />}
                   statIconColor="bg-slate-500"
                   statTitle={PN.convertEnToPe(cartData.alldoneorders)}
-
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -124,7 +110,6 @@ const HeaderStats: React.FC = () => {
                   statIconName={<MdPendingActions />}
                   statIconColor="bg-sky-500"
                   statTitle={PN.convertEnToPe(cartData.activeorders)}
-
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -133,40 +118,8 @@ const HeaderStats: React.FC = () => {
                   statIconName={<BsFilePostFill />}
                   statIconColor="bg-orange-500"
                   statTitle={PN.convertEnToPe(cartData.allposts)}
-
                 />
               </div>
-              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                <CardStats
-                  statSubtitle="کامنت ها"
-                  statIconName={<MdOutlineComment />}
-                  statIconColor="bg-sky-500"
-                  statTitle={PN.convertEnToPe(cartData.allcomments)}
-
-                />
-              </div> */}
-
- 
-
-
-              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                <CardStats
-                  statSubtitle="لایک ها"
-                  statIconName={<AiTwotoneLike />}
-                  statIconColor="bg-red-500"
-                  statTitle={PN.convertEnToPe(cartData.alllikes)}
-
-                />
-              </div> */}
-              {/* <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                <CardStats
-                  statSubtitle="نظرات کتاب ها"
-                  statIconName={<FaComments />}
-                  statIconColor="bg-green-500"
-                  statTitle={PN.convertEnToPe(cartData.allbookrates)}
-
-                />
-              </div> */}
             </div>
           </div>
         </div>

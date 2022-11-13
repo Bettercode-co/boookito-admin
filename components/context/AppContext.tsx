@@ -1,12 +1,12 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 const AppContext = createContext(null);
 
 export function AppWrapper({ children }) {
-  const [isHeaderStats, setIsHeaderStats] = useState<Boolean>(false)
+  const [isHeaderStats, setIsHeaderStats] = useState<Boolean>(false);
 
   return (
-    <AppContext.Provider value={{isHeaderStats, setIsHeaderStats}}>
+    <AppContext.Provider value={{ isHeaderStats, setIsHeaderStats }}>
       {children}
     </AppContext.Provider>
   );
