@@ -51,8 +51,7 @@ const Login: React.FC = () => {
           getCookie("ruleBase") === "ADMIN" &&
           router.push("/admin/dashboard")
       )
-      .catch((err) => console.log(err));
-      // .catch((err) => notifyError(err.response.data.message[0]));
+      .catch((err) => notifyError(err.response.data.message[0]));
   };
 
   return (
