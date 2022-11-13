@@ -21,13 +21,29 @@ import { AiOutlineStop } from "react-icons/ai";
 const statusHandler = (value) => {
   switch (value) {
     case "PENDING":
-      return <div className="flex items-center justify-center  text-yellow-700"><CgSandClock /> در انتظار </div>;
+      return (
+        <div className="flex items-center justify-center  text-yellow-700">
+          <CgSandClock /> در انتظار{" "}
+        </div>
+      );
     case "CLOSED":
-      return <div className="flex items-center justify-center  text-rose-700"><RiCloseLine /> بسته شده </div>;
+      return (
+        <div className="flex items-center justify-center  text-rose-700">
+          <RiCloseLine /> بسته شده{" "}
+        </div>
+      );
     case "ACTIVE":
-      return <div className="flex items-center justify-center  text-green-600"><MdDone /> فعال </div>;
+      return (
+        <div className="flex items-center justify-center  text-green-600">
+          <MdDone /> فعال{" "}
+        </div>
+      );
     case "REJECT":
-      return <div className="flex items-center justify-center  text-orange-600"><AiOutlineStop /> رد شده </div>;
+      return (
+        <div className="flex items-center justify-center  text-orange-600">
+          <AiOutlineStop /> رد شده{" "}
+        </div>
+      );
   }
 };
 
@@ -54,7 +70,7 @@ const Orders: NextPage = () => {
   const [ordersData, setOrdersData] = useState(null);
   const [pagenumber, setPageNumber] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [rowDataId, setRowDataId] = useState<number>(0)
+  const [rowDataId, setRowDataId] = useState<number>(0);
 
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -91,17 +107,6 @@ const Orders: NextPage = () => {
       accessor: "book.id",
       minWidth: 150,
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
-    },
-
-    {
-      Header: "ثبت کننده",
-      accessor: "reference",
-      minWidth: 200,
-      Cell: (cell) => {
-        {
-          return cell.value === "USER" ? <div>کاربر</div> : <div>ادمین</div>;
-        }
-      },
     },
     {
       Header: "وضعیت",
@@ -173,9 +178,18 @@ const Orders: NextPage = () => {
       accessor: "action",
       Cell: (cell) => (
         <div className="flex items-center gap-3">
-          <button value={cell.accessor} className="felx items-center min-w-max  cursor-pointer"  disabled={cell.row.original.orderStatus === 'CLOSED'}  onClick={() => handleDelete(cell.row.original)}>
-          <span className={`flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${cell.row.original.orderStatus === 'CLOSED' && 'bg-gray-200 hover:bg-gray-200 hover:text-white hover:cursor-not-allowed'} `}>
-
+          <button
+            value={cell.accessor}
+            className="felx items-center min-w-max  cursor-pointer"
+            disabled={cell.row.original.orderStatus === "CLOSED"}
+            onClick={() => handleDelete(cell.row.original)}
+          >
+            <span
+              className={`flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${
+                cell.row.original.orderStatus === "CLOSED" &&
+                "bg-gray-200 hover:bg-gray-200 hover:text-white hover:cursor-not-allowed"
+              } `}
+            >
               <MdDelete /> &nbsp; بستن سفارش
             </span>
           </button>
@@ -184,41 +198,47 @@ const Orders: NextPage = () => {
     },
   ];
 
-
   const handleDelete = (rowDetail) => {
-    axiosInstance.post('admin/closeorder', { trakingCode:rowDetail.trakingCode }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    })
-    .then(() => notifySuccess())
-    .then(() => setRowDataId(rowDetail.id))
-    .catch(() => notifyError("خطا در بستن سفارش"))
+    axiosInstance
+      .post(
+        "admin/closeorder",
+        { trakingCode: rowDetail.trakingCode },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => notifySuccess())
+      .then(() => setRowDataId(rowDetail.id))
+      .catch(() => notifyError("خطا در بستن سفارش"));
   };
 
   if (!ordersData) {
-    return <div className="h-[80vh] w-full mx-auto flex items-center justify-center">
-    <svg
-      className="animate-spin h-14 w-14 mx-auto text-gray-600"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx={12}
-        cy={12}
-        r={10}
-        stroke="currentColor"
-        strokeWidth={4}
-      />
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-      />
-    </svg>
-  </div>;
+    return (
+      <div className="h-[80vh] w-full mx-auto flex items-center justify-center">
+        <svg
+          className="animate-spin h-14 w-14 mx-auto text-gray-600"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx={12}
+            cy={12}
+            r={10}
+            stroke="currentColor"
+            strokeWidth={4}
+          />
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          />
+        </svg>
+      </div>
+    );
   }
   return (
     <div className="pt-14">

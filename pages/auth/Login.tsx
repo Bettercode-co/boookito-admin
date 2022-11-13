@@ -1,6 +1,5 @@
-
 import React, { useState } from "react";
-import { setCookie, getCookie } from 'cookies-next';
+import { setCookie, getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,37 +17,43 @@ const notifyError = (err) =>
     progress: undefined,
   });
 
-
-
 const Login: React.FC = () => {
-  const [formData, setFormData] = useState(null)
+  const [formData, setFormData] = useState(null);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const changeHandler = (e) => {
     setFormData({
       ...formData,
-      [e.target.name] : e.target.value.trim()
-    })    
-  }
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
 
   const cookieHandler = (res) => {
-    if(res.data.accessToken  && res.data.ruleBase){
-      setCookie("accessToken", `${res.data.accessToken}`)
-      setCookie("ruleBase", `${res.data.ruleBase}`)
-    }else{
-      notifyError('رمز عبور یا نام کاربری اشباه است')
+    if (res.data.accessToken && res.data.ruleBase) {
+      setCookie("accessToken", `${res.data.accessToken}`);
+      setCookie("ruleBase", `${res.data.ruleBase}`);
+    } else {
+      notifyError("رمز عبور یا نام کاربری اشباه است");
     }
-  }
-
+  };
 
   const submitForm = (e) => {
     e.preventDefault();
-    axiosInstance.post('auth/login', formData, {headers: { 'content-type': 'application/json' }})
-    .then(response => cookieHandler(response))
-    .then((() => getCookie('accessToken') && getCookie('ruleBase') === 'ADMIN' && router.push('/admin/dashboard')))
-    .catch((err) => notifyError(err.response.data.message[0]))
-  }
+    axiosInstance
+      .post("auth/login", formData, {
+        headers: { "content-type": "application/json" },
+      })
+      .then((response) => cookieHandler(response))
+      .then(
+        () =>
+          getCookie("accessToken") &&
+          getCookie("ruleBase") === "ADMIN" &&
+          router.push("/admin/dashboard")
+      )
+      .catch((err) => console.log(err));
+      // .catch((err) => notifyError(err.response.data.message[0]));
+  };
 
   return (
     <Auth>
@@ -66,8 +71,7 @@ const Login: React.FC = () => {
                 <hr className="mt-6 border-b-1 border-slate-300" />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <div className="text-slate-400 text-center mb-3 font-bold">
-                </div>
+                <div className="text-slate-400 text-center mb-3 font-bold"></div>
                 <form onSubmit={submitForm}>
                   <div className="relative w-full mb-3">
                     <label
@@ -103,7 +107,6 @@ const Login: React.FC = () => {
                     />
                   </div>
 
-
                   <div className="text-center mt-6">
                     <button
                       className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-1 mb-1 w-full ease-linear transition-all duration-150"
@@ -117,18 +120,17 @@ const Login: React.FC = () => {
             </div>
           </div>
         </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={true}
-      />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={true}
+        />
       </div>
     </Auth>
   );
 };
 
 export default Login;
-

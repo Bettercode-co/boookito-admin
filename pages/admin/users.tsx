@@ -40,7 +40,7 @@ const Users: NextPage = () => {
       .get(`admin/users/${pagenumber}`, {
         headers: {
           Authorization: `Bearer ${token}`,
-        }
+        },
       })
       .then((res) => setUsersData(res.data));
   };
@@ -98,7 +98,8 @@ const Users: NextPage = () => {
         ) : (
           <div>ندارد</div>
         );
-      },    },
+      },
+    },
     {
       Header: "نام کاربری شبکه اجتماعی",
       accessor: "usernameSocial",
@@ -109,7 +110,8 @@ const Users: NextPage = () => {
         ) : (
           <div>ندارد</div>
         );
-      },    },
+      },
+    },
     {
       Header: "مقطع",
       accessor: "level",
@@ -163,8 +165,9 @@ const Users: NextPage = () => {
             value={cell.accessor}
             className="felx items-center min-w-max"
             onClick={handleEdit}
+            disabled
           >
-            <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
+            <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white disabled:cursor-not-allowed">
               <RiEditFill /> &nbsp; ویرایش
             </span>
           </button>
@@ -172,8 +175,9 @@ const Users: NextPage = () => {
             value={cell.accessor}
             className="felx items-center min-w-max  cursor-pointer"
             onClick={handleDelete}
+            disabled
           >
-            <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white ">
+            <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white disabled:cursor-not-allowed ">
               <MdDelete /> &nbsp; حذف
             </span>
           </button>

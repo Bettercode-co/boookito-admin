@@ -5,14 +5,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TiTimes } from "react-icons/ti";
 
-
 const eventHandler = (e) => {
   e.stopPropagation();
 };
 
 // access token
 const token = getCookie("accessToken");
-
 
 //tostify
 const notifyError = (err) =>
@@ -33,25 +31,27 @@ const notifySuccess = () =>
   });
 
 const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
-  const [inputValue, setInputValue] = useState<string>('')
+  const [inputValue, setInputValue] = useState<string>("");
 
   const newCategoryHandler = (event) => {
-    event.preventDefault()
-      axiosInstance
-        .post("admin/categories", {categoryName: inputValue}, {
+    event.preventDefault();
+    axiosInstance
+      .post(
+        "admin/categories",
+        { categoryName: inputValue },
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        })
-        .then(() => notifySuccess())
-        .then(() => {
-          setIsModalOpen(false)
-          setInputValue('')
-        })
-        .catch((err) => notifyError(err.response.data.message[0]))
-
+        }
+      )
+      .then(() => notifySuccess())
+      .then(() => {
+        setIsModalOpen(false);
+        setInputValue("");
+      })
+      .catch((err) => notifyError(err.response.data.message[0]));
   };
-
 
   return (
     <>
@@ -60,33 +60,33 @@ const CategoryModal = ({ setIsModalOpen, isModalOpen }) => {
           className={`w-full h-full  flex justify-center items-center fixed t-0 r-0  bg-gray-300 bg-opacity-50 transition-all duration-300 ease-in`}
           onClick={() => {
             setIsModalOpen(false);
-            setInputValue('')
+            setInputValue("");
           }}
-                  >
+        >
           <form
-          onSubmit={(event) => newCategoryHandler(event)}
+            onSubmit={(event) => newCategoryHandler(event)}
             onClick={eventHandler}
             className="relative w-96 h-[40vh] rounded bg-white flex flex-col p-10  justify-around items-center"
           >
             <div
-          onClick={() => {
-            setIsModalOpen(false);
-            setInputValue('')
-          }}
-            className="absolute right-5 top-5 cursor-pointer"
+              onClick={() => {
+                setIsModalOpen(false);
+                setInputValue("");
+              }}
+              className="absolute right-5 top-5 cursor-pointer"
             >
               <TiTimes size={20} />
             </div>
             <div className="w-full text-center">
-            <h4>دسته بندی جدید</h4>
-            <div className="h-[1px] bg-slate-200 w-full mt-5" />
+              <h4>دسته بندی جدید</h4>
+              <div className="h-[1px] bg-slate-200 w-full mt-5" />
             </div>
             <label className="w-full relative">
-             نام دسته بندی
+              نام دسته بندی
               <input
                 className="w-full border border-[#ccc] rounded h-[38px] mt-2 px-3"
                 value={inputValue}
-                onChange={event => setInputValue(event.target.value)}
+                onChange={(event) => setInputValue(event.target.value)}
               />
             </label>
             <button

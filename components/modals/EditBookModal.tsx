@@ -128,7 +128,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const [isImageUplaoded, setIsImageUplaoded] = useState<boolean>(false);
   const [shelfOject, setShelfObject] = useState<any>();
 
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const inputImageUploadeRef = React.useRef(null);
   const triggerRef = () => inputImageUploadeRef.current.click();
@@ -204,15 +204,15 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
       });
 
       let shelfNameSplited = await data.shelfName.split("");
-      if(shelfLetters.includes(shelfNameSplited.pop())){
+      if (shelfLetters.includes(shelfNameSplited.at(-1))) {
         setShelfObject({
           shelfNumber: +shelfNameSplited.slice(0, -1).join(""),
           shelfLetter: shelfNameSplited.pop(),
         });
-      }else{
+      } else {
         setShelfObject({
-          shelfNumber: +shelfNameSplited.slice(1).join(""),
           shelfLetter: shelfNameSplited.shift(),
+          shelfNumber: +shelfNameSplited.slice(0).join(""),
         });
       }
     }
@@ -236,25 +236,28 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
     return stringArray;
   };
 
+
   const fetchEditBook = (data, id, event) => {
+    Object.keys(data).forEach((key) => {
+      if (!data[key]) {
+        delete data[key];
+      }
+    });
     const allData = imageLink
       ? {
-          ...data,
           ...bookData,
-          ...newBook,
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           imageSource: imageLink,
           registeredAt: todayDate,
         }
       : {
-          ...data,
           ...bookData,
-          ...newBook,
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           registeredAt: todayDate,
         };
+    const newAllData = { ...allData, ...data, ...newBook };
     axiosInstance
-      .patch(`admin/editbook/${id}`, allData, {
+      .patch(`admin/editbook/${id}`, newAllData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -263,6 +266,14 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
       .then(() => {
         event.target.reset();
         closeAndClearModal();
+        reset(
+          {bookName: null,
+          numberPage: null,
+          publisherName: null,
+          shabak: null,
+          totalEntity: null,
+          yearPublish: null
+      })
       })
       .catch(() => notifyError("خطا در ارسال "));
   };
@@ -333,7 +344,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
               fetchEditBook(data, rowDataId.id, event);
             })}
             onClick={eventHandler}
-            className="relative mt-[100vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
+            className="relative mt-[250vh] mb-[5vh] md:mt-0 w-full mx-10  rounded bg-white flex flex-col p-10  justify-between items-center"
           >
             <div
               onClick={closeAndClearModal}
@@ -399,7 +410,6 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                         valueAsNumber: true,
                         maxLength: 4,
                         minLength: 4,
-                        
                       })}
                       placeholder={bookData.yearPublish}
                     />

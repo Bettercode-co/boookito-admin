@@ -59,58 +59,60 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
   });
 
   const neworderHandler = () => {
-      console.log(newOrder)
-      axiosInstance
-        .post("admin/neworder", newOrder, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then(() => notifySuccess())
-        .catch((err) => {
-            err.response.data.message.map(errMsg => {
-              notifyError(errMsg)
-            })
-        })
+    axiosInstance
+      .post("admin/neworder", newOrder, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => notifySuccess())
+      .then(() => setIsModalOpen(false))
+      .catch((err) => {
+        err.response.data.message.map((errMsg) => {
+          notifyError(errMsg);
+        });
+      });
   };
 
   const fetchNationCode = async () => {
-    axiosInstance.get(`admin/user/search/${nationId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      let users = res.data;
-      nationCodeOptionFilter(users);
-    });
+    axiosInstance
+      .get(`admin/user/search/${nationId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        let users = res.data;
+        nationCodeOptionFilter(users);
+      });
   };
 
   const fetchBook = async () => {
-     axiosInstance.get(`admin/book/${bookId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => {
-      let books = res.data.result;
-      bookOptionFilter(books);
-    });
+    axiosInstance
+      .get(`admin/book/${bookId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        let books = res.data.result;
+        bookOptionFilter(books);
+      });
   };
 
   const bookOptionFilter = (data) => {
-    const dataArray = []
-    if(data){
-      dataArray.push(data)
+    const dataArray = [];
+    if (data) {
+      dataArray.push(data);
       const filterdData = dataArray.map((item) => {
         return {
           value: item.id,
-          label: `${PN.convertEnToPe(item.id)} - ${item.bookName}`
+          label: `${PN.convertEnToPe(item.id)} - ${item.bookName}`,
         };
       });
       setBookOption(filterdData);
     }
   };
-
 
   const nationCodeOptionFilter = (data) => {
     const dataArray = data.map((item) => {
@@ -123,7 +125,6 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     });
     setNationOption(dataArray);
   };
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -139,17 +140,14 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
     return () => clearTimeout(timer);
   }, [nationId]);
 
-
-
-
   return (
     <>
       {isModalOpen && (
         <div
           className={`w-full h-full  flex justify-center items-center fixed t-0 r-0  bg-gray-300 bg-opacity-50 transition-all duration-300 ease-in`}
           onClick={() => {
-            setNewOrder({day: 15})  
-            setIsModalOpen(false)
+            setNewOrder({ day: 15 });
+            setIsModalOpen(false);
           }}
         >
           <div
@@ -158,8 +156,8 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
           >
             <div
               onClick={() => {
-                setNewOrder({day: 15})  
-                setIsModalOpen(false)
+                setNewOrder({ day: 15 });
+                setIsModalOpen(false);
               }}
               className="absolute right-5 top-5 cursor-pointer"
             >
@@ -200,21 +198,18 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
               />
             </label>
             <label className="w-64 flex flex-col items-center relative">
-              <span className="w-full text-right" >
-             کد کتاب  
-              </span>
+              <span className="w-full text-right">کد کتاب</span>
               <input
                 className="w-64 border border-[#ccc] rounded h-[38px] mt-2 disabled:bg-gray-200"
-                type='number'
-                disabled={!newOrder.book }
-                onChange={e => {
+                type="number"
+                disabled={!newOrder.book}
+                onChange={(e) => {
                   setNewOrder({
                     ...newOrder,
-                    bookCode: e.target.value
-                  })
+                    bookCode: e.target.value,
+                  });
                 }}
               />
-                
             </label>
             <label htmlFor="duration">
               مدت سفارش
