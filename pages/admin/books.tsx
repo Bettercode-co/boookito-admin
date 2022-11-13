@@ -61,14 +61,6 @@ const Books: NextPage = () => {
     }
   }
 
-  // useEffect(() => {
-  //   if(searchInputValue){
-  //     searchFetchBook(searchInputValue)
-  //   }else{
-  //     fetchBooks()
-  //   }
-  // },[searchInputValue])
-
   const COLUMNS = [
     {
       Header: "عکس",
