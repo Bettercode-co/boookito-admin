@@ -15,8 +15,19 @@ import BooksModal from "../../components/modals/BooksModal";
 import { getCookie } from "cookies-next";
 import EditBooksModal from "../../components/modals/EditBookModal";
 import DeleteModal from "../../components/modals/DeleteModal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const token = getCookie("accessToken");
+
+const notifyError = (err) =>
+  toast.error(err, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    progress: undefined,
+  });
 
 const Books: NextPage = () => {
   const [booksData, setBooksData] = useState(null);
@@ -42,11 +53,13 @@ const Books: NextPage = () => {
   };
 
   useEffect(() => {
+    const timer = setTimeout(() => {
     if(searchInputValue){
       searchFetchBook(searchInputValue)
     }else{
       fetchBooks()
-    }
+    }}, 2000)
+    return () => clearTimeout(timer);
   }, [pagenumber, isModalOpen, isEditModalOpen, isDeleteModalOpen, searchInputValue]);
 
   const searchFetchBook = (value) => {
@@ -57,7 +70,7 @@ const Books: NextPage = () => {
         },
       })
       .then(res => setBooksData(res.data.result))
-      .catch(() => console.log('مشکل در جست و جوی کتاب'))
+      .catch(() => notifyError('خطا در جست و جوی کتاب'))
     }
   }
 
@@ -288,6 +301,14 @@ const Books: NextPage = () => {
           قبل
         </button>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+      />
     </div>
   );
 };

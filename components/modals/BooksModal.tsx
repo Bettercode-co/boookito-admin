@@ -101,6 +101,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -191,6 +192,14 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
       .then(() => {
         closeAndClearModal();
         event.target.reset();
+        reset(
+          {bookName: null,
+          numberPage: null,
+          publisherName: null,
+          shabak: null,
+          totalEntity: null,
+          yearPublish: null,
+      })
       })
       .catch((err) => {
         if (err.response.data.message.length > 1) {
