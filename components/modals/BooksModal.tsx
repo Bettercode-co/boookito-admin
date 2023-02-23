@@ -92,6 +92,9 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     { translator: "" },
   ]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [categoryId, setCategoryId] = useState<number>(1);
+  const [subCategories, setSubCategories] = useState<Category[]>([]);
+  const [subCategoryId, setSubCategoryId] = useState<number>(undefined);
   const [newBook, setNewBook] = useState({});
   const [imageLink, setImageLink] = useState<string>("");
   const [newImage, setNewImage] = useState(null);
@@ -174,12 +177,14 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           imageSource: imageLink,
           registeredAt: todayDate,
+          subCategoryId: subCategoryId
         }
       : {
           ...newBook,
           ...data,
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           registeredAt: todayDate,
+          subCategoryId: subCategoryId
         };
 
     axiosInstance
@@ -234,6 +239,33 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
         categoryOptionFilter(cat);
       });
   };
+
+  const subCategoryOptionFilter = (data) => {
+    const dataArray = data.map((item) => {
+      return {
+        value: item.id,
+        label: item.name,
+      };
+    });
+    setSubCategories(dataArray);
+  };
+
+  const fetchSubCategory = async () => {
+    await axiosInstance
+      .get("admin/categorysub/" + categoryId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        let cat = res.data;
+        subCategoryOptionFilter(cat);
+      });
+  };
+
+  useEffect(() => {
+    fetchSubCategory();
+  }, [categoryId])
 
   //   -----------------------MULTI INPUT HANDLER----------------------------------
   const addAthorHandler = () => {
@@ -316,15 +348,27 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     <h4>دسته بندی</h4>
                     <Select
                       onChange={(e: any) =>
-                        setNewBook({
-                          ...newBook,
-                          categoryId: e.value,
-                        })
+                        setCategoryId(e.value)
                       }
                       id="category"
                       isSearchable={true}
                       className=" w-full"
                       options={categories}
+                      placeholder="دسته بندی"
+                    />
+                  </label>
+                </div>
+                <div className="w-full">
+                  <label className="text-right w-full relative" htmlFor="">
+                    <h4>زیر دسته بندی</h4>
+                    <Select
+                      onChange={(e: any) =>
+                        setSubCategoryId(e.value)
+                      }
+                      id="subCategory"
+                      isSearchable={true}
+                      className=" w-full"
+                      options={subCategories}
                       placeholder="دسته بندی"
                     />
                   </label>

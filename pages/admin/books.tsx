@@ -122,7 +122,12 @@ const Books: NextPage = () => {
     },
     {
       Header: "دسته بندی",
-      accessor: "category.categoryName",
+      accessor: "subCategory.category.categoryName",
+      minWidth: 250,
+    },
+    {
+      Header: "زیر دسته بندی",
+      accessor: "subCategory.name",
       minWidth: 250,
     },
     {

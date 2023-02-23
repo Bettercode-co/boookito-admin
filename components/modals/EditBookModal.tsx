@@ -97,6 +97,9 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
     { translator: "" },
   ]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [categoryId, setCategoryId] = useState<number>(1);
+  const [subCategories, setSubCategories] = useState<Category[]>([]);
+  const [subCategoryId, setSubCategoryId] = useState<number>(undefined);
   const [newBook, setNewBook] = useState({});
   const [imageLink, setImageLink] = useState<string>("");
   const [newImage, setNewImage] = useState(null);
@@ -230,7 +233,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           registeredAt: todayDate,
         };
-    const newAllData = { ...allData, ...data, ...newBook };
+    const newAllData = { ...allData, ...data, ...newBook, subCategoryId };
     axiosInstance
       .patch(`admin/editbook/${id}`, newAllData, {
         headers: {
@@ -275,6 +278,33 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
         categoryOptionFilter(cat);
       });
   };
+
+  const subCategoryOptionFilter = (data) => {
+    const dataArray = data.map((item) => {
+      return {
+        value: item.id,
+        label: item.name,
+      };
+    });
+    setSubCategories(dataArray);
+  };
+
+  const fetchSubCategory = async () => {
+    await axiosInstance
+      .get("admin/categorysub/" + categoryId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        let cat = res.data;
+        subCategoryOptionFilter(cat);
+      });
+  };
+
+  useEffect(() => {
+    fetchSubCategory();
+  }, [categoryId])
 
   //   -----------------------MULTI INPUT HANDLER----------------------------------
   const addAthorHandler = () => {
@@ -351,16 +381,28 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                     <h4>دسته بندی</h4>
                     <Select
                       onChange={(e: any) =>
-                        setNewBook({
-                          ...newBook,
-                          categoryId: e.value,
-                        })
+                        setCategoryId(e.value)
                       }
                       id="category"
                       isSearchable={true}
                       className=" w-full"
                       options={categories}
-                      placeholder={rowDataId.category.categoryName}
+                      placeholder={rowDataId.subCategory.category.categoryName}
+                    />
+                  </label>
+                </div>
+                <div className="w-full">
+                  <label className="text-right w-full relative" htmlFor="">
+                    <h4>زیر دسته بندی</h4>
+                    <Select
+                      onChange={(e: any) =>
+                        setSubCategoryId(e.value)
+                      }
+                      id="category"
+                      isSearchable={true}
+                      className=" w-full"
+                      options={subCategories}
+                      placeholder={rowDataId.subCategory.name}
                     />
                   </label>
                 </div>

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TiTimes } from "react-icons/ti";
+import Select from "react-select";
 
 const eventHandler = (e) => {
   e.stopPropagation();
@@ -36,13 +37,42 @@ const EditCategoryModal = ({
   rowDataId,
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
+  const [categoryId, setCategoryid] = useState<number>(undefined);
+  const [categories, setCategories] = useState<any>();
+
+  const categoryOptionFilter = (data) => {
+    const dataArray = data.map((item) => {
+      return {
+        value: item.id,
+        label: item.categoryName,
+      };
+    });
+    setCategories(dataArray);
+  };
+
+  const fetchCategory = async () => {
+    await axiosInstance
+      .get("admin/categories", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        let cat = res.data;
+        categoryOptionFilter(cat);
+      });
+  };
+
+  useEffect(() => {
+    fetchCategory();
+  }, []);
 
   const editCategoryHandler = (rowDataId, event) => {
     event.preventDefault();
     axiosInstance
       .patch(
-        `admin/categories/${rowDataId.id}`,
-        { categoryName: inputValue },
+        `admin/subcategories/${rowDataId.id}`,
+        { name: inputValue, categoryId: categoryId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -84,8 +114,23 @@ const EditCategoryModal = ({
               <TiTimes size={20} />
             </div>
             <div className="w-full text-center">
-              <h4>ویرایش دسته بندی</h4>
+              <h4>ویرایش زیر دسته بندی</h4>
               <div className="h-[1px] bg-slate-200 w-full mt-5" />
+            </div>
+            <div className="w-full">
+                <label className="text-right w-full relative" htmlFor="">
+                  <h4>دسته بندی</h4>
+                  <Select
+                    onChange={(e: any) =>
+                      setCategoryid(e.value)
+                    }
+                    id="category"
+                    isSearchable={true}
+                    className=" w-full"
+                    options={categories}
+                    placeholder="دسته بندی"
+                  />
+                </label>
             </div>
             <label className="w-full relative">
               نام دسته بندی
@@ -94,6 +139,7 @@ const EditCategoryModal = ({
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
                 placeholder={rowDataId.categoryName}
+                disabled={categories ? false : true}
               />
             </label>
             <button

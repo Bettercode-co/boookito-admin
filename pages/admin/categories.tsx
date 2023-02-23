@@ -12,12 +12,14 @@ import { RiEditFill } from "react-icons/ri";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import EditCategoryModal from "../../components/modals/EditCategoryModal";
 import DeleteModal from "../../components/modals/DeleteModal";
+import SubCategoryModal from "../../components/modals/SubCategoryModal";
 
 const token = getCookie("accessToken");
 
 const Categories: NextPage = () => {
   const [categoriesData, setCategoriesData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpenSub, setIsModalOpenSub] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [rowDataId, setRowDataId] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
@@ -26,14 +28,21 @@ const Categories: NextPage = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const moadalHandlerSub = () => {
+    setIsModalOpenSub(!isModalOpenSub);
+  };
+
   const fetchOrders = () => {
     axiosInstance
-      .get(`admin/categories`, {
+      .get(`admin/subcategories`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => setCategoriesData(res.data));
+      .then((res) => { 
+        setCategoriesData(res.data);
+        console.log({subcategory: res.data})
+      });
   };
 
   useEffect(() => {
@@ -43,7 +52,12 @@ const Categories: NextPage = () => {
   const COLUMNS = [
     {
       Header: "نام دسته بندی",
-      accessor: "categoryName",
+      accessor: "category.categoryName",
+      minWidth: 50,
+    },
+    {
+      Header: "نام زیر دسته بندی",
+      accessor: "name",
       minWidth: 50,
     },
     {
@@ -118,6 +132,12 @@ const Categories: NextPage = () => {
         />
       </div>
       <div className="fixed top-0 right-0 z-50">
+        <SubCategoryModal
+          isModalOpen={isModalOpenSub}
+          setIsModalOpen={setIsModalOpenSub}
+        />
+      </div>
+      <div className="fixed top-0 right-0 z-50">
         <EditCategoryModal
           isEditModalOpen={isEditModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}
@@ -129,16 +149,22 @@ const Categories: NextPage = () => {
           isDeleteModalOpen={isDeleteModalOpen}
           setIsDeleteModalOpen={setIsDeleteModalOpen}
           rowData={rowDataId}
-          fetchUrl="admin/categories/"
+          fetchUrl="admin/subcategories/"
         />
       </div>
       {/* <SearchBox /> */}
-      <div className=" flex justify-end">
+      <div className=" flex gap-3 justify-end">
         <button
           onClick={moadalHandler}
-          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+          className=" left-6 flex items-center justify-center p-4 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
         >
-          <IoIosAddCircleOutline /> اضافه کردن
+          <IoIosAddCircleOutline />  اضافه کردن دسته اصلی
+        </button>
+        <button
+          onClick={moadalHandlerSub}
+          className=" left-6 flex items-center justify-center p-4 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+        >
+          <IoIosAddCircleOutline />  اضافه کردن زیر دسته 
         </button>
       </div>
       <BasicTable rowsdata={categoriesData} columnsData={COLUMNS} />
