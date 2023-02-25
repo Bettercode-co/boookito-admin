@@ -154,6 +154,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   };
 
   const bookInputHandler = async (data) => {
+    console.log(data);
     if (data) {
       let authorListArray = await data.authorName.map((author) => {
         return {
@@ -178,6 +179,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
         totalEntity: data.totalEntity,
         shabak: data.shabak,
         categoryId: data.categoryId,
+        subCategoryId: data.subCategoryId,
         imageSource: data.imageSource,
       });
 
