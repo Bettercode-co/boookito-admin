@@ -234,7 +234,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           registeredAt: todayDate,
         };
-    const newAllData = { ...allData, ...data, ...newBook, subCategoryId };
+    const newAllData = { ...allData, ...data, ...newBook, subCategoryId: bookData.subCategoryId };
     axiosInstance
       .patch(`admin/editbook/${id}`, newAllData, {
         headers: {

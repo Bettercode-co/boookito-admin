@@ -64,7 +64,7 @@ const Books: NextPage = () => {
 
   const searchFetchBook = (value) => {
     if(searchInputValue){
-      axiosInstance.get(`admin/searchbooks/${value}`, {
+      axiosInstance.post(`admin/searchbooks`, { name: value}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
