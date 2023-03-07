@@ -14,6 +14,7 @@ import Image from "next/image";
 import axios from "axios";
 import moment from "jalali-moment";
 import PN from "persian-number";
+import Compressor from "compressorjs";
 
 type AthorListType = {
   athor: string;
@@ -112,6 +113,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const triggerRef = () => inputImageUploadeRef.current.click();
 
   const inputUploadHandler = (event) => {
+    setNewImage(URL.createObjectURL(event.target.files[0]));
     const formData = new FormData();
     setNewImage(URL.createObjectURL(event.target.files[0]));
     if (event.target.files[0] && event.target.files) {
@@ -234,7 +236,12 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           registeredAt: todayDate,
         };
-    const newAllData = { ...allData, ...data, ...newBook, subCategoryId: bookData.subCategoryId };
+    const newAllData = { 
+      ...allData, 
+      ...data, 
+      ...newBook, 
+      subCategoryId: subCategoryId ? subCategoryId : bookData.subCategoryId 
+    };
     axiosInstance
       .patch(`admin/editbook/${id}`, newAllData, {
         headers: {

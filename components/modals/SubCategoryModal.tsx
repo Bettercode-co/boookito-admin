@@ -62,7 +62,7 @@ const SubCategoryModal = ({ setIsModalOpen, isModalOpen }) => {
 
   useEffect(() => {
     fetchCategory();
-  }, []);
+  }, [isModalOpen]);
 
   const newCategoryHandler = (event) => {
     event.preventDefault();
