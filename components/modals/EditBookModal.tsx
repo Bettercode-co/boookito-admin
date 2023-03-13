@@ -125,13 +125,12 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const imageUploader = (formImage) => {
     setIsImageUplaoded(true);
     axios
-      .post(" https://core.boookito.ir/image/upload", formImage, {
+      .post(" https://api.boookito.ir/api/v2/uploader", formImage, {
         headers: {
-          authorization:
-            "c4a12f24ceabef771459150b0a953e81e3776a41800798e27808b87c95dd3b0c31",
+          Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => setImageLink(res.data.link))
+      .then((res) => setImageLink(res.data.url))
       .then(() => notifySuccess("عکس با موفقیت آپلود شد"))
       .finally(() => setIsImageUplaoded(false));
   };

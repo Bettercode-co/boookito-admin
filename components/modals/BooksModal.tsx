@@ -38,11 +38,13 @@ type FormValues = {
 };
 
 //shelf select box options
-const shelfLetters = [...Array(26)].map((_, i) => String.fromCharCode(i + 97).toUpperCase());
+const shelfLetters = [...Array(26)].map((_, i) =>
+  String.fromCharCode(i + 97).toUpperCase()
+);
 
-const shelfNubmers = []
-for(let i = 1 ; i <= 40 ; i++){
-  shelfNubmers.push(i)
+const shelfNubmers = [];
+for (let i = 1; i <= 40; i++) {
+  shelfNubmers.push(i);
 }
 
 const shelfLettersOptions = shelfLetters.map((letter) => {
@@ -123,13 +125,12 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   const imageUploader = (formImage) => {
     setIsImageUplaoded(true);
     axios
-      .post(" https://core.boookito.ir/image/upload", formImage, {
+      .post(" https://api.boookito.ir/api/v2/uploader", formImage, {
         headers: {
-          authorization:
-            "c4a12f24ceabef771459150b0a953e81e3776a41800798e27808b87c95dd3b0c31",
+          Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => setImageLink(res.data.link))
+      .then((res) => setImageLink(res.data.url))
       .then(() => notifySuccess("عکس با موفقیت آپلود شد"))
       .catch((err) => {
         if (err.response.data.message.length > 1) {
@@ -177,14 +178,14 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           imageSource: imageLink,
           registeredAt: todayDate,
-          subCategoryId: subCategoryId
+          subCategoryId: subCategoryId,
         }
       : {
           ...newBook,
           ...data,
           shelfName: shelfOject?.shelfLetter + shelfOject?.shelfNumber,
           registeredAt: todayDate,
-          subCategoryId: subCategoryId
+          subCategoryId: subCategoryId,
         };
 
     axiosInstance
@@ -197,14 +198,14 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
       .then(() => {
         closeAndClearModal();
         event.target.reset();
-        reset(
-          {bookName: null,
+        reset({
+          bookName: null,
           numberPage: null,
           publisherName: null,
           shabak: null,
           totalEntity: null,
           yearPublish: null,
-      })
+        });
       })
       .catch((err) => {
         if (err.response.data.message.length > 1) {
@@ -265,7 +266,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
 
   useEffect(() => {
     fetchSubCategory();
-  }, [categoryId])
+  }, [categoryId]);
 
   //   -----------------------MULTI INPUT HANDLER----------------------------------
   const addAthorHandler = () => {
@@ -347,9 +348,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                   <label className="text-right w-full relative" htmlFor="">
                     <h4>دسته بندی</h4>
                     <Select
-                      onChange={(e: any) =>
-                        setCategoryId(e.value)
-                      }
+                      onChange={(e: any) => setCategoryId(e.value)}
                       id="category"
                       isSearchable={true}
                       className=" w-full"
@@ -362,9 +361,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                   <label className="text-right w-full relative" htmlFor="">
                     <h4>زیر دسته بندی</h4>
                     <Select
-                      onChange={(e: any) =>
-                        setSubCategoryId(e.value)
-                      }
+                      onChange={(e: any) => setSubCategoryId(e.value)}
                       id="subCategory"
                       isSearchable={true}
                       className=" w-full"
