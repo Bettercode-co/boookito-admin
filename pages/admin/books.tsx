@@ -142,6 +142,12 @@ const Books: NextPage = () => {
       Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
     },
     {
+      Header: "تعداد کل جلد ها",
+      accessor: "fullquantity",
+      minWidth: 200,
+      Cell: (cell) => <div dir="ltr">{PN.convertEnToPe(cell.value)}</div>,
+    },
+    {
       Header: "تعداد صفحات",
       accessor: "numberPage",
       minWidth: 200,

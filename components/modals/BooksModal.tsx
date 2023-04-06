@@ -473,7 +473,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                 </div>
                 <div className="w-full">
                   <label className="text-right w-full relative" htmlFor="">
-                    <h4>تعداد جلد</h4>
+                    <h4>تعداد کل جلد ها</h4>
                     <input
                       className="w-full border-[#ccc] rounded h-[38px]"
                       type="number"
