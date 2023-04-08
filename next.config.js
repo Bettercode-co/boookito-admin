@@ -9,7 +9,7 @@ const nextConfig = {
   output: 'standalone',
   swcMinify: true,
   images: {
-    domains: ['bookito-object-storage.storage.iran.liara.space'],
+    domains: ['bookito-data-storage.storage.iran.liara.space'],
   },
   async redirects() {
     return [

@@ -18,6 +18,12 @@ import addImage from "../../public/img/book_modal/addImage.png";
 import Image from "next/image";
 import axios from "axios";
 
+import imageCompression from 'browser-image-compression';
+const compressorOptions = {
+  maxSizeMB: 1,
+  maxWidthOrHeight: 1920
+}
+
 type AthorListType = {
   athor: string;
 };
@@ -113,11 +119,12 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   const inputImageUploadeRef = React.useRef(null);
   const triggerRef = () => inputImageUploadeRef.current.click();
 
-  const inputUploadHandler = (event) => {
+  const inputUploadHandler = async (event) => {
     const formData = new FormData();
     setNewImage(URL.createObjectURL(event.target.files[0]));
     if (event.target.files[0] && event.target.files) {
-      formData.append("file", event.target.files[0]);
+      const imageC = await imageCompression(event.target.files[0], compressorOptions);
+      formData.append("file", imageC);
       imageUploader(formData);
     }
   };

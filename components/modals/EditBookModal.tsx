@@ -14,7 +14,12 @@ import Image from "next/image";
 import axios from "axios";
 import moment from "jalali-moment";
 import PN from "persian-number";
-import Compressor from "compressorjs";
+
+import imageCompression from 'browser-image-compression';
+const compressorOptions = {
+  maxSizeMB: 1,
+  maxWidthOrHeight: 1920
+}
 
 type AthorListType = {
   athor: string;
@@ -112,12 +117,13 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const inputImageUploadeRef = React.useRef(null);
   const triggerRef = () => inputImageUploadeRef.current.click();
 
-  const inputUploadHandler = (event) => {
+  const inputUploadHandler = async (event) => {
     setNewImage(URL.createObjectURL(event.target.files[0]));
     const formData = new FormData();
     setNewImage(URL.createObjectURL(event.target.files[0]));
     if (event.target.files[0] && event.target.files) {
-      formData.append("file", event.target.files[0]);
+      const imageC = await imageCompression(event.target.files[0], compressorOptions);
+      formData.append("file", imageC);
       imageUploader(formData);
     }
   };
