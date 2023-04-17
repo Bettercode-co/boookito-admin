@@ -1,7 +1,7 @@
 import axios from "axios";
 
  const axiosInstance = axios.create({
-    baseURL: "https://getaway.boookito.ir",
+    baseURL: "https://getaway.boookito.ir/api/v2",
     // baseURL: "http://localhost:5000/api/v2/",
     headers:{
         Accept: "application/json"
