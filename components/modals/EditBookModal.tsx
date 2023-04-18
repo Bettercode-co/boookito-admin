@@ -131,7 +131,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
   const imageUploader = (formImage) => {
     setIsImageUplaoded(true);
     axios
-      .post(" https://api.boookito.ir/api/v2/uploader", formImage, {
+      .post(" https://getaway.boookito.ir/api/v2/uploader", formImage, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
