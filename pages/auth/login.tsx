@@ -59,7 +59,7 @@ const Login: React.FC = () => {
       <div className="container mx-auto px-4 h-screen">
        
       <main className="w-full max-w-md mx-auto p-6">
-  <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+  <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm ">
     <div className="p-4 sm:p-7">
       <div className="text-center">
        <img className="w-40 mx-auto" src="https://boookito.ir/BOOOKITO%20(3).png" alt="" />
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
       </div>
       <a href="https://boookito.betteruptime.com"
   type="button"
-  className="w-full py-3 px-4 text-gray-700 font-bold  inline-flex justify-center items-center gap-2 rounded-md border  bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
+  className="w-full py-3 px-4 text-gray-700 font-bold  inline-flex justify-center items-center gap-2 rounded-md border  bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm "
 >
 
 <FiServer/>
@@ -83,7 +83,7 @@ const Login: React.FC = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm mb-2 text-gray-700 font-bold  dark:text-white"
+                className="block text-sm mb-2 text-gray-700 font-bold  "
               >
                 نام کاربری
               </label>
@@ -95,7 +95,7 @@ const Login: React.FC = () => {
                   id="username"
                   name="username"
                   onChange={changeHandler}
-                  className="py-3 px-4 text-gray-900 font-bold text-center  block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                  className="py-3 px-4 text-gray-900 font-bold text-center  block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500  dark:text-gray-400"
                   required
                   aria-describedby="email-error"
                 />
@@ -109,7 +109,7 @@ const Login: React.FC = () => {
               <div className="flex justify-between items-center">
                 <label
                   htmlFor="password"
-                  className="block text-sm mb-2 text-gray-700 font-bold dark:text-white"
+                  className="block text-sm mb-2 text-gray-700 font-bold "
                 >
                   رمز عبور
                 </label>
@@ -121,7 +121,7 @@ const Login: React.FC = () => {
                   id="password"
                   onChange={changeHandler}
                   name="password"
-                  className="py-3 px-4 text-gray-900 font-bold text-center  block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                  className="py-3 px-4 text-gray-900 font-bold text-center  block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500  dark:text-gray-400"
                   required
                   aria-describedby="password-error"
                 />
