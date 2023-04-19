@@ -8,6 +8,7 @@ import { deleteCookie } from "cookies-next";
 import { FaBars, FaTv, FaTimes, FaUsers } from "react-icons/fa";
 import { MdExitToApp } from "react-icons/md";
 import { RiPriceTag3Line } from "react-icons/ri";
+import {HiServer} from 'react-icons/hi'
 import { ImBooks } from "react-icons/im";
 import { TbTruckLoading } from "react-icons/tb";
 import { BiCategoryAlt } from "react-icons/bi";
@@ -243,6 +244,35 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
+
+
+
+
+            <li className="items-center">
+              <Link href="/admin/servers">
+                <a
+                  href="#pablo"
+                  className={
+                    "flex items-center text-base  uppercase py-3 font-semibold " +
+                    (router.pathname.indexOf("/admin/servers") !== -1
+                      ? "text-sky-500 hover:text-sky-600"
+                      : "text-slate-600 hover:text-slate-500")
+                  }
+                >
+                  <HiServer
+                    className={
+                      " ml-2 text-lg " +
+                      (router.pathname.indexOf("/admin/servers") !== -1
+                        ? "opacity-75"
+                        : "text-slate-300")
+                    }
+                  />
+                  وضعیت سرورها
+                </a>
+              </Link>
+            </li>
+
+
             <li className="items-center">
               <div onClick={logoutHandler} className="cursor-pointer">
                 <div
