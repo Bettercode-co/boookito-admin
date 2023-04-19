@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import {FiServer} from 'react-icons/fi'
 import Auth from "../../layouts/Auth";
 import axiosInstance from "../../utils/axiosInstance";
 import { useRouter } from "next/router";
@@ -57,68 +57,97 @@ const Login: React.FC = () => {
   return (
     <Auth>
       <div className="container mx-auto px-4 h-screen">
-        <div className="flex content-center items-center justify-center h-full">
-          <div className="w-full lg:w-4/12 px-4">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-200 border-0">
-              <div className="rounded-t mb-0 px-6 py-6">
-                <div className="text-center mb-3">
-                  <h6 className="text-slate-500 text-sm font-bold">
-                    ورود به حساب کاربری
-                  </h6>
-                </div>
+       
+      <main className="w-full max-w-md mx-auto p-6">
+  <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <div className="p-4 sm:p-7">
+      <div className="text-center">
+       <img className="w-40 mx-auto" src="https://boookito.ir/BOOOKITO%20(3).png" alt="" />
+       
+      </div>
+      <a href="https://boookito.betteruptime.com"
+  type="button"
+  className="w-full py-3 px-4 text-gray-700 font-bold  inline-flex justify-center items-center gap-2 rounded-md border  bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
+>
 
-                <hr className="mt-6 border-b-1 border-slate-300" />
+<FiServer/>
+  وضعیت سرورها
+</a>
+
+      <div className="mt-5">
+      
+     
+        <form onSubmit={submitForm}>
+          <div className="grid gap-y-4">
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm mb-2 text-gray-700 font-bold  dark:text-white"
+              >
+                نام کاربری
+              </label>
+              <div className="relative">
+                <input
+                autoComplete="off"
+                  type="text"
+                  maxLength={10}
+                  id="username"
+                  name="username"
+                  onChange={changeHandler}
+                  className="py-3 px-4 text-gray-900 font-bold text-center  block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                  required
+                  aria-describedby="email-error"
+                />
+            
               </div>
-              <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <div className="text-slate-400 text-center mb-3 font-bold"></div>
-                <form onSubmit={submitForm}>
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-slate-600 text-xs font-bold mb-2 text-center"
-                      htmlFor="grid-password"
-                    >
-                      نام کاربری
-                    </label>
-                    <input
-                      type="text"
-                      className="placeholder:text-center text-center border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="نام کاربری"
-                      name="username"
-                      onChange={changeHandler}
-                      required
-                    />
-                  </div>
-
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-slate-600 text-xs font-bold mb-2 text-center"
-                      htmlFor="grid-password"
-                    >
-                      رمز عبور
-                    </label>
-                    <input
-                      type="password"
-                      className="placeholder:text-center text-center border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="رمز عبور"
-                      name="password"
-                      onChange={changeHandler}
-                      required
-                    />
-                  </div>
-
-                  <div className="text-center mt-6">
-                    <button
-                      className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ml-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="submit"
-                    >
-                      ورود
-                    </button>
-                  </div>
-                </form>
-              </div>
+              
             </div>
+            {/* End Form Group */}
+            {/* Form Group */}
+            <div>
+              <div className="flex justify-between items-center">
+                <label
+                  htmlFor="password"
+                  className="block text-sm mb-2 text-gray-700 font-bold dark:text-white"
+                >
+                  رمز عبور
+                </label>
+            
+              </div>
+              <div className="relative">
+                <input
+                  type="password"
+                  id="password"
+                  onChange={changeHandler}
+                  name="password"
+                  className="py-3 px-4 text-gray-900 font-bold text-center  block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                  required
+                  aria-describedby="password-error"
+                />
+                <div className="hidden absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
+             
+                </div>
+              </div>
+             
+            </div>
+          
+            <button
+              type="submit"
+              className="py-3 px-4 mt-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+            >
+              ورود
+            </button>
           </div>
-        </div>
+        </form>
+        {/* End Form */}
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
         <ToastContainer
           position="bottom-right"
           autoClose={5000}

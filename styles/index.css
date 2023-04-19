@@ -19,3 +19,10 @@
     html,body{
         font-family: "IranSans", sans-serif;
     }
+
+    .Toastify__toast-body{
+
+        font-family:IranSans;
+        font-size: 12px;
+       
+    }
