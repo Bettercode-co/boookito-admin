@@ -35,8 +35,12 @@ const DeleteModal = ({
   isDeleteModalOpen,
   rowData,
   fetchUrl,
-}) => {
+  deleteFunc,
+}: any) => {
   const deleteHandler = () => {
+    if (deleteFunc) {
+      deleteFunc()
+    } else {
     axiosInstance
       .delete(fetchUrl + rowData.id, {
         headers: {
@@ -46,7 +50,8 @@ const DeleteModal = ({
       .then(() => notifySuccess())
       .then(() => setIsDeleteModalOpen(false))
       .catch((err) => notifyError(err.response.data.error.message));
-  };
+    }
+    };
 
   return (
     <>

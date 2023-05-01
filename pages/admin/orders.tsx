@@ -13,10 +13,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 //react icons
 import { MdDelete, MdDone } from "react-icons/md";
-import { RiCloseLine } from "react-icons/ri";
+import { RiCloseLine, RiSearchLine } from "react-icons/ri";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { CgSandClock } from "react-icons/cg";
 import { AiOutlineStop } from "react-icons/ai";
+import DeleteModal from "../../components/modals/DeleteModal";
 
 const statusHandler = (value) => {
   switch (value) {
@@ -71,11 +72,18 @@ const Orders: NextPage = () => {
   const [pagenumber, setPageNumber] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [rowDataId, setRowDataId] = useState<number>(0);
+  const [searchInputValue, setSearchInputValue] = useState<string>();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>();
 
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleDelete = (rowData) => {
+    setRowDataId(rowData);
+    setIsDeleteModalOpen(true);
+  };
+  // admin/orderbyid/:id
   const fetchOrders = () => {
     axiosInstance
       .get(`admin/orders/${pagenumber}`, {
@@ -85,6 +93,25 @@ const Orders: NextPage = () => {
       })
       .then((res) => setOrdersData(res.data));
   };
+
+  const fetchOrderSearch = (searchInput: string) => {
+    axiosInstance.get(`admin/orders/searchbyuser/${searchInput}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => setOrdersData(res.data))
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+    if(searchInputValue){
+      fetchOrderSearch(searchInputValue)
+    }else{
+      fetchOrders()
+    }}, 2000)
+    return () => clearTimeout(timer);
+  }, [pagenumber, isModalOpen, isDeleteModalOpen, searchInputValue]);
 
   useEffect(() => {
     fetchOrders();
@@ -198,7 +225,7 @@ const Orders: NextPage = () => {
     },
   ];
 
-  const handleDelete = (rowDetail) => {
+  const handleDeleteAPI = (rowDetail) => {
     axiosInstance
       .post(
         "admin/closeorder",
@@ -209,7 +236,10 @@ const Orders: NextPage = () => {
           },
         }
       )
-      .then(() => notifySuccess())
+      .then(() => {
+        notifySuccess()
+        setIsDeleteModalOpen(false)
+      })
       .then(() => setRowDataId(rowDetail.id))
       .catch(() => notifyError("خطا در بستن سفارش"));
   };
@@ -248,7 +278,14 @@ const Orders: NextPage = () => {
           setIsModalOpen={setIsModalOpen}
         />
       </div>
-
+      <div className="fixed top-0 right-0 z-50">
+        <DeleteModal
+          isDeleteModalOpen={isDeleteModalOpen}
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
+          rowData={rowDataId}
+          deleteFunc={() => handleDeleteAPI(rowDataId)}
+        />
+      </div>
       <div className=" flex justify-end">
         <button
           onClick={moadalHandler}
@@ -256,6 +293,15 @@ const Orders: NextPage = () => {
         >
           <IoIosAddCircleOutline /> اضافه کردن
         </button>
+      </div>
+      <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
+          <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
+          <input
+            className='mt-4 h-10 rounded-lg w-full lg:w-96 border-slate-400 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
+            type="text"
+            value={searchInputValue}
+            onChange={e => setSearchInputValue(e.target.value)}
+          />
       </div>
       <BasicTable rowsdata={ordersData} columnsData={COLUMNS} />
       <div className="text-center pb-8">

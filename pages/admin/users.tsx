@@ -8,11 +8,13 @@ import PN from "persian-number";
 import { getCookie } from "cookies-next";
 
 //react icons
-import { RiEditFill } from "react-icons/ri";
+import { RiEditFill, RiSearchLine } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 
 import Admin from "../../layouts/Admin";
 import axiosInstance from "../../utils/axiosInstance";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import UserModal from "../../components/modals/UserModal";
 
 const statusHandler = (value: string) => {
   switch (value) {
@@ -34,6 +36,8 @@ const token = getCookie("accessToken");
 const Users: NextPage = () => {
   const [usersData, setUsersData] = useState(null);
   const [pagenumber, setPageNumber] = useState<number>(1);
+  const [searchInputValue, setSearchInputValue] = useState<string>();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const fetchUsers = () => {
     axiosInstance
@@ -48,6 +52,24 @@ const Users: NextPage = () => {
   useEffect(() => {
     fetchUsers();
   }, [pagenumber]);
+
+  const fetchSearch = () => {
+    axiosInstance.get(`admin/user/search/${searchInputValue}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      setUsersData(res.data)
+    })
+  }
+
+  useEffect(() => {
+    if (searchInputValue) {
+    fetchSearch()
+    }
+  }, [searchInputValue])
 
   const COLUMNS = [
     {
@@ -220,7 +242,34 @@ const Users: NextPage = () => {
     );
   }
   return (
-    <div className=" mx-auto">
+    <div className=" mx-auto pt-5">
+      <div className="fixed top-0 right-0 z-50">
+        <UserModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      </div>
+      <div className="fixed top-0 right-0 z-50">
+        {/* <EditUserModal
+          isEditModalOpen={isEditModalOpen}
+          setIsEditModalOpen={setIsEditModalOpen}
+          rowDataId={rowDataId}
+        /> */}
+      </div>
+      <div className=" flex justify-end mt-5">
+        <button
+          onClick={() => { setIsModalOpen(true)}}
+          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+        >
+          <IoIosAddCircleOutline /> اضافه کردن
+        </button>
+      </div>
+      <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
+          <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
+          <input
+            className='mt-4 h-10 rounded-lg w-full lg:w-96 border-slate-400 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
+            type="text"
+            value={searchInputValue}
+            onChange={e => setSearchInputValue(e.target.value)}
+          />
+      </div>
       <BasicTable rowsdata={usersData} columnsData={COLUMNS} />
       <div className="text-center pb-8">
         <button
