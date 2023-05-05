@@ -11,7 +11,10 @@ import { MdFileDownloadDone, MdPendingActions } from "react-icons/md";
 import { TbTruckLoading } from "react-icons/tb";
 import { ImBooks } from "react-icons/im";
 import { getCookie } from "cookies-next";
-
+import {GiTrophyCup} from 'react-icons/gi'
+import {VscLibrary} from 'react-icons/vsc'
+import {SiBookstack} from 'react-icons/si'
+import {BiCategory} from 'react-icons/bi'
 const defaultValue = {
   activeorders: 0,
   activeusers: 0,
@@ -24,8 +27,10 @@ const defaultValue = {
   allorders: 0,
   allposts: 0,
   allusers: 0,
+  sumBooks:{_sum:{fullquantity:0}},
   deactiveusers: 0,
   lastorders: [],
+  topCategory:{categoryName:"ندارد"},
   lastusers: [],
 };
 
@@ -82,7 +87,7 @@ const HeaderStats: React.FC = () => {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="کتاب ها"
+                  statSubtitle="تعداد عنوان کتاب"
                   statIconName={<ImBooks />}
                   statIconColor="bg-green-500"
                   statTitle={PN.convertEnToPe(cartData.allbooks)}
@@ -90,7 +95,7 @@ const HeaderStats: React.FC = () => {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="سفارشات"
+                  statSubtitle="تعداد کل امانات"
                   statIconName={<TbTruckLoading />}
                   statIconColor="bg-blue-500"
                   statTitle={PN.convertEnToPe(cartData.allorders)}
@@ -98,7 +103,7 @@ const HeaderStats: React.FC = () => {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="سفارشات انجام شده"
+                  statSubtitle="امانات تحویل داده شده"
                   statIconName={<MdFileDownloadDone />}
                   statIconColor="bg-slate-500"
                   statTitle={PN.convertEnToPe(cartData.alldoneorders)}
@@ -106,7 +111,7 @@ const HeaderStats: React.FC = () => {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="سفارشات فعال"
+                  statSubtitle="امانات فعال"
                   statIconName={<MdPendingActions />}
                   statIconColor="bg-sky-500"
                   statTitle={PN.convertEnToPe(cartData.activeorders)}
@@ -118,6 +123,41 @@ const HeaderStats: React.FC = () => {
                   statIconName={<BsFilePostFill />}
                   statIconColor="bg-orange-500"
                   statTitle={PN.convertEnToPe(cartData.allposts)}
+                />
+              </div>
+
+
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="تعداد جلد کتاب ها"
+                  statIconName={<SiBookstack />}
+                  statIconColor="bg-orange-500"
+                  statTitle={PN.convertEnToPe(cartData.sumBooks._sum.fullquantity)}
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="برترین دسته بندی"
+                  statIconName={<GiTrophyCup />}
+                  statIconColor="bg-green-500"
+                  
+                  statTitle={cartData.topCategory.categoryName}
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="تعداد دسته بندی"
+                  statIconName={<BiCategory />}
+                  statIconColor="bg-red-500"
+                  statTitle={PN.convertEnToPe(cartData.allcategories)}
+                />
+              </div>
+              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
+                <CardStats
+                  statSubtitle="تعداد کتابخانه ها"
+                  statIconName={<VscLibrary />}
+                  statIconColor="bg-green-500"
+                  statTitle={PN.convertEnToPe(4)}
                 />
               </div>
             </div>

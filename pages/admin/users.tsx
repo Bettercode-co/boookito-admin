@@ -29,6 +29,17 @@ const rulebaseHandler = (value: string) => {
   switch (value) {
     case "STUDENT":
       return <div className="text-green-700">دانشجو</div>;
+      break;
+      case "PERSONNEL":
+        return <div className="text-green-700">کارمند</div>;
+        break;
+        case "MASTER":
+          return <div className="text-green-700">استاد</div>;
+          break;
+          case "ADMIN":
+            return <div className="text-green-700">ادمین</div>;
+
+
   }
 };
 const token = getCookie("accessToken");
@@ -193,16 +204,7 @@ const Users: NextPage = () => {
               <RiEditFill /> &nbsp; ویرایش
             </span>
           </button>
-          <button
-            value={cell.accessor}
-            className="felx items-center min-w-max  cursor-pointer"
-            onClick={handleDelete}
-            disabled
-          >
-            <span className="flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white disabled:cursor-not-allowed ">
-              <MdDelete /> &nbsp; حذف
-            </span>
-          </button>
+      
         </div>
       ),
     },
@@ -256,9 +258,9 @@ const Users: NextPage = () => {
       <div className=" flex justify-end mt-5">
         <button
           onClick={() => { setIsModalOpen(true)}}
-          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-blue-500 text-white hover:bg-blue-600 transition "
         >
-          <IoIosAddCircleOutline /> اضافه کردن
+          <IoIosAddCircleOutline />  اضافه کردن 
         </button>
       </div>
       <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">

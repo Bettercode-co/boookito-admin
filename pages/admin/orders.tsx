@@ -10,7 +10,7 @@ import OrdersModal from "../../components/modals/OrdresModal";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import {MdOutlineDoneOutline} from 'react-icons/md'
 //react icons
 import { MdDelete, MdDone } from "react-icons/md";
 import { RiCloseLine, RiSearchLine } from "react-icons/ri";
@@ -186,7 +186,7 @@ const Orders: NextPage = () => {
       ),
     },
     {
-      Header: "تاریخ تحویل",
+      Header: "موعد تحویل",
       accessor: "expireAt",
       minWidth: 250,
       Cell: (cell) => (
@@ -212,12 +212,12 @@ const Orders: NextPage = () => {
             onClick={() => handleDelete(cell.row.original)}
           >
             <span
-              className={`flex items-center bg-red-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${
+              className={`flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${
                 cell.row.original.orderStatus === "CLOSED" &&
                 "bg-gray-200 hover:bg-gray-200 hover:text-white hover:cursor-not-allowed"
               } `}
             >
-              <MdDelete /> &nbsp; بستن سفارش
+              <MdOutlineDoneOutline /> &nbsp; تحویل کتاب
             </span>
           </button>
         </div>
@@ -289,7 +289,7 @@ const Orders: NextPage = () => {
       <div className=" flex justify-end">
         <button
           onClick={moadalHandler}
-          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-blue-500 text-white hover:bg-blue  -600 transition "
         >
           <IoIosAddCircleOutline /> اضافه کردن
         </button>

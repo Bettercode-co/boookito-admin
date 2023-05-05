@@ -182,12 +182,14 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
               />
             </label>
             <label htmlFor="bookCode">
+              
               شناسه کتاب
               <Select
                 onChange={(e) =>
                   setNewOrder({
                     ...newOrder,
                     book: e.value,
+                  
                   })
                 }
                 id="bookCode"

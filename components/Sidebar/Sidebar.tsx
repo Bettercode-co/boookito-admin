@@ -217,7 +217,7 @@ const Sidebar: React.FC = () => {
                         : "text-slate-300")
                     }
                   />
-                  سفارشات
+                  امانات
                 </a>
               </Link>
             </li>
