@@ -1,38 +1,39 @@
-// import { useRouter } from "next/router";
-// import { useEffect, useState } from "react";
-// import axiosInstance from "../../../../utils/axiosInstance";
-// import { getCookie } from "cookies-next";
-// export default function EditUserPage(){
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import axiosInstance from "../../../../utils/axiosInstance";
+import { getCookie } from "cookies-next";
+export default function EditUserPage(){
 
-//     const router=useRouter()
-//     const token = getCookie("accessToken");
-//     const [data,setData]=useState({
-//         id:null,
-//         firstname:dataUser?.firstname,
-//         lastname:dataUser?.lastname,
-//         avatarSource:dataUser?.avatarSource,
-//         usernameSocial:dataUser?.usernameSocial,
-//         userStatus:dataUser?.userStatus,
-//         level:dataUser?.level,
-//         libraryId:dataUser?.libraryId,
-//         phoneNumber:dataUser?.phoneNumber,
-//         studentId:dataUser?.studentId,
-//         username:dataUser?.username,
+    // const router=useRouter()
+    // const token = getCookie("accessToken");
+    // const [data,setData]=useState({
+    //     id:null,
+    //     firstname:dataUser?.firstname,
+    //     lastname:dataUser?.lastname,
+    //     avatarSource:dataUser?.avatarSource,
+    //     usernameSocial:dataUser?.usernameSocial,
+    //     userStatus:dataUser?.userStatus,
+    //     level:dataUser?.level,
+    //     libraryId:dataUser?.libraryId,
+    //     phoneNumber:dataUser?.phoneNumber,
+    //     studentId:dataUser?.studentId,
+    //     username:dataUser?.username,
 
-//     })
-//     const userId=router.query.id
-//     const [dataUser,setDataUser]:any=useState(null)
-//     useEffect(()=>{
-//         axiosInstance.get(`admin/userinfo/${userId}`,{headers:{
-//             Authorization: `Bearer ${token}`,
+    // })
+    // const userId=router.query.id
+    // const [dataUser,setDataUser]:any=useState(null)
+    // useEffect(()=>{
+    //     axiosInstance.get(`admin/userinfo/${userId}`,{headers:{
+    //         Authorization: `Bearer ${token}`,
 
-//         }})
-//         .then(function(response){
-//             setDataUser(response.data)
-//         })
+    //     }})
+    //     .then(function(response){
+    //         setDataUser(response.data)
+    //     })
 
-//     },[])
-//     console.log(dataUser)
+    // },[])
+    // console.log(dataUser)
+    return <div>fuck</div>
 //     return <>
 //     {/* Card Section */}
 //     <div className="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -245,4 +246,4 @@
 //     {/* End Card Section */}
 //   </>
   
-// }
+}
