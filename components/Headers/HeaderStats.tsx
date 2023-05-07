@@ -132,7 +132,7 @@ const HeaderStats: React.FC = () => {
                   statSubtitle="تعداد جلد کتاب ها"
                   statIconName={<SiBookstack />}
                   statIconColor="bg-orange-500"
-                  statTitle={PN.convertEnToPe(cartData.sumBooks._sum.fullquantity)}
+                  statTitle={PN.convertEnToPe(cartData?.sumBooks?._sum?.fullquantity)}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -141,7 +141,7 @@ const HeaderStats: React.FC = () => {
                   statIconName={<GiTrophyCup />}
                   statIconColor="bg-green-500"
                   
-                  statTitle={cartData.topCategory.categoryName}
+                  statTitle={cartData?.topCategory?.categoryName}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -149,7 +149,7 @@ const HeaderStats: React.FC = () => {
                   statSubtitle="تعداد دسته بندی"
                   statIconName={<BiCategory />}
                   statIconColor="bg-red-500"
-                  statTitle={PN.convertEnToPe(cartData.allcategories)}
+                  statTitle={PN.convertEnToPe(cartData?.allcategories)}
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
