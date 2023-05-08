@@ -7,6 +7,8 @@ import PageChange from "../components/PageChange/PageChange";
 import { AppProps } from "../interfaces";
 import Script from "next/script";
 import { AppWrapper } from "../components/context/AppContext";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 Router.events.on("routeChangeStart", (url) => {
   document.body.classList.add("body-page-transition");

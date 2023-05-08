@@ -10,7 +10,7 @@ const eventHandler = (e) => {
   e.stopPropagation();
 };
 
-enum RuleBase {
+export enum RuleBase {
     STUDENT = 'STUDENT',
     PERSONNEL = 'PERSONNEL',
     MASTER = 'MASTER',
@@ -18,7 +18,7 @@ enum RuleBase {
     SUPERADMIN = 'SUPERADMIN'
 };
 
-enum UserStatus {
+export enum UserStatus {
     ACTIVE = 'ACTIVE',
     PENDING = 'PENDING',
     REJECT = 'REJECT'

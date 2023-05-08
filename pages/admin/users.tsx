@@ -15,6 +15,7 @@ import Admin from "../../layouts/Admin";
 import axiosInstance from "../../utils/axiosInstance";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import UserModal from "../../components/modals/UserModal";
+import { useRouter } from "next/router";
 
 const statusHandler = (value: string) => {
   switch (value) {
@@ -197,8 +198,7 @@ const Users: NextPage = () => {
           <button
             value={cell.accessor}
             className="felx items-center min-w-max"
-            onClick={handleEdit}
-            disabled
+            onClick={() => handleEdit(cell.row.original.id)}
           >
             <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white disabled:cursor-not-allowed">
               <RiEditFill /> &nbsp; ویرایش
@@ -210,7 +210,10 @@ const Users: NextPage = () => {
     },
   ];
 
-  const handleEdit = () => {
+  const router = useRouter();
+
+  const handleEdit = (id) => {
+    router.push(`/admin/users/edit/${id}`)
     console.log("edit button");
   };
   const handleDelete = () => {
