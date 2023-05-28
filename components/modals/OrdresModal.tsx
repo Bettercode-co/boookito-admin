@@ -24,6 +24,9 @@ const token = getCookie("accessToken");
 
 // select day options
 const durationOption = [
+  { value: 1, label: PN.convertEnToPe("1 روز") },
+  { value: 5, label: PN.convertEnToPe("5 روز") },
+  { value: 7, label: PN.convertEnToPe("7 روز") },
   { value: 10, label: PN.convertEnToPe("10 روز") },
   { value: 15, label: PN.convertEnToPe("15 روز") },
   { value: 20, label: PN.convertEnToPe("20 روز") },
