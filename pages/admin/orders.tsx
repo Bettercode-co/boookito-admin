@@ -10,7 +10,7 @@ import OrdersModal from "../../components/modals/OrdresModal";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {MdOutlineDoneOutline} from 'react-icons/md'
+import {MdDoneOutline} from 'react-icons/md'
 //react icons
 import { MdDelete, MdDone } from "react-icons/md";
 import { RiCloseLine, RiSearchLine } from "react-icons/ri";
@@ -217,7 +217,7 @@ const Orders: NextPage = () => {
                 "bg-gray-200 hover:bg-gray-200 hover:text-white hover:cursor-not-allowed"
               } `}
             >
-              <MdOutlineDoneOutline /> &nbsp; تحویل کتاب
+              <MdDoneOutline /> &nbsp; تحویل کتاب
             </span>
           </button>
         </div>

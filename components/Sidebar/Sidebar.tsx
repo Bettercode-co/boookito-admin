@@ -221,29 +221,6 @@ const Sidebar: React.FC = () => {
                 </a>
               </Link>
             </li>
-            <li className="items-center">
-              <Link href="/admin/bookgram">
-                <a
-                  href="#pablo"
-                  className={
-                    "flex items-center text-base  uppercase py-3 font-semibold " +
-                    (router.pathname.indexOf("/admin/bookgram") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
-                  }
-                >
-                  <RiPriceTag3Line
-                    className={
-                      " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/bookgram") !== -1
-                        ? "opacity-75"
-                        : "text-slate-300")
-                    }
-                  />
-                  بوکگرام
-                </a>
-              </Link>
-            </li>
 
 
 

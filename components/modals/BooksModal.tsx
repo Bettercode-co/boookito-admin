@@ -5,8 +5,9 @@ import { useForm } from "react-hook-form";
 
 //react icons
 import { RiAddCircleLine } from "react-icons/ri";
-import { MdOutlineRemoveCircleOutline } from "react-icons/md";
+import { MdRemoveCircleOutline } from "react-icons/md";
 import { TiTimes } from "react-icons/ti";
+import { BiBarcodeReader } from "react-icons/bi"
 import axiosInstance from "../../utils/axiosInstance";
 import { getCookie } from "cookies-next";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,6 +20,7 @@ import Image from "next/image";
 import axios from "axios";
 
 import imageCompression from 'browser-image-compression';
+import BarcodeModal from "./BarcodeModal";
 const compressorOptions = {
   maxSizeMB: 1,
   maxWidthOrHeight: 1920
@@ -109,10 +111,14 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
   const [isImageUplaoded, setIsImageUplaoded] = useState<boolean>(false);
   const [shelfOject, setShelfObject] = useState<any>();
 
+  // scanner
+  const [scanner, setScanner] = useState(false);
+
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -305,6 +311,27 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     setTranslatorList(values);
   };
 
+  const handleAddPublisher = (inp: string) => {
+    setValue('publisherName', inp)
+  }
+
+  const handleAddShabak = (inp: string) => {
+    setValue('shabak', inp)
+  }
+
+  const handleAddNumPages = (inp: string) => {
+    setValue('numberPage', parseFloat(inp));
+  }
+
+  const handleAddImageLink = (inp: string) => {
+    setImageLink(inp);
+    console.log({"image": inp})
+  }
+
+  const handleAddBookName = (inp: string) => {
+    setValue('bookName', inp);
+  }
+
   return (
     <>
       {isModalOpen && (
@@ -330,9 +357,15 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
               <h4>افزودن کتاب</h4>
               <div className="h-[1px] bg-slate-200 w-full mt-5" />
             </div>
-
+            <button onClick={() => setScanner(true)} className="flex w-full items-center justify-center mt-5 bg-slate-700 text-white h-10 rounded hover:bg-slate-600">
+                <div className="flex">
+                  <span className="mr-4" >اسکن شابک </span>
+                  <span className="mr-4 text-xl" ><BiBarcodeReader  /></span>
+                </div>
+            </button>
             <div className="w-full flex flex-col lg:flex-row gap-10">
               {/* -------------------------------------FORM---------------------------------------------- */}
+              
               <div className="inputsContainer h-full w-full py-5 text-center grid xl:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-16">
                 <div className="w-full">
                   <label className="text-right w-full relative" htmlFor="">
@@ -490,7 +523,10 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                 </div>
                 <div className="w-full">
                   <label className="text-right w-full relative" htmlFor="">
-                    <h4>شماره شابک</h4>
+                    <h4>
+                      شماره شابک
+                    </h4>
+                    
                     <input
                       className="w-full border-[#ccc] rounded h-[38px]"
                       type="text"
@@ -533,7 +569,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                             className=" absolute left-0 h-[38px] w-7 flex justify-center items-center"
                             onClick={() => removeAthorHandler(index)}
                           >
-                            <MdOutlineRemoveCircleOutline size={20} />
+                            <MdRemoveCircleOutline size={20} />
                           </button>
                         )}
                       </div>
@@ -569,7 +605,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                             className=" absolute left-0 h-[38px] w-7 flex justify-center items-center"
                             onClick={() => removeTranslatorHandler(index)}
                           >
-                            <MdOutlineRemoveCircleOutline size={20} />
+                            <MdRemoveCircleOutline size={20} />
                           </button>
                         )}
                       </div>
@@ -634,6 +670,17 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
           {/* </form> */}
         </div>
       )}
+      <BarcodeModal 
+        isModalOpen={scanner} 
+        setIsModalOpen={setScanner}
+        setBookName={handleAddBookName}
+        setAuthor={setAthorList}
+        setPublisher={handleAddPublisher}
+        setShabak={handleAddShabak}
+        setNumPages={handleAddNumPages}
+        setImageLink={handleAddImageLink}
+        setTranslator={setTranslatorList} />
+
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
