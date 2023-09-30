@@ -20,11 +20,18 @@ import Image from "next/image";
 import axios from "axios";
 
 import imageCompression from 'browser-image-compression';
-import BarcodeModal from "./BarcodeModal";
+// import BarcodeModal from "./BarcodeModal";
 const compressorOptions = {
   maxSizeMB: 1,
   maxWidthOrHeight: 1920
 }
+
+import dynamic from 'next/dynamic'
+
+const BarcodeModal = dynamic(
+  () => import('./BarcodeModal'),
+  { ssr: false }
+)
 
 type AthorListType = {
   athor: string;
@@ -119,6 +126,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
     handleSubmit,
     reset,
     setValue,
+    clearErrors,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -177,6 +185,10 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
       translatorName: ObjectArrayToStringArray(translatorlist),
     });
   }, [athorList, translatorlist, newImage]);
+
+  useEffect(() => {
+    clearErrors(["bookName", "numberPage", "publisherName", "shabak", "yearPublish"])
+  }, [scanner])
 
   const ObjectArrayToStringArray = (objectArray) => {
     const stringArray = objectArray.map((obj) => Object.values(obj)[0]);
@@ -373,6 +385,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                     <input
                       className="w-full border-[#ccc] rounded h-[38px]"
                       type="text"
+                      autoComplete="off"
                       {...register("bookName", {
                         required: "نام کتاب را وارد کنید",
                       })}

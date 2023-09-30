@@ -4,8 +4,6 @@ import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import Spinner from '../spinner/Spinner';
 import axiosInstance from '../../utils/axiosInstance';
 
-
-
 //tostify
 const notifyError = (err: string) =>
   toast.error(err, {
