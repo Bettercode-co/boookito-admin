@@ -50,6 +50,9 @@ const Users: NextPage = () => {
   const [pagenumber, setPageNumber] = useState<number>(1);
   const [searchInputValue, setSearchInputValue] = useState<string>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalCreateAllGroup, setModalCreateAllGroup] = useState<boolean>(false);
+
+
 
   const fetchUsers = () => {
     axiosInstance
@@ -265,6 +268,12 @@ const Users: NextPage = () => {
         >
           <IoIosAddCircleOutline />  اضافه کردن 
         </button>
+        <a
+          href="/admin/newusers"
+          className=" left-6 flex items-center justify-center   w-48 mx-5 h-10 rounded bg-blue-500 text-white hover:bg-blue-600 transition "
+        >
+          <IoIosAddCircleOutline />  اضافه کردن  گروهی
+        </a>
       </div>
       <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
           <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
