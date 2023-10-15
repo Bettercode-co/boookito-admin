@@ -166,7 +166,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
             >
               <TiTimes size={20} />
             </div>
-            <h4>ایجاد سفارش</h4>
+            <h4>ایجاد امانت</h4>
             <div className="h-[1px] bg-slate-200 w-full" />
             <label htmlFor="nationCode">
               کد ملی
@@ -217,7 +217,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
               />
             </label>
             <label htmlFor="duration">
-              مدت سفارش
+              مدت امانت
               <Select
                 onChange={(e) =>
                   setNewOrder({
@@ -230,7 +230,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
                 className=" w-64"
                 defaultValue={durationOption[1]}
                 options={durationOption}
-                placeholder="مدت سفارش"
+                placeholder="مدت امانت"
               />
             </label>
             <button

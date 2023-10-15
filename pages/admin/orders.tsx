@@ -241,7 +241,7 @@ const Orders: NextPage = () => {
         setIsDeleteModalOpen(false)
       })
       .then(() => setRowDataId(rowDetail.id))
-      .catch(() => notifyError("خطا در بستن سفارش"));
+      .catch(() => notifyError("خطا در بستن امانت"));
   };
 
   if (!ordersData) {
