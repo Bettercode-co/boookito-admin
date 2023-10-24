@@ -109,7 +109,7 @@ const Orders: NextPage = () => {
       fetchOrderSearch(searchInputValue)
     }else{
       fetchOrders()
-    }}, 2000)
+    }}, 100)
     return () => clearTimeout(timer);
   }, [pagenumber, isModalOpen, isDeleteModalOpen, searchInputValue]);
 
