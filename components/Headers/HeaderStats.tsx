@@ -56,7 +56,7 @@ const HeaderStats: React.FC = () => {
   return (
     <>
       {/* Header */}
-      <div className="relative bg-slate-800 md:pt-14 pb-14 pt-12">
+      <div className="relative bg-[#0f182b] md:pt-14 pb-14 pt-12">
         <div className="px-4 md:px-10 mx-auto w-full">
           <div>
             {/* Card stats */}
@@ -97,7 +97,7 @@ const HeaderStats: React.FC = () => {
                 <CardStats
                   statSubtitle="تعداد کل امانات"
                   statIconName={<TbTruckLoading />}
-                  statIconColor="bg-blue-500"
+                  statIconColor="bg-green-600"
                   statTitle={PN.convertEnToPe(cartData.allorders)}
                 />
               </div>

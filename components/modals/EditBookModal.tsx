@@ -640,7 +640,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
                 />
                 <button
                   type="button"
-                  className="text-white bg-slate-500 border-white drop-shadow hover:drop-shadow-xl rounded-md hover:bg-white hover:text-slate-700 hover:border-2 hover:border-slate-700 transition-all border-2 px-4 py-1"
+                  className="text-white bg-slate-500 border-white drop-shadow hover:drop-shadow-xl rounded-md hover:bg-white hover:text-green-800 hover:border-2 hover:border-green-800 transition-all border-2 px-4 py-1"
                   onClick={triggerRef}
                 >
                   انتخاب عکس
@@ -650,7 +650,7 @@ const EditBooksModal = ({ setIsEditModalOpen, isEditModalOpen, rowDataId }) => {
             </div>
             <button
               type="submit"
-              className="w-full mt-10 bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
+              className="w-full mt-10 bg-green-800 text-white h-10 rounded hover:bg-green-700"
             >
               ثبت
             </button>

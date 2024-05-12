@@ -13,6 +13,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import EditCategoryModal from "../../components/modals/EditCategoryModal";
 import DeleteModal from "../../components/modals/DeleteModal";
 import SubCategoryModal from "../../components/modals/SubCategoryModal";
+import LoadingComponent from "../../components/spinner/Loading";
 
 const token = getCookie("accessToken");
 
@@ -70,7 +71,7 @@ const Categories: NextPage = () => {
             className="felx items-center min-w-max"
             onClick={() => handleEdit(cell.row.original)}
           >
-            <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
+            <span className="flex items-center bg-green-600 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
               <RiEditFill /> &nbsp; ویرایش
             </span>
           </button>
@@ -99,28 +100,7 @@ const Categories: NextPage = () => {
 
   if (!categoriesData) {
     return (
-      <div className="h-[80vh] w-full mx-auto flex items-center justify-center">
-        <svg
-          className="animate-spin h-14 w-14 mx-auto text-gray-600"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx={12}
-            cy={12}
-            r={10}
-            stroke="currentColor"
-            strokeWidth={4}
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          />
-        </svg>
-      </div>
+     <LoadingComponent/>
     );
   }
   return (
@@ -156,13 +136,13 @@ const Categories: NextPage = () => {
       <div className=" flex gap-3 justify-end">
         <button
           onClick={moadalHandler}
-          className=" left-6 flex items-center justify-center p-4 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+          className=" left-6 flex items-center justify-center p-4 rounded bg-green-600 text-white hover:bg-green-700 transition "
         >
           <IoIosAddCircleOutline />  اضافه کردن دسته اصلی
         </button>
         <button
           onClick={moadalHandlerSub}
-          className=" left-6 flex items-center justify-center p-4 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+          className=" left-6 flex items-center justify-center p-4 rounded bg-green-600 text-white hover:bg-green-700 transition "
         >
           <IoIosAddCircleOutline />  اضافه کردن زیر دسته 
         </button>

@@ -35,12 +35,12 @@ const Footer: React.FC = () => {
               <h4 className="text-3xl font-semibold">
                 Let&rsquo;s keep in touch!
               </h4>
-              <h5 className="text-lg mt-0 mb-2 text-slate-600">
+              <h5 className="text-lg mt-0 mb-2 text-green-700">
                 Find us on any of these platforms, we respond 1-2 business days.
               </h5>
               <div className="flex mt-6 lg:mb-0 mb-6">
                 <button
-                  className="bg-white text-sky-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none ml-2"
+                  className="bg-white text-green-600 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none ml-2"
                   type="button"
                 >
                   <FaTwitter />
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
                   <ul className="list-unstyled">
                     <li>
                       <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
+                        className="text-green-700 hover:text-slate-800 font-semibold block pb-2 text-sm"
                         href="https://www.creative-tim.com/presentation?ref=nnjs-footer"
                       >
                         About Us
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
                     </li>
                     <li>
                       <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
+                        className="text-green-700 hover:text-slate-800 font-semibold block pb-2 text-sm"
                         href="https://blog.creative-tim.com?ref=nnjs-footer"
                       >
                         Blog
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
                     </li>
                     <li>
                       <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
+                        className="text-green-700 hover:text-slate-800 font-semibold block pb-2 text-sm"
                         href="https://www.github.com/creativetimofficial?ref=nnjs-footer"
                       >
                         Github
@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
                     </li>
                     <li>
                       <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
+                        className="text-green-700 hover:text-slate-800 font-semibold block pb-2 text-sm"
                         href="https://www.creative-tim.com/bootstrap-themes/free?ref=nnjs-footer"
                       >
                         Free Products
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
                   <ul className="list-unstyled">
                     <li>
                       <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
+                        className="text-green-700 hover:text-slate-800 font-semibold block pb-2 text-sm"
                         href="https://github.com/creativetimofficial/notus-nextjs/blob/main/LICENSE.md?ref=nnjs-footer"
                       >
                         MIT License
@@ -121,7 +121,7 @@ const Footer: React.FC = () => {
                     </li>
                     <li>
                       <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
+                        className="text-green-700 hover:text-slate-800 font-semibold block pb-2 text-sm"
                         href="https://creative-tim.com/terms?ref=nnjs-footer"
                       >
                         Terms & Conditions
@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
                     </li>
                     <li>
                       <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
+                        className="text-green-700 hover:text-slate-800 font-semibold block pb-2 text-sm"
                         href="https://creative-tim.com/privacy?ref=nnjs-footer"
                       >
                         Privacy Policy
@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
                     </li>
                     <li>
                       <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
+                        className="text-green-700 hover:text-slate-800 font-semibold block pb-2 text-sm"
                         href="https://creative-tim.com/contact-us?ref=nnjs-footer"
                       >
                         Contact Us

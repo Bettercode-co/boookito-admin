@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
             <ul className="flex flex-col lg:flex-row list-none ml-auto">
               <li className="flex items-center">
                 <a
-                  className="lg:text-white lg:hover:text-slate-200 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="lg:text-white lg:hover:text-slate-200 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-auth-navbar"
                 >
                   <FaRegFileAlt className="lg:text-slate-200 text-slate-400 far fa-file-alt text-lg leading-lg ml-2" />
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <a
-                  className="lg:text-white lg:hover:text-slate-200 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="lg:text-white lg:hover:text-slate-200 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-nextjs%2F"
                   target="_blank"
                   rel="noreferrer"
@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
 
               <li className="flex items-center">
                 <a
-                  className="lg:text-white lg:hover:text-slate-200 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="lg:text-white lg:hover:text-slate-200 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-nextjs%2F&text=Start%20your%20development%20with%20a%20Free%20Tailwind%20CSS%20and%20NextJS%20UI%20Kit%20and%20Admin.%20Let%20Notus%20NextJS%20amaze%20you%20with%20its%20cool%20features%20and%20build%20tools%20and%20get%20your%20project%20to%20a%20whole%20new%20level."
                   target="_blank"
                   rel="noreferrer"
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
 
               <li className="flex items-center">
                 <a
-                  className="lg:text-white lg:hover:text-slate-200 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="lg:text-white lg:hover:text-slate-200 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-auth-navbar"
                   target="_blank"
                   rel="noreferrer"
@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
 
               <li className="flex items-center">
                 <button
-                  className="bg-white text-slate-700 active:bg-slate-50 text-xs flex items-center gap-1 font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:ml-1 lg:mb-0 mr-3 mb-3 ease-linear transition-all duration-150"
+                  className="bg-white text-green-800 active:bg-slate-50 text-xs flex items-center gap-1 font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:ml-1 lg:mb-0 mr-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
                   Download

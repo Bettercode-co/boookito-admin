@@ -144,7 +144,7 @@ const EditCategoryModal = ({
             </label>
             <button
               type="submit"
-              className="w-full bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
+              className="w-full bg-green-800 text-white h-10 rounded hover:bg-green-700"
             >
               ثبت
             </button>

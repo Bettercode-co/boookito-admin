@@ -18,6 +18,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { CgSandClock } from "react-icons/cg";
 import { AiOutlineStop } from "react-icons/ai";
 import DeleteModal from "../../components/modals/DeleteModal";
+import LoadingComponent from "../../components/spinner/Loading";
 
 const statusHandler = (value) => {
   switch (value) {
@@ -212,7 +213,7 @@ const Orders: NextPage = () => {
             onClick={() => handleDelete(cell.row.original)}
           >
             <span
-              className={`flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${
+              className={`flex items-center bg-green-600 px-[4px] rounded text-white  hover:text-red-900 hover:bg-white  ${
                 cell.row.original.orderStatus === "CLOSED" &&
                 "bg-gray-200 hover:bg-gray-200 hover:text-white hover:cursor-not-allowed"
               } `}
@@ -246,28 +247,7 @@ const Orders: NextPage = () => {
 
   if (!ordersData) {
     return (
-      <div className="h-[80vh] w-full mx-auto flex items-center justify-center">
-        <svg
-          className="animate-spin h-14 w-14 mx-auto text-gray-600"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx={12}
-            cy={12}
-            r={10}
-            stroke="currentColor"
-            strokeWidth={4}
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          />
-        </svg>
-      </div>
+     <LoadingComponent/>
     );
   }
   return (
@@ -289,7 +269,7 @@ const Orders: NextPage = () => {
       <div className=" flex justify-end">
         <button
           onClick={moadalHandler}
-          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-blue-500 text-white hover:bg-blue  -600 transition "
+          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-green-600 text-white hover:bg-blue  -600 transition "
         >
           <IoIosAddCircleOutline /> اضافه کردن
         </button>
@@ -306,13 +286,13 @@ const Orders: NextPage = () => {
       <BasicTable rowsdata={ordersData} columnsData={COLUMNS} />
       <div className="text-center pb-8">
         <button
-          className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          className="w-20 py-1 rounded-md text-green-800 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           onClick={() => setPageNumber(pagenumber + 1)}
         >
           بعد
         </button>
         <button
-          className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          className="w-20 py-1 rounded-md text-green-800 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           onClick={() => setPageNumber(pagenumber - 1)}
           disabled={pagenumber <= 1}
         >

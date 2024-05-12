@@ -28,7 +28,7 @@ const IndexDropdown: React.FC = () => {
   return (
     <div>
       <a
-        className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+        className="hover:text-slate-500 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
         href="#pablo"
         ref={btnDropdownRef}
         onClick={clickHandler}
@@ -53,7 +53,7 @@ const IndexDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Dashboard
@@ -63,7 +63,7 @@ const IndexDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Settings
@@ -82,7 +82,7 @@ const IndexDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Login
@@ -92,7 +92,7 @@ const IndexDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Register
@@ -110,7 +110,7 @@ const IndexDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Landing
@@ -120,7 +120,7 @@ const IndexDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Profile

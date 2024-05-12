@@ -17,6 +17,7 @@ import EditBooksModal from "../../components/modals/EditBookModal";
 import DeleteModal from "../../components/modals/DeleteModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingComponent from "../../components/spinner/Loading";
 
 const token = getCookie("accessToken");
 
@@ -205,7 +206,7 @@ const Books: NextPage = () => {
             className="felx items-center min-w-max"
             onClick={() => handleEdit(cell.row.original)}
           >
-            <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
+            <span className="flex items-center bg-green-600 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white">
               <RiEditFill /> &nbsp; ویرایش
             </span>
           </button>
@@ -234,28 +235,7 @@ const Books: NextPage = () => {
 
   if (!booksData) {
     return (
-      <div className="h-[80vh] w-full mx-auto flex items-center justify-center">
-        <svg
-          className="animate-spin h-14 w-14 mx-auto text-gray-600"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx={12}
-            cy={12}
-            r={10}
-            stroke="currentColor"
-            strokeWidth={4}
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          />
-        </svg>
-      </div>
+     <LoadingComponent/>
     );
   }
   return (
@@ -281,7 +261,7 @@ const Books: NextPage = () => {
       <div className=" flex justify-end">
         <button
           onClick={moadalHandler}
-          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-cyan-700 text-white hover:bg-cyan-600 transition "
+          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-green-600 text-white hover:bg-green-700 transition "
         >
           <IoIosAddCircleOutline /> اضافه کردن
         </button>
@@ -299,13 +279,13 @@ const Books: NextPage = () => {
 
       <div className="text-center pb-8">
         <button
-          className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          className="w-20 py-1 rounded-md text-green-800 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           onClick={() => setPageNumber(pagenumber + 1)}
         >
           بعد
         </button>
         <button
-          className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          className="w-20 py-1 rounded-md text-green-800 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           onClick={() => setPageNumber(pagenumber - 1)}
           disabled={pagenumber <= 1}
         >

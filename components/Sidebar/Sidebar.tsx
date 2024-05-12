@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import logo from "../../public/img/dashboard/logo.jpg";
+import logo from "../../public/img/dashboard/logo.svg";
 import { deleteCookie } from "cookies-next";
 
 //react icons
 import { FaBars, FaTv, FaTimes, FaUsers } from "react-icons/fa";
 import { MdExitToApp } from "react-icons/md";
 import { RiPriceTag3Line } from "react-icons/ri";
-import {HiServer} from 'react-icons/hi'
+import { HiServer } from "react-icons/hi";
 import { ImBooks } from "react-icons/im";
 import { TbTruckLoading } from "react-icons/tb";
 import { BiCategoryAlt } from "react-icons/bi";
@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
     router.push("/auth/login");
   };
   return (
-    <nav className="  md:right-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+    <nav className="  md:right-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-[#121621] flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
       <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
         {/* Toggler */}
         <button
@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
         <Link href="/">
           <a
             href="#pablo"
-            className="h-10 md:block text-center md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0  "
+            className="h-10 md:block text-center md:pb-2 text-slate-200 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0  "
           >
             <Image
               src={logo}
@@ -71,7 +71,7 @@ const Sidebar: React.FC = () => {
                 <Link href="/">
                   <a
                     href="#pablo"
-                    className="md:block text-right md:pb-2 text-slate-600 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                    className="md:block text-right md:pb-2 text-slate-200 ml-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                   ></a>
                 </Link>
               </div>
@@ -92,18 +92,18 @@ const Sidebar: React.FC = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="border px-3 py-2 h-12 border-solid  border-slate-500 placeholder-slate-300 text-slate-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                className="border px-3 py-2 h-12 border-solid  border-slate-500 placeholder-slate-300 text-slate-200 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
               />
             </div>
           </form>
 
           {/* Divider */}
-          <hr className="my-4 md:min-w-full" />
+          <hr className="my-10  w-full" />
           {/* Heading */}
 
           {/* Navigation */}
 
-          <ul className="md:flex-col md:min-w-full gap-2 flex flex-col list-none md:mb-4">
+          <ul className="md:flex-col mt-5 md:min-w-full gap-2 flex flex-col list-none md:mb-4">
             <li className="items-center">
               <Link href="/admin/dashboard">
                 <a
@@ -111,8 +111,8 @@ const Sidebar: React.FC = () => {
                   className={
                     "flex items-center text-base  uppercase py-3 font-semibold  " +
                     (router.pathname.indexOf("/admin/dashboard") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
+                      ? "text-green-500 hover:text-green-600"
+                      : "text-slate-200 hover:text-slate-300")
                   }
                 >
                   <FaTv
@@ -120,7 +120,7 @@ const Sidebar: React.FC = () => {
                       " ml-2 text-lg " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
                         ? "opacity-75"
-                        : "text-slate-300")
+                        : "text-slate-200")
                     }
                   />
                   داشبورد
@@ -135,8 +135,8 @@ const Sidebar: React.FC = () => {
                   className={
                     "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/books") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
+                      ? "text-green-500 hover:text-green-600"
+                      : "text-slate-200 hover:text-slate-300")
                   }
                 >
                   <ImBooks
@@ -159,8 +159,8 @@ const Sidebar: React.FC = () => {
                   className={
                     "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/users") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
+                      ? "text-green-500 hover:text-green-600"
+                      : "text-slate-200 hover:text-slate-300")
                   }
                 >
                   <FaUsers
@@ -182,8 +182,8 @@ const Sidebar: React.FC = () => {
                   className={
                     "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/categories") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
+                      ? "text-green-500 hover:text-green-600"
+                      : "text-slate-200 hover:text-slate-300")
                   }
                 >
                   <BiCategoryAlt
@@ -205,8 +205,8 @@ const Sidebar: React.FC = () => {
                   className={
                     "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/orders") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
+                      ? "text-green-500 hover:text-green-600"
+                      : "text-slate-200 hover:text-slate-300")
                   }
                 >
                   <TbTruckLoading
@@ -222,9 +222,6 @@ const Sidebar: React.FC = () => {
               </Link>
             </li>
 
-
-
-
             <li className="items-center">
               <Link href="/admin/servers">
                 <a
@@ -232,8 +229,8 @@ const Sidebar: React.FC = () => {
                   className={
                     "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/servers") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
+                      ? "text-green-500 hover:text-green-600"
+                      : "text-slate-200 hover:text-slate-300")
                   }
                 >
                   <HiServer
@@ -249,15 +246,14 @@ const Sidebar: React.FC = () => {
               </Link>
             </li>
 
-
             <li className="items-center">
               <div onClick={logoutHandler} className="cursor-pointer">
                 <div
                   className={
                     "flex items-center text-base  uppercase py-3 font-semibold " +
                     (router.pathname.indexOf("/admin/settings") !== -1
-                      ? "text-sky-500 hover:text-sky-600"
-                      : "text-slate-600 hover:text-slate-500")
+                      ? "text-green-500 hover:text-green-600"
+                      : "text-slate-200 hover:text-slate-300")
                   }
                 >
                   <MdExitToApp

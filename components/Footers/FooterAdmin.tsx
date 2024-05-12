@@ -12,7 +12,7 @@ const FooterAdmin: React.FC = () => {
                 Copyright © {new Date().getFullYear()}{" "}
                 <a
                   href="https://www.creative-tim.com?ref=nnjs-footer-admin"
-                  className="text-slate-500 hover:text-slate-700 text-sm font-semibold py-1"
+                  className="text-slate-500 hover:text-green-800 text-sm font-semibold py-1"
                 >
                   Creative Tim
                 </a>
@@ -23,7 +23,7 @@ const FooterAdmin: React.FC = () => {
                 <li>
                   <a
                     href="https://www.creative-tim.com?ref=nnjs-footer-admin"
-                    className="text-slate-600 hover:text-slate-800 text-sm font-semibold block py-1 px-3"
+                    className="text-green-700 hover:text-slate-800 text-sm font-semibold block py-1 px-3"
                   >
                     Creative Tim
                   </a>
@@ -31,7 +31,7 @@ const FooterAdmin: React.FC = () => {
                 <li>
                   <a
                     href="https://www.creative-tim.com/presentation?ref=nnjs-footer-admin"
-                    className="text-slate-600 hover:text-slate-800 text-sm font-semibold block py-1 px-3"
+                    className="text-green-700 hover:text-slate-800 text-sm font-semibold block py-1 px-3"
                   >
                     About Us
                   </a>
@@ -39,7 +39,7 @@ const FooterAdmin: React.FC = () => {
                 <li>
                   <a
                     href="http://blog.creative-tim.com?ref=nnjs-footer-admin"
-                    className="text-slate-600 hover:text-slate-800 text-sm font-semibold block py-1 px-3"
+                    className="text-green-700 hover:text-slate-800 text-sm font-semibold block py-1 px-3"
                   >
                     Blog
                   </a>
@@ -47,7 +47,7 @@ const FooterAdmin: React.FC = () => {
                 <li>
                   <a
                     href="https://github.com/creativetimofficial/notus-nextjs/blob/main/LICENSE.md?ref=nnjs-footer-admin"
-                    className="text-slate-600 hover:text-slate-800 text-sm font-semibold block py-1 px-3"
+                    className="text-green-700 hover:text-slate-800 text-sm font-semibold block py-1 px-3"
                   >
                     MIT License
                   </a>

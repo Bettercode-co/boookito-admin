@@ -369,7 +369,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
               <h4>افزودن کتاب</h4>
               <div className="h-[1px] bg-slate-200 w-full mt-5" />
             </div>
-            <button onClick={() => setScanner(true)} className="flex w-full items-center justify-center mt-5 bg-slate-700 text-white h-10 rounded hover:bg-slate-600">
+            <button onClick={() => setScanner(true)} className="flex w-full items-center justify-center mt-5 bg-green-800 text-white h-10 rounded hover:bg-green-700">
                 <div className="flex">
                   <span className="mr-4" >اسکن شابک </span>
                   <span className="mr-4 text-xl" ><BiBarcodeReader  /></span>
@@ -665,7 +665,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
                 />
                 <button
                   type="button"
-                  className="text-white bg-slate-500 border-white hover:drop-shadow-xl drop-shadow rounded-md hover:bg-white hover:text-slate-700 hover:border-2 hover:border-slate-700 transition-all border-2 px-4 py-1"
+                  className="text-white bg-slate-500 border-white hover:drop-shadow-xl drop-shadow rounded-md hover:bg-white hover:text-green-800 hover:border-2 hover:border-green-800 transition-all border-2 px-4 py-1"
                   onClick={triggerRef}
                 >
                   انتخاب عکس
@@ -675,7 +675,7 @@ const BooksModal = ({ setIsModalOpen, isModalOpen }) => {
             </div>
             <button
               type="submit"
-              className="w-full mt-10 bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
+              className="w-full mt-10 bg-green-800 text-white h-10 rounded hover:bg-green-700"
             >
               ثبت
             </button>

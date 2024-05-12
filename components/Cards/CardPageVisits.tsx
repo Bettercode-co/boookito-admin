@@ -77,7 +77,7 @@ export default function CardPageVisits() {
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-left">
               <Link href="/admin/orders">
                 <button
-                  className="bg-blue-500 h-10  text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 text-left"
+                  className="bg-green-600 h-10  text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 text-left"
                   type="button"
                 >
                   مشاهده تمامی امانات

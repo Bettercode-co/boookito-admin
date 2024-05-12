@@ -281,7 +281,7 @@ const UserModal = ({ setIsModalOpen, isModalOpen }) => {
             </div>
             <button
               type="submit"
-              className="w-full mt-10 bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
+              className="w-full mt-10 bg-green-800 text-white h-10 rounded hover:bg-green-700"
             >
               ثبت
             </button>

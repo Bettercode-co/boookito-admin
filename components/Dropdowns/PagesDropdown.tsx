@@ -29,7 +29,7 @@ const PagesDropdown: React.FC = () => {
   return (
     <div>
       <a
-        className="lg:text-white lg:hover:text-slate-200 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+        className="lg:text-white lg:hover:text-slate-200 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
         href="#pablo"
         ref={btnDropdownRef}
         onClick={clickHandler}
@@ -54,7 +54,7 @@ const PagesDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Dashboard
@@ -64,7 +64,7 @@ const PagesDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Settings
@@ -83,7 +83,7 @@ const PagesDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Login
@@ -93,7 +93,7 @@ const PagesDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Register
@@ -111,7 +111,7 @@ const PagesDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Landing
@@ -121,7 +121,7 @@ const PagesDropdown: React.FC = () => {
           <a
             href="#pablo"
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-green-800"
             }
           >
             Profile

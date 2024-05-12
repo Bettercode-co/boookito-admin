@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
+
+
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import BasicTable from "../../components/basicTable/BasicTable";
@@ -16,6 +16,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import UserModal from "../../components/modals/UserModal";
 import { useRouter } from "next/router";
+import LoadingComponent from "../../components/spinner/Loading";
 
 const statusHandler = (value: string) => {
   switch (value) {
@@ -203,7 +204,7 @@ const Users: NextPage = () => {
             className="felx items-center min-w-max"
             onClick={() => handleEdit(cell.row.original.id)}
           >
-            <span className="flex items-center bg-blue-500 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white disabled:cursor-not-allowed">
+            <span className="flex items-center bg-green-600 px-[4px] rounded text-white  hover:text-blue-900 hover:bg-white disabled:cursor-not-allowed">
               <RiEditFill /> &nbsp; ویرایش
             </span>
           </button>
@@ -225,28 +226,7 @@ const Users: NextPage = () => {
 
   if (!usersData) {
     return (
-      <div className="h-[80vh] w-full mx-auto flex items-center justify-center">
-        <svg
-          className="animate-spin h-14 w-14 mx-auto text-gray-600"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx={12}
-            cy={12}
-            r={10}
-            stroke="currentColor"
-            strokeWidth={4}
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          />
-        </svg>
-      </div>
+     <LoadingComponent/>
     );
   }
   return (
@@ -264,13 +244,13 @@ const Users: NextPage = () => {
       <div className=" flex justify-end mt-5">
         <button
           onClick={() => { setIsModalOpen(true)}}
-          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-blue-500 text-white hover:bg-blue-600 transition "
+          className=" left-6 flex items-center justify-center   w-32 h-10 rounded bg-green-600 text-white hover:bg-green-700 transition "
         >
           <IoIosAddCircleOutline />  اضافه کردن 
         </button>
         <a
           href="/admin/newusers"
-          className=" left-6 flex items-center justify-center   w-48 mx-5 h-10 rounded bg-blue-500 text-white hover:bg-blue-600 transition "
+          className=" left-6 flex items-center justify-center   w-48 mx-5 h-10 rounded bg-green-600 text-white hover:bg-green-700 transition "
         >
           <IoIosAddCircleOutline />  اضافه کردن  گروهی
         </a>
@@ -287,13 +267,13 @@ const Users: NextPage = () => {
       <BasicTable rowsdata={usersData} columnsData={COLUMNS} />
       <div className="text-center pb-8">
         <button
-          className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          className="w-20 py-1 rounded-md text-green-800 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           onClick={() => setPageNumber(pagenumber + 1)}
         >
           بعد
         </button>
         <button
-          className="w-20 py-1 rounded-md text-slate-700 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          className="w-20 py-1 rounded-md text-green-800 cursor-pointer bg-violet-300 mx-5 mt-3 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           onClick={() => setPageNumber(pagenumber - 1)}
           disabled={pagenumber <= 1}
         >

@@ -235,7 +235,7 @@ const OrdresModal = ({ setIsModalOpen, isModalOpen }) => {
             </label>
             <button
               onClick={neworderHandler}
-              className="w-64 bg-slate-700 text-white h-10 rounded hover:bg-slate-600"
+              className="w-64 bg-green-800 text-white h-10 rounded hover:bg-green-700"
             >
               ثبت
             </button>

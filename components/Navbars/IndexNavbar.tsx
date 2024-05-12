@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link href="/">
               <a
-                className="text-slate-700 text-sm font-bold leading-relaxed inline-block ml-4 py-2 whitespace-nowrap uppercase"
+                className="text-green-800 text-sm font-bold leading-relaxed inline-block ml-4 py-2 whitespace-nowrap uppercase"
                 href="#pablo"
               >
                 Notus NextJS
@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
             <ul className="flex flex-col lg:flex-row list-none ml-auto">
               <li className="flex items-center">
                 <a
-                  className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="hover:text-slate-500 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index-navbar"
                 >
                   Docs
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <a
-                  className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="hover:text-slate-500 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-nextjs%2F"
                   target="_blank"
                   rel="noreferrer"
@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
 
               <li className="flex items-center">
                 <a
-                  className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="hover:text-slate-500 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdemos.creative-tim.com%2Fnotus-nextjs%2F&text=Start%20your%20development%20with%20a%20Free%20Tailwind%20CSS%20and%20NextJS%20UI%20Kit%20and%20Admin.%20Let%20Notus%20NextJS%20amaze%20you%20with%20its%20cool%20features%20and%20build%20tools%20and%20get%20your%20project%20to%20a%20whole%20new%20level."
                   target="_blank"
                   rel="noreferrer"
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
 
               <li className="flex items-center">
                 <a
-                  className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="hover:text-slate-500 text-green-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index-navbar"
                   target="_blank"
                   rel="noreferrer"
@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
 
               <li className="flex items-center">
                 <button
-                  className="bg-slate-700 text-white active:bg-slate-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:ml-1 lg:mb-0 mr-3 mb-3 ease-linear transition-all duration-150"
+                  className="bg-green-800 text-white active:bg-green-700 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:ml-1 lg:mb-0 mr-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
                   Download <i className="fas fa-arrow-alt-circle-down"></i>

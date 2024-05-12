@@ -17,7 +17,7 @@ const CardStats: React.FC<CardStatsProps> = ({
               <h5 className="text-slate-400 uppercase font-bold text-xs">
                 {statSubtitle}
               </h5>
-              <span className="font-semibold text-xl text-slate-700">
+              <span className="font-semibold text-xl text-green-800">
                 {statTitle}
               </span>
             </div>
