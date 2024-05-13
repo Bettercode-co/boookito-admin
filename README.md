@@ -1,6 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+##  Description of the Boookito-Admin 
+This project was created in 2021 and is open source. Using this source, you can create an online library management website. Currently, this service is available in the [boookito](https://boookito.ir) domain for Amirkabir Arak University.
+You can localize this template for your region. Of course, this project requires backend source code and this source is for library management. Also, the user side source code can be accessed at this address. [boookito-client](https://github.com/Bettercode-co/boookito-client)
 
-## Getting Started
+
+
+Send an email to buy the source code of the server side [email](mailto:m789219@gmail.com)
+
+## <h4> DashboardPage </h4> 
+![Homapage](./public/img/demo/dashboard.png)
+## <h4> BooksPage </h4> 
+![Bookpage](./public/img/demo/books.png)
+## <h4> UsersPage </h4> 
+![Loginpage](./public/img/demo/users.png)
+## <h4> CategoriesPage </h4> 
+![Dashboardpage](./public/img/demo/categories.png)
+## <h4> NewCategory </h4> 
+![Dashboardpage](./public/img/demo/new-category.png)
+## <h4> NewUsers </h4> 
+![Dashboardpage](./public/img/demo/new-users.png)
+## <h4> NewUser </h4> 
+![Dashboardpage](./public/img/demo/new-user.png)
+## <h4> NewBookPage </h4> 
+![Dashboardpage](./public/img/demo/new-book.png)
+
+## <h4> BorrowersPage </h4> 
+![Dashboardpage](./public/img/demo/borrowers.png)
+
+## <h4> NewBorrowing </h4> 
+![Dashboardpage](./public/img/demo/new-borrowing.png)
+
+
+## <h4> NewSubCategoryPage </h4> 
+![Dashboardpage](./public/img/demo/new-subcategory.png)
 
 First, run the development server:
 
@@ -14,7 +45,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
@@ -27,8 +59,6 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you have a problem running the source or you need the backend version or the admin version, [email me](mailto:m789219@gmail.com)
