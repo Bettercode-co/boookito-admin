@@ -37,7 +37,7 @@ const Books: NextPage = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [rowDataId, setRowDataId] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const [searchInputValue, setSearchInputValue] = useState<string>('')
+  const [searchInputValue, setSearchInputValue] = useState<string>("");
 
   const moadalHandler = () => {
     setIsModalOpen(!isModalOpen);
@@ -55,25 +55,37 @@ const Books: NextPage = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-    if(searchInputValue){
-      searchFetchBook(searchInputValue)
-    }else{
-      fetchBooks()
-    }}, 2000)
+      if (searchInputValue) {
+        searchFetchBook(searchInputValue);
+      } else {
+        fetchBooks();
+      }
+    }, 2000);
     return () => clearTimeout(timer);
-  }, [pagenumber, isModalOpen, isEditModalOpen, isDeleteModalOpen, searchInputValue]);
+  }, [
+    pagenumber,
+    isModalOpen,
+    isEditModalOpen,
+    isDeleteModalOpen,
+    searchInputValue,
+  ]);
 
   const searchFetchBook = (value) => {
-    if(searchInputValue){
-      axiosInstance.post(`admin/searchbooks`, { name: value}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(res => setBooksData(res.data.result))
-      .catch(() => notifyError('خطا در جست و جوی کتاب'))
+    if (searchInputValue) {
+      axiosInstance
+        .post(
+          `admin/searchbooks`,
+          { name: value },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => setBooksData(res.data.result))
+        .catch(() => notifyError("خطا در جست و جوی کتاب"));
     }
-  }
+  };
 
   const COLUMNS = [
     {
@@ -82,7 +94,15 @@ const Books: NextPage = () => {
       minWidth: 100,
       Cell: (cell) => (
         <div>
-          <img src={cell.value} alt="book" />
+          <img
+            src={
+              cell.value ==
+              "https://bookito-object-storage.storage.iran.liara.space/nophoto.png"
+                ? "https://bookito-data-storage.storage.iran.liara.space/nophoto.png"
+                : cell.value
+            }
+            alt="book"
+          />
         </div>
       ),
     },
@@ -104,7 +124,11 @@ const Books: NextPage = () => {
       Cell: (cell) => (
         <div dir="ltr">
           {cell.value.map((auth) => {
-            return <div key={auth}>{(auth === "" && cell.value.length < 2) ? "ندارد" : auth}</div>;
+            return (
+              <div key={auth}>
+                {auth === "" && cell.value.length < 2 ? "ندارد" : auth}
+              </div>
+            );
           })}
         </div>
       ),
@@ -116,7 +140,11 @@ const Books: NextPage = () => {
       Cell: (cell) => (
         <div dir="ltr">
           {cell.value.map((auth) => {
-            return <div key={auth}>{(auth === "" && cell.value.length < 2) ? "ندارد" : auth}</div>;
+            return (
+              <div key={auth}>
+                {auth === "" && cell.value.length < 2 ? "ندارد" : auth}
+              </div>
+            );
           })}
         </div>
       ),
@@ -234,9 +262,7 @@ const Books: NextPage = () => {
   };
 
   if (!booksData) {
-    return (
-     <LoadingComponent/>
-    );
+    return <LoadingComponent />;
   }
   return (
     <div className="pt-14">
@@ -267,13 +293,15 @@ const Books: NextPage = () => {
         </button>
       </div>
       <div className="searchBarContainer mt-8 lg:mt-0 relative flex  gap-2 ">
-          <span className="pr-0 lg:pr-10 self-center text-3xl"><RiSearchLine /> </span>
-          <input
-            className='mt-4 h-10 rounded-lg w-full lg:w-96 border-slate-400 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent'
-            type="text"
-            value={searchInputValue}
-            onChange={e => setSearchInputValue(e.target.value)}
-          />
+        <span className="pr-0 lg:pr-10 self-center text-3xl">
+          <RiSearchLine />{" "}
+        </span>
+        <input
+          className="mt-4 h-10 rounded-lg w-full lg:w-96 border-slate-400 outline-none focus:border-none focus:outline-teal-500 focus:ring-transparent"
+          type="text"
+          value={searchInputValue}
+          onChange={(e) => setSearchInputValue(e.target.value)}
+        />
       </div>
       <BasicTable rowsdata={booksData} columnsData={COLUMNS} />
 
