@@ -1,6 +1,7 @@
 {
-  "name": "notus-nextjs-dashboard-v2",
-  "version": "0.1.0",
+  "name": "boookito-admin",
+  "description": "We developed a library management system for the Admin section using Next.js and Tailwind CSS, designed to streamline book records, user access, and other library functions at AmirKabir University",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
