@@ -222,29 +222,7 @@ const Sidebar: React.FC = () => {
               </Link>
             </li>
 
-            <li className="items-center">
-              <Link href="/admin/servers">
-                <a
-                  href="#pablo"
-                  className={
-                    "flex items-center text-base  uppercase py-3 font-semibold " +
-                    (router.pathname.indexOf("/admin/servers") !== -1
-                      ? "text-green-500 hover:text-green-600"
-                      : "text-slate-200 hover:text-slate-300")
-                  }
-                >
-                  <HiServer
-                    className={
-                      " ml-2 text-lg " +
-                      (router.pathname.indexOf("/admin/servers") !== -1
-                        ? "opacity-75"
-                        : "text-slate-300")
-                    }
-                  />
-                  وضعیت سرورها
-                </a>
-              </Link>
-            </li>
+
 
             <li className="items-center">
               <div onClick={logoutHandler} className="cursor-pointer">

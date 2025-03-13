@@ -67,14 +67,7 @@ const Login: React.FC = () => {
                   alt=""
                 />
               </div>
-              <a
-                href="https://boookito.betteruptime.com"
-                type="button"
-                className="w-full py-3 px-4  font-bold  inline-flex justify-center items-center gap-2 rounded-md border  bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-700 transition-all text-sm "
-              >
-                <FiServer />
-                وضعیت سرورها
-              </a>
+
 
               <div className="mt-5">
                 <form onSubmit={submitForm}>
